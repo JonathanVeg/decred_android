@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Decred</string>
+    <string name="title_activity_calculator">Calculator</string>
+    <string name="title_activity_wallets">Wallets</string>
+    <string name="title_activity_about">About</string>
+    <string name="title_activity_alerts">Alerts</string>
+
+    <string name="alert_reached_for"><![CDATA[Alert reached for <b>COIN</b> in <b>EXCHANGE</b>!\n]]></string>
+    <string name="gets_greater_than"><![CDATA[<b>COIN</b> gets greater than <b>VALUE</b>. \n]]></string>
+    <string name="gets_lower_than"><![CDATA[<b>COIN</b> gets lower than <b>VALUE</b>. \n]]></string>
+    <string name="alert_last_value"><![CDATA[Last Value: <b>VALUE</b>\n]]></string>
+</resources>

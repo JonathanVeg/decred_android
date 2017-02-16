@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/activity_margin"
+    android:paddingStart="@dimen/activity_margin"
+    android:paddingTop="@dimen/activity_margin">
+
+    <LinearLayout
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:contentDescription="XVC Logo"
+        app:srcCompat="@drawable/dcr_icon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="8dp"
+        android:text="Wallets"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <EditText
+            android:id="@+id/etWalletsAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Walllet" />
+
+        <Button
+            android:id="@+id/bWalletsAddSave"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="right"
+            android:background="@drawable/button_style"
+            android:text="Add"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <CheckBox
+        android:id="@+id/cbAlertBalanceChanges"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alert me when balance changes"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/srWallets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvWallets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/row_wallets" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

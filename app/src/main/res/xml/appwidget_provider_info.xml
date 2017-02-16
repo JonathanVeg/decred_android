@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialLayout="@layout/appwidget_coin"
+    android:minHeight="56dp"
+    android:minWidth="110dp"
+    android:previewImage="@drawable/dcr_icon"
+    android:resizeMode="horizontal|vertical"
+    android:updatePeriodMillis="1800000"
+    android:widgetCategory="home_screen" />
+
+    <!--
+
+    size is calculated by
+
+    n * 70 - 30
+
+    where n is the number of spaces
+
+    -->

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/calculator"
+        android:icon="@drawable/ic_action_calculate"
+        android:showAsAction="ifRoom"
+        android:title="Calculator" />
+
+    <item
+        android:id="@+id/alerts"
+        android:icon="@drawable/ic_add_alert_white_24dp"
+        android:showAsAction="ifRoom"
+        android:title="Alerts"
+        android:visible="false" />
+
+    <item
+        android:id="@+id/wallets"
+        android:icon="@drawable/ic_account_balance_wallet_white_24dp"
+        android:showAsAction="ifRoom"
+        android:title="Wallets" />
+
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/ic_info_white_24dp"
+        android:showAsAction="ifRoom"
+        android:title="About"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/ic_share_white_24dp"
+        android:showAsAction="ifRoom"
+        android:title="Share"
+        android:visible="true" />
+
+</menu>
