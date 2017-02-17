@@ -25,7 +25,6 @@ import altcoin.br.decred.utils.Utils;
 public class AboutActivity extends AppCompatActivity {
     private static String TAG = "Decred AboutActivity";
 
-    private ListView lvLinks;
     private List<Link> links;
     private AdapterLinks adapterLinks;
 
@@ -51,7 +50,8 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     private void instanceObjects() {
-        lvLinks = (ListView) findViewById(R.id.lvLinks);
+        ListView lvLinks = (ListView) findViewById(R.id.lvLinks);
+
         links = new ArrayList<>();
 
         adapterLinks = new AdapterLinks(this, links);
