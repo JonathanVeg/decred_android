@@ -15,11 +15,11 @@ ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xm
 		INJECTED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.INTERNET
 ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:5:5-67
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.6.5] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.6.5/AndroidManifest.xml:9:5-67
-MERGED from [com.crashlytics.sdk.android:beta:1.2.2] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.2.2/AndroidManifest.xml:9:5-67
-MERGED from [io.fabric.sdk.android:fabric:1.3.14] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.14/AndroidManifest.xml:25:5-67
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.14] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.14/AndroidManifest.xml:9:5-67
-MERGED from [com.crashlytics.sdk.android:answers:1.3.10] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.10/AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.6.6] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.6.6/AndroidManifest.xml:9:5-67
+MERGED from [io.fabric.sdk.android:fabric:1.3.15] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.15/AndroidManifest.xml:29:5-67
+MERGED from [com.crashlytics.sdk.android:beta:1.2.3] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.2.3/AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:answers:1.3.11] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.11/AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.15] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.15/AndroidManifest.xml:52:5-67
 MERGED from [com.koushikdutta.ion:ion:2.1.8] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.koushikdutta.ion/ion/2.1.8/AndroidManifest.xml:11:5-67
 MERGED from [com.koushikdutta.async:androidasync:2.1.8] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.koushikdutta.async/androidasync/2.1.8/AndroidManifest.xml:11:5-67
 MERGED from [com.google.firebase:firebase-analytics:9.4.0] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.4.0/AndroidManifest.xml:21:5-67
@@ -34,11 +34,11 @@ MERGED from [com.google.android.gms:play-services-basement:9.4.0] /home/jonathan
 MERGED from [com.android.support:support-v4:24.0.0] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/AndroidManifest.xml:25:5-20
 MERGED from [com.google.android.gms:play-services-tasks:9.4.0] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.4.0/AndroidManifest.xml:5:5-20
 MERGED from [com.google.firebase:firebase-common:9.4.0] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.4.0/AndroidManifest.xml:5:5-12:19
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.6.5] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.6.5/AndroidManifest.xml:11:5-20
-MERGED from [com.crashlytics.sdk.android:beta:1.2.2] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.2.2/AndroidManifest.xml:11:5-20
-MERGED from [io.fabric.sdk.android:fabric:1.3.14] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.14/AndroidManifest.xml:27:5-20
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.14] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.14/AndroidManifest.xml:11:5-20
-MERGED from [com.crashlytics.sdk.android:answers:1.3.10] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.10/AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.6.6] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.6.6/AndroidManifest.xml:11:5-20
+MERGED from [io.fabric.sdk.android:fabric:1.3.15] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.15/AndroidManifest.xml:31:5-20
+MERGED from [com.crashlytics.sdk.android:beta:1.2.3] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.2.3/AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:answers:1.3.11] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.11/AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.15] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.15/AndroidManifest.xml:54:5-20
 MERGED from [com.koushikdutta.ion:ion:2.1.8] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.koushikdutta.ion/ion/2.1.8/AndroidManifest.xml:13:5-14:19
 MERGED from [com.koushikdutta.async:androidasync:2.1.8] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.koushikdutta.async/androidasync/2.1.8/AndroidManifest.xml:13:5-14:19
 MERGED from [com.android.support:design:24.0.0] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/design/24.0.0/AndroidManifest.xml:22:5-20
@@ -170,11 +170,11 @@ MERGED from [com.android.support:support-v4:24.0.0] /home/jonathan/Desktop/decre
 MERGED from [com.google.android.gms:play-services-tasks:9.4.0] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.4.0/AndroidManifest.xml:4:5-43
 MERGED from [com.google.firebase:firebase-database-connection:9.4.0] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/9.4.0/AndroidManifest.xml:5:5-43
 MERGED from [com.google.firebase:firebase-common:9.4.0] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.4.0/AndroidManifest.xml:4:5-43
-MERGED from [com.crashlytics.sdk.android:crashlytics:2.6.5] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.6.5/AndroidManifest.xml:7:5-43
-MERGED from [com.crashlytics.sdk.android:beta:1.2.2] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.2.2/AndroidManifest.xml:7:5-43
-MERGED from [io.fabric.sdk.android:fabric:1.3.14] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.14/AndroidManifest.xml:23:5-43
-MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.14] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.14/AndroidManifest.xml:7:5-43
-MERGED from [com.crashlytics.sdk.android:answers:1.3.10] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.10/AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.6.6] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.6.6/AndroidManifest.xml:7:5-43
+MERGED from [io.fabric.sdk.android:fabric:1.3.15] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.15/AndroidManifest.xml:27:5-43
+MERGED from [com.crashlytics.sdk.android:beta:1.2.3] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.2.3/AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:answers:1.3.11] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.11/AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.15] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.15/AndroidManifest.xml:50:5-43
 MERGED from [com.koushikdutta.ion:ion:2.1.8] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.koushikdutta.ion/ion/2.1.8/AndroidManifest.xml:7:5-9:41
 MERGED from [com.koushikdutta.async:androidasync:2.1.8] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.koushikdutta.async/androidasync/2.1.8/AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:design:24.0.0] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/design/24.0.0/AndroidManifest.xml:20:5-43

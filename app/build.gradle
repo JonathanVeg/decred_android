@@ -22,8 +22,8 @@ android {
         applicationId "altcoin.br.decred"
         minSdkVersion 17
         targetSdkVersion 24
-        versionCode 13
-        versionName "3.0"
+        versionCode 1
+        versionName "1.0"
     }
     buildTypes {
         release {
@@ -39,7 +39,7 @@ dependencies {
     // firebase realtime database
     compile 'com.google.firebase:firebase-database:9.4.0'
 
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
         transitive = true;
     }
     compile('com.crashlytics.sdk.android:answers:1.3.10@aar') {

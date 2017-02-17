@@ -34,6 +34,7 @@ public class AboutActivity extends AppCompatActivity {
 
     private LinearLayout llAboutDonate;
     private TextView tvAboutDonateWallet;
+    private TextView tvAboutDonate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class AboutActivity extends AppCompatActivity {
         tvAboutCode = (TextView) findViewById(R.id.tvAboutCode);
 
         tvAboutDonateWallet = (TextView) findViewById(R.id.tvAboutDonateWallet);
+        tvAboutDonate = (TextView) findViewById(R.id.tvAboutDonate);
         llAboutDonate = (LinearLayout) findViewById(R.id.llDonate);
     }
 
@@ -114,6 +116,28 @@ public class AboutActivity extends AppCompatActivity {
                     String value = dataSnapshot.getValue(String.class);
 
                     tvAboutDonateWallet.setText(value);
+
+                    wallet.keepSynced(true);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
+
+            final DatabaseReference title = database.getReference("donation").child("title");
+
+            // Read from the database
+            title.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    String value = dataSnapshot.getValue(String.class);
+
+                    tvAboutDonate.setText(value);
 
                     wallet.keepSynced(true);
                 }

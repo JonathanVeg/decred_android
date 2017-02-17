@@ -3240,14 +3240,7 @@
                     "endOffset": 47347
                 },
                 "from": {
-                    "file": "/home/jonathan/Desktop/decred_android/app/src/main/res/values/strings.xml",
-                    "position": {
-                        "startLine": 1,
-                        "startColumn": 4,
-                        "startOffset": 16,
-                        "endColumn": 43,
-                        "endOffset": 55
-                    }
+                    "file": "/home/jonathan/Desktop/decred_android/app/src/main/res/values/strings.xml"
                 }
             },
             {

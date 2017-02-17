@@ -28,6 +28,10 @@
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/design/24.0.0/res/layout/design_layout_snackbar_include.xml"
     },
     {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/bleutrade.xml",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/bleutrade.xml"
+    },
+    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/notification_template_big_media_narrow.xml"
     },

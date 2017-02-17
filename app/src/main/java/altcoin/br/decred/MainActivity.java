@@ -90,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
 
         loadPoloniexData();
 
+        loadBleutradeData();
+
         loadChart();
 
         loadMarketChart();
@@ -446,11 +448,13 @@ public class MainActivity extends AppCompatActivity {
         TextView tvOficialSite = (TextView) findViewById(R.id.tvOficialSite);
         TextView tvPoloniexTitle = (TextView) findViewById(R.id.tvPoloniexTitle);
         TextView tvBittrexTitle = (TextView) findViewById(R.id.tvBittrexTitle);
+        TextView tvBleutradeTitle = (TextView) findViewById(R.id.tvBleutradeTitle);
         TextView tvCoinMarketCapTitle = (TextView) findViewById(R.id.tvCoinMarketCapTitle);
 
         Utils.textViewLink(tvOficialSite, "https://decred.info/");
         Utils.textViewLink(tvPoloniexTitle, "https://coinmarketcap.com/exchanges/poloniex/");
         Utils.textViewLink(tvBittrexTitle, "https://coinmarketcap.com/exchanges/bittrex/");
+        Utils.textViewLink(tvBleutradeTitle, "https://coinmarketcap.com/exchanges/bleutrade/");
         Utils.textViewLink(tvCoinMarketCapTitle, "https://coinmarketcap.com/currencies/decred/#markets");
 
         // parte dos graficos
@@ -612,6 +616,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 new atParsePoloniexData(response).execute();
+            }
+        };
+
+        InternetRequests internetRequests = new InternetRequests();
+        internetRequests.executePost(url, listener);
+    }
+
+    private void loadBleutradeData() {
+        String url = "https://bleutrade.com/api/v2/public/getmarketsummary?market=DCR_BTC";
+
+        Response.Listener<String> listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                new atParseBleutradeData(response).execute();
             }
         };
 
@@ -859,4 +877,63 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private class atParseBleutradeData extends AsyncTask<Void, Void, Void> {
+        String response;
+
+        String last;
+        String baseVolume;
+        String ask;
+        String bid;
+        String changes;
+
+        atParseBleutradeData(String response) {
+            this.response = response;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+
+                JSONObject obj = new JSONObject(response).getJSONArray("result").getJSONObject(0);
+
+                last = Utils.numberComplete(obj.getString("Last"), 8);
+                baseVolume = Utils.numberComplete(obj.getString("BaseVolume"), 8);
+                ask = Utils.numberComplete(obj.getString("Ask"), 8);
+                bid = Utils.numberComplete(obj.getString("Bid"), 8);
+
+                Double prev = obj.getDouble("PrevDay");
+
+                double c = (prev - Double.parseDouble(last)) / prev * (-100);
+
+                changes = Utils.numberComplete("" + c, 2);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            TextView tvBleutradeLast = (TextView) findViewById(R.id.tvBleutradeLast);
+            TextView tvBleutradeBaseVolume = (TextView) findViewById(R.id.tvBleutradeBaseVolume);
+            TextView tvBleutradeBid = (TextView) findViewById(R.id.tvBleutradeBid);
+            TextView tvBleutradeAsk = (TextView) findViewById(R.id.tvBleutradeAsk);
+            TextView tvBleutradeChanges = (TextView) findViewById(R.id.tvBleutradeChanges);
+
+            tvBleutradeLast.setText(last);
+            tvBleutradeBaseVolume.setText(baseVolume);
+            tvBleutradeBid.setText(bid);
+            tvBleutradeAsk.setText(ask);
+            tvBleutradeChanges.setText(String.format("%s%%", changes));
+
+            if (Double.parseDouble(changes) >= 0)
+                tvBleutradeChanges.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorChangesUp));
+            else
+                tvBleutradeChanges.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorChangesDown));
+        }
+    }
 }

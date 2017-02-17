@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 class CreateDatabase extends SQLiteOpenHelper {
 
-    private static int CURRENT_DB_VERSION = 4;
+    private static int CURRENT_DB_VERSION = 1;
 
     CreateDatabase(Context context, String dbName) {
         super(context, dbName, null, CURRENT_DB_VERSION);
@@ -16,6 +16,23 @@ class CreateDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         try {
             db.execSQL("CREATE TABLE if not exists bit_foo_coins(name string, visible_home string);");
+
+            db.execSQL("CREATE TABLE if not exists wallets(" +
+                    "_id integer primary key autoincrement, " +
+                    "address varchar(100), " +
+                    "last_balance double, " +
+                    "balance varchar(20)" +
+                    ")");
+
+            db.execSQL("CREATE TABLE if not exists alerts(_id integer primary key autoincrement, " +
+                    "awhen integer, " +
+                    "value varchar(15), " +
+                    "created_at datetime," +
+                    "active boolean," +
+                    "poloniex boolean," +
+                    "bittrex boolean" +
+                    ")");
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -32,43 +49,6 @@ class CreateDatabase extends SQLiteOpenHelper {
         switch (newVersion) {
             case 1:
                 break;
-
-            case 2:
-                try {
-                    db.execSQL("CREATE TABLE if not exists wallets(" +
-                            "_id integer primary key autoincrement, " +
-                            "address varchar(100), " +
-                            "last_balance double" +
-                            ")");
-                } catch (Exception ignored) {
-                }
-
-                break;
-
-            case 3:
-                try {
-                    db.execSQL("ALTER TABLE wallets ADD COLUMN balance varchar(20)");
-                } catch (Exception ignored) {
-                }
-
-                break;
-
-            case 4:
-                try {
-                    db.execSQL("CREATE TABLE if not exists alerts(_id integer primary key autoincrement, " +
-                            "awhen integer, " +
-                            "value varchar(15), " +
-                            "created_at datetime," +
-                            "active boolean," +
-                            "poloniex boolean," +
-                            "bittrex boolean" +
-                            ")");
-                } catch (Exception ignored) {
-                }
-
-                break;
-
-
         }
     }
 

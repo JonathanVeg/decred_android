@@ -24,12 +24,12 @@
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-hdpi/ic_save_black_48dp.png"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_zoom_out_black_24dp.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-hdpi/ic_zoom_out_black_24dp.png"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_search_black_24dp.png",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-hdpi/ic_search_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_zoom_out_black_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-hdpi/ic_zoom_out_black_24dp.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_account_balance_wallet_white_24dp.png",

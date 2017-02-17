@@ -68,30 +68,11 @@
 
         <!--<include layout="@layout/exchanges" />-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
+        <include layout="@layout/bittrex" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+        <include layout="@layout/poloniex" />
 
-                <include layout="@layout/bittrex" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <include layout="@layout/poloniex" />
-
-            </LinearLayout>
-        </LinearLayout>
+        <include layout="@layout/bleutrade" />
 
         <include layout="@layout/chart" />
 

@@ -73,6 +73,8 @@
 
         <include layout="@layout/poloniex" />
 
+        <include layout="@layout/bleutrade" />
+
         <include layout="@layout/chart" />
 
         <include layout="@layout/market_chart" />

@@ -19,7 +19,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
-        android:contentDescription="XVC Logo"
+        android:contentDescription="DCR Logo"
         android:src="@drawable/dcr_icon" />
 
     <LinearLayout
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="XVC"
+                android:text="DCR"
                 android:textColor="@color/colorPrimary"
                 android:textSize="12sp"
                 android:textStyle="bold" />
