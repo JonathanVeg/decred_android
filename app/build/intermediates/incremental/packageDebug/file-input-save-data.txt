@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Feb 16 22:56:06 BRST 2017
+#Thu Feb 16 23:11:29 BRST 2017
 210.set=ANDROID_RESOURCE
 282.file=/home/jonathan/Desktop/decred_android/app/build/intermediates/res/resources-debug.ap_/res/drawable-xhdpi-v4/common_google_signin_btn_text_dark_disabled.9.png
 14.set=ANDROID_RESOURCE

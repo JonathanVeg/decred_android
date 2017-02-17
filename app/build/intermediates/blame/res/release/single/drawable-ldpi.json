@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-ldpi/icon.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-ldpi/icon.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-ldpi/ic_action_about.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-ldpi/ic_action_about.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-ldpi/ic_settings_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-ldpi/ic_settings_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-ldpi/ic_action_refresh.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-ldpi/ic_action_refresh.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-ldpi/ic_action_show.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-ldpi/ic_action_show.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-ldpi/ic_action_calculate.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-ldpi/ic_action_calculate.png"
+    }
+]

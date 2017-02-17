@@ -1,0 +1,118 @@
+[
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_message_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_message_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_share_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_share_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_account_balance_wallet_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_account_balance_wallet_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_save_black_48dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_save_black_48dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_delete_black_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_delete_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_notifications_off_black_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_notifications_off_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_favorite_border_black_48dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_favorite_border_black_48dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_info_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_info_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_trending_down_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_trending_down_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_add_alert_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_add_alert_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_search_black_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_search_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_visibility_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_visibility_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_zoom_out_black_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_zoom_out_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/icon.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/icon.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_notifications_active_black_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_notifications_active_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_visibility_off_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_visibility_off_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_sort_by_alpha_black_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_sort_by_alpha_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_swap_horiz_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_swap_horiz_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_trending_up_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_trending_up_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_info_outline_black_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_info_outline_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_zoom_in_black_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_zoom_in_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_visibility_off_black_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_visibility_off_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_shopping_cart_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_shopping_cart_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_loyalty_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_loyalty_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_sort_black_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_sort_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_add_shopping_cart_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_add_shopping_cart_white_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_monetization_on_white_36dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_monetization_on_white_36dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_favorite_black_48dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_favorite_black_48dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxhdpi/ic_monetization_on_white_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxhdpi/ic_monetization_on_white_24dp.png"
+    }
+]
