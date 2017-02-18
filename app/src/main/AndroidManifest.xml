@@ -43,7 +43,7 @@
         <receiver android:name="altcoin.br.decred.widget.CoinWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="android.appwidget.action.UPDATE_BUTTON" />
+                <action android:name="android.appwidget.action.UPDATE_DRC_WIDGET" />
             </intent-filter>
 
             <meta-data
@@ -59,18 +59,18 @@
             android:name="altcoin.br.decred.AlertActivity"
             android:label="@string/title_activity_alerts" />
 
-        <receiver android:name="altcoin.br.decred.ReceiverOnBootComplete"
+        <receiver
+            android:name="altcoin.br.decred.ReceiverOnBootComplete"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <receiver android:name="altcoin.br.decred.RestartPriceAlertService" >
+        <receiver android:name="altcoin.br.decred.RestartPriceAlertService">
             <intent-filter>
-                <action android:name="KillPriceAlertService" >
-                </action>
+                <action android:name="KillPriceAlertService" />
             </intent-filter>
         </receiver>
 

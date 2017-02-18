@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Decred</string>
+    <string name="app_name">DCR Prices</string>
     <string name="title_activity_calculator">Calculator</string>
     <string name="title_activity_wallets">Wallets</string>
     <string name="title_activity_about">About</string>

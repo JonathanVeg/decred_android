@@ -18,6 +18,7 @@
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:contentDescription="DCR Logo"
+            android:visibility="gone"
             app:srcCompat="@drawable/dcr_icon" />
 
         <TextView

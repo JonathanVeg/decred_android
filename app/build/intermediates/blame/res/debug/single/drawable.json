@@ -60,10 +60,6 @@
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable/abc_dialog_material_background.xml"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable/icon.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable/icon.png"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_dark.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable/abc_list_selector_holo_dark.xml"
     },
@@ -114,10 +110,6 @@
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable/abc_ic_search_api_material.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable/abc_ic_search_api_material.xml"
-    },
-    {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable/eur.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable/eur.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_indicator_material.xml",
@@ -172,16 +164,8 @@
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable/abc_ratingbar_material.xml"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable/bittrex_wallet.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable/bittrex_wallet.png"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable/common_google_signin_btn_icon_light.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.4.0/res/drawable/common_google_signin_btn_icon_light.xml"
-    },
-    {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable/widget_preview.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable/widget_preview.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable/abc_edit_text_material.xml",
@@ -202,6 +186,10 @@
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable/design_snackbar_background.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/design/24.0.0/res/drawable/design_snackbar_background.xml"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable/dcr_icon2.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable/dcr_icon2.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable/abc_cab_background_top_material.xml",

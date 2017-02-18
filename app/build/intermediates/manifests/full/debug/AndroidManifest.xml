@@ -54,7 +54,7 @@
         <receiver android:name="altcoin.br.decred.widget.CoinWidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="android.appwidget.action.UPDATE_BUTTON" />
+                <action android:name="android.appwidget.action.UPDATE_DRC_WIDGET" />
             </intent-filter>
 
             <meta-data
@@ -79,8 +79,7 @@
         </receiver>
         <receiver android:name="altcoin.br.decred.RestartPriceAlertService" >
             <intent-filter>
-                <action android:name="KillPriceAlertService" >
-                </action>
+                <action android:name="KillPriceAlertService" />
             </intent-filter>
         </receiver>
 

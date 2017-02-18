@@ -25,7 +25,7 @@ import altcoin.br.decred.utils.Utils;
 
 public class CoinWidgetProvider extends AppWidgetProvider {
 
-    private static String WIDGET_BUTTON = "android.appwidget.action.UPDATE_BUTTON";
+    private static String WIDGET_BUTTON = "android.appwidget.action.UPDATE_DRC_WIDGET";
 
 
     @Override

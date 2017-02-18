@@ -22,6 +22,7 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:contentDescription="DCR Logo"
+        android:visibility="gone"
         app:srcCompat="@drawable/dcr_icon" />
 
     <TextView
@@ -59,7 +60,7 @@
         android:id="@+id/cbAlertBalanceChanges"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Alert me when balance changes"/>
+        android:text="Alert me when balance changes" />
 
     <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/srWallets"
