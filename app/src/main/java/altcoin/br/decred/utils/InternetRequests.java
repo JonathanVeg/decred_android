@@ -131,7 +131,7 @@ public class InternetRequests {
         executePost(url, responseListener, null);
     }
 
-    private void executePost(String url, Response.Listener responseListener, Response.ErrorListener errorListener) {
+    public void executePost(String url, Response.Listener responseListener, Response.ErrorListener errorListener) {
         executeRequest(Request.Method.POST, url, responseListener, errorListener, params);
     }
 

@@ -83,6 +83,7 @@
             </intent-filter>
         </receiver>
 
+        <activity android:name="altcoin.br.decred.widget.ConfigureWidgetActivity" />
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"

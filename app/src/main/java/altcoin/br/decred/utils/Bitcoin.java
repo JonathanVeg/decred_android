@@ -11,5 +11,12 @@ public class Bitcoin {
 
         internetRequests.executeGet(url, listener);
     }
+    public static void convertBtcToUsd(Response.Listener<String> listener) {
+        InternetRequests internetRequests = new InternetRequests();
+
+        String url = "https://www.bitstamp.net/api/v2/ticker/btcusd/";
+
+        internetRequests.executeGet(url, listener);
+    }
 
 }
