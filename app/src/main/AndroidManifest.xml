@@ -5,42 +5,38 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="altcoin.br.decred.application.MyApplication"
+        android:name=".application.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/dcr_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name="altcoin.br.decred.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="altcoin.br.decred.CalculatorActivity"
+            android:name=".CalculatorActivity"
             android:label="@string/title_activity_calculator" />
-
         <activity
-            android:name="altcoin.br.decred.WalletsActivity"
+            android:name=".WalletsActivity"
             android:label="@string/title_activity_wallets" />
 
         <service
-            android:name="altcoin.br.decred.services.BalanceChangesService"
+            android:name=".services.BalanceChangesService"
             android:enabled="true" />
-
         <service
-            android:name="altcoin.br.decred.services.PriceAlertService"
+            android:name=".services.PriceAlertService"
             android:enabled="true" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="1b9e889468bf967dddcafc0104451052e83223bd" />
 
-        <receiver android:name="altcoin.br.decred.widget.CoinWidgetProvider">
+        <receiver android:name=".widget.CoinWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.UPDATE_DRC_WIDGET" />
@@ -52,28 +48,27 @@
         </receiver>
 
         <activity
-            android:name="altcoin.br.decred.AboutActivity"
+            android:name=".AboutActivity"
             android:label="@string/title_activity_about" />
-
         <activity
-            android:name="altcoin.br.decred.AlertActivity"
+            android:name=".AlertActivity"
             android:label="@string/title_activity_alerts" />
 
         <receiver
-            android:name="altcoin.br.decred.ReceiverOnBootComplete"
+            android:name=".ReceiverOnBootComplete"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
-        <receiver android:name="altcoin.br.decred.RestartPriceAlertService">
+        <receiver android:name=".RestartPriceAlertService">
             <intent-filter>
                 <action android:name="KillPriceAlertService" />
             </intent-filter>
         </receiver>
 
+        <activity android:name=".widget.ConfigureWidgetActivity"></activity>
     </application>
 
 </manifest>

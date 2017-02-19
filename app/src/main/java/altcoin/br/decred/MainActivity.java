@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.calculator:
                 startActivity(new Intent(this, CalculatorActivity.class));
-
+                
                 return true;
 
             case R.id.alerts:

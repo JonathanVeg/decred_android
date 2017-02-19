@@ -1,6 +1,5 @@
 package altcoin.br.decred.widget;
 
-
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -20,13 +19,13 @@ import java.util.Calendar;
 
 import altcoin.br.decred.MainActivity;
 import altcoin.br.decred.R;
+import altcoin.br.decred.data.DBTools;
 import altcoin.br.decred.utils.InternetRequests;
 import altcoin.br.decred.utils.Utils;
 
 public class CoinWidgetProvider extends AppWidgetProvider {
 
     private static String WIDGET_BUTTON = "android.appwidget.action.UPDATE_DRC_WIDGET";
-
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -59,68 +58,100 @@ public class CoinWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(final Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
-        final AppWidgetManager manager = appWidgetManager;
+        DBTools db = new DBTools(context);
 
         for (final int appWidgetId : appWidgetIds) {
-            Utils.log(" ::: Widget Update");
-
-            final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget_coin);
-
-            views.setTextViewText(R.id.tvWidNameCoin, "DCR - " + getHour());
-
-            String url = "https://api.coinmarketcap.com/v1/ticker/decred/";
-
-            Response.Listener<String> listener = new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONObject obj = new JSONArray(response).getJSONObject(0);
-
-                        views.setTextViewText(R.id.tvWidValInBtc, Utils.numberComplete(obj.getString("price_btc"), 8));
-                        views.setTextViewText(R.id.tvWidValInUsd, Utils.numberComplete(obj.getString("price_usd"), 4));
-
-                        Utils.answersLog("widgetUpdate", "widgetUpdate", "0001");
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    Intent openApp = new Intent(context, MainActivity.class);
-
-                    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, openApp, 0);
-
-                    views.setOnClickPendingIntent(R.id.tvWidNameCoin, pendingIntent);
-
-                    Intent intent = new Intent(WIDGET_BUTTON);
-                    PendingIntent pendingIntentUpdate = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    views.setOnClickPendingIntent(R.id.ivWidLogo, pendingIntentUpdate);
 
 
-                    manager.updateAppWidget(appWidgetId, views);
-                }
-            };
+            if (db.search("select coin from coin_widgets where widget_id = WID".replaceAll("WID", appWidgetId + "")) > 0) {
 
-            Response.ErrorListener errorListener = new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    try {
+            } else {
+                loadDataFromPoloniex(context, appWidgetManager, appWidgetId);
+            }
 
-                        views.setTextViewText(R.id.tvWidValInBtc, "...");
-                        views.setTextViewText(R.id.tvWidValInUsd, "...");
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    manager.updateAppWidget(appWidgetId, views);
-                }
-            };
-
-            InternetRequests internetRequests = new InternetRequests();
-            internetRequests.executeGet(url, listener, errorListener);
         }
 
         super.onUpdate(context, appWidgetManager, appWidgetIds);
+    }
+
+    private void loadDataFromPoloniex(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId) {
+        final AppWidgetManager manager = appWidgetManager;
+
+        final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget_coin);
+
+        views.setTextViewText(R.id.tvWidNameCoin, "DCR - " + getHour());
+
+        String url = "https://api.coinmarketcap.com/v1/ticker/decred/";
+
+        Response.Listener<String> listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject obj = new JSONArray(response).getJSONObject(0);
+
+                    views.setTextViewText(R.id.tvWidValInBtc, Utils.numberComplete(obj.getString("price_btc"), 8));
+                    views.setTextViewText(R.id.tvWidValInUsd, Utils.numberComplete(obj.getString("price_usd"), 4));
+
+                    Utils.answersLog("widgetUpdate", "widgetUpdate", "0001");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                Intent openApp = new Intent(context, MainActivity.class);
+
+                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, openApp, 0);
+
+                views.setOnClickPendingIntent(R.id.tvWidNameCoin, pendingIntent);
+
+                Intent intent = new Intent(WIDGET_BUTTON);
+                PendingIntent pendingIntentUpdate = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                views.setOnClickPendingIntent(R.id.ivWidLogo, pendingIntentUpdate);
+
+
+                manager.updateAppWidget(appWidgetId, views);
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try {
+
+                    views.setTextViewText(R.id.tvWidValInBtc, "...");
+                    views.setTextViewText(R.id.tvWidValInUsd, "...");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                manager.updateAppWidget(appWidgetId, views);
+            }
+        };
+
+        InternetRequests internetRequests = new InternetRequests();
+        internetRequests.executeGet(url, listener, errorListener);
+    }
+
+    private void loadDataFromBittrex(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId) {
+        final AppWidgetManager manager = appWidgetManager;
+
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget_coin);
+
+        views.setTextViewText(R.id.tvWidNameCoin, "DCR - " + getHour());
+
+
+    }
+
+    private void loadDataFromBleutrade(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId) {
+        final AppWidgetManager manager = appWidgetManager;
+
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget_coin);
+
+        views.setTextViewText(R.id.tvWidNameCoin, "DCR - " + getHour());
+
+
     }
 
     private String getHour() {

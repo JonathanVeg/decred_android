@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 class CreateDatabase extends SQLiteOpenHelper {
 
-    private static int CURRENT_DB_VERSION = 1;
+    private static int CURRENT_DB_VERSION = 2;
 
     CreateDatabase(Context context, String dbName) {
         super(context, dbName, null, CURRENT_DB_VERSION);
@@ -47,7 +47,15 @@ class CreateDatabase extends SQLiteOpenHelper {
             onUpgrade(db, newVersion - 2, newVersion - 1);
 
         switch (newVersion) {
-            case 1:
+            case 2:
+                try {
+                    db.execSQL("CREATE TABLE if not exists coin_widgets(_id integer primary key autoincrement, " +
+                            "widget_id integer," +
+                            "exchange varchar(30)" +
+                            ")");
+                } catch (Exception ignored) {
+                }
+
                 break;
         }
     }
