@@ -9,80 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf373ae6-15bc-417a-961f-e0a41fc9350f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/MainActivity$atParseBittrexData.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/MainActivity$atParseBittrexData.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/MainActivity$atParseBleutradeData.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/MainActivity$atParseBleutradeData.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/MainActivity$atParsePoloniexData.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/MainActivity$atParsePoloniexData.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/MainActivity$atParseSummaryData.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/MainActivity$atParseSummaryData.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$dimen.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$dimen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$integer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$menu.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$menu.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$string.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$style.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$styleable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$styleable.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$xml.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/R$xml.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/WalletsActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/WalletsActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterAlerts$myViewHolder$1$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterAlerts$myViewHolder$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterAlerts$myViewHolder$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterAlerts$myViewHolder$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterAlerts$myViewHolder$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterAlerts$myViewHolder$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterAlerts$myViewHolder$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterAlerts$myViewHolder$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterAlerts$myViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterAlerts$myViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterAlerts.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterAlerts.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterLinks.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterLinks.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterWallets$myViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterWallets$myViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterWallets.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/adapter/AdapterWallets.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/data/CreateDatabase.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/data/CreateDatabase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/utils/Bitcoin.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/utils/Bitcoin.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/utils/InternetRequests.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/utils/InternetRequests.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/widget/CoinWidgetProvider$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/widget/CoinWidgetProvider$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/widget/CoinWidgetProvider$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/widget/CoinWidgetProvider$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/widget/CoinWidgetProvider.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/altcoin/br/decred/widget/CoinWidgetProvider.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/design/R$dimen.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/design/R$dimen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/design/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/design/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/design/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/design/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$dimen.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$dimen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/google/android/gms/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/google/android/gms/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/zip-cache/ipbmqBS85n1JcA6BtFM+OMOKuXw=" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/zip-cache/ipbmqBS85n1JcA6BtFM+OMOKuXw=" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_9da746758408e184ca6371ef58bcca699d26e725.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_9da746758408e184ca6371ef58bcca699d26e725.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/fabric/res/debug/values/com_crashlytics_build_id.xml" afterPath="$PROJECT_DIR$/app/build/generated/fabric/res/debug/values/com_crashlytics_build_id.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/altcoin/br/decred/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/altcoin/br/decred/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/design/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/design/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/android/gms/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/assets/debug/crashlytics-build.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/crashlytics-build.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/layout.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/layout.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/file-input-save-data.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/file-input-save-data.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/xml/appwidget_provider_info.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/xml/appwidget_provider_info.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/altcoin/br/decred/utils/Bitcoin.java" afterPath="$PROJECT_DIR$/app/src/main/java/altcoin/br/decred/utils/Bitcoin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/altcoin/br/decred/utils/InternetRequests.java" afterPath="$PROJECT_DIR$/app/src/main/java/altcoin/br/decred/utils/InternetRequests.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/altcoin/br/decred/widget/CoinWidgetProvider.java" afterPath="$PROJECT_DIR$/app/src/main/java/altcoin/br/decred/widget/CoinWidgetProvider.java" />
-    </list>
+    <list default="true" id="cf373ae6-15bc-417a-961f-e0a41fc9350f" name="Default" comment="" />
     <ignored path="decred_android.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -113,44 +40,7 @@
     <favorites_list name="decred_android" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CoinWidgetProvider.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/altcoin/br/decred/widget/CoinWidgetProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
-              <caret line="366" column="0" selection-start-line="366" selection-start-column="0" selection-end-line="366" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4105#5992#0" expanded="true" />
-                <element signature="e#5991#5992#0" expanded="true" />
-                <element signature="e#7152#9287#0" expanded="true" />
-                <element signature="e#9286#9287#0" expanded="true" />
-                <marker date="1487523264327" expanded="false" signature="6042:6155" ph="onErrorResponse(error) → {" />
-                <marker date="1487523264327" expanded="false" signature="6489:6504" ph="}" />
-                <marker date="1487523264327" expanded="false" signature="10449:10558" ph="onResponse(response) → {" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/altcoin/br/decred/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-185">
-              <caret line="733" column="24" selection-start-line="733" selection-start-column="24" selection-end-line="733" selection-end-column="24" />
-              <folding>
-                <element signature="e#20503#20504#0" expanded="true" />
-                <element signature="e#20551#20552#0" expanded="true" />
-                <element signature="e#23005#23006#0" expanded="true" />
-                <element signature="e#23053#23054#0" expanded="true" />
-                <element signature="e#28949#28950#0" expanded="true" />
-                <element signature="e#28997#28998#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -2450,7 +2340,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2882,21 +2772,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/altcoin/br/decred/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-185">
-          <caret line="733" column="24" selection-start-line="733" selection-start-column="24" selection-end-line="733" selection-end-column="24" />
-          <folding>
-            <element signature="e#20503#20504#0" expanded="true" />
-            <element signature="e#20551#20552#0" expanded="true" />
-            <element signature="e#23005#23006#0" expanded="true" />
-            <element signature="e#23053#23054#0" expanded="true" />
-            <element signature="e#28949#28950#0" expanded="true" />
-            <element signature="e#28997#28998#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/altcoin/br/decred/widget/CoinWidgetProvider.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="498">
@@ -2910,6 +2785,21 @@
             <marker date="1487523264327" expanded="false" signature="6042:6155" ph="onErrorResponse(error) → {" />
             <marker date="1487523264327" expanded="false" signature="6489:6504" ph="}" />
             <marker date="1487523264327" expanded="false" signature="10449:10558" ph="onResponse(response) → {" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/altcoin/br/decred/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-185">
+          <caret line="733" column="24" selection-start-line="733" selection-start-column="24" selection-end-line="733" selection-end-column="24" />
+          <folding>
+            <element signature="e#20503#20504#0" expanded="true" />
+            <element signature="e#20551#20552#0" expanded="true" />
+            <element signature="e#23005#23006#0" expanded="true" />
+            <element signature="e#23053#23054#0" expanded="true" />
+            <element signature="e#28949#28950#0" expanded="true" />
+            <element signature="e#28997#28998#0" expanded="true" />
           </folding>
         </state>
       </provider>
