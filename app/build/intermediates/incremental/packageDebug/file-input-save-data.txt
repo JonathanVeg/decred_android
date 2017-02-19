@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sun Feb 19 13:53:28 BRT 2017
+#Sun Feb 19 14:31:52 BRT 2017
 210.set=ANDROID_RESOURCE
 282.file=/home/jonathan/Desktop/decred_android/app/build/intermediates/res/resources-debug.ap_/res/layout/abc_search_dropdown_item_icons_2line.xml
 14.set=ANDROID_RESOURCE
