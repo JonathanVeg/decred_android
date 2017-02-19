@@ -1,7 +1,9 @@
 package altcoin.br.decred.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,21 +102,31 @@ public class AdapterAlerts extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             ivAlertDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    DBTools db = new DBTools(activity);
+                    new AlertDialog.Builder(activity)
+                            .setTitle("Confirmation")
+                            .setMessage("Do you really want to remove this alert?")
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    DBTools db = new DBTools(activity);
 
-                    try {
-                        db.exec("delete from alerts where _id = '" + alerts.get(getAdapterPosition()).getId() + "'");
+                                    try {
+                                        db.exec("delete from alerts where _id = '" + alerts.get(getAdapterPosition()).getId() + "'");
 
-                        alerts.remove(getAdapterPosition());
+                                        alerts.remove(getAdapterPosition());
 
-                        notifyDataSetChanged();
+                                        notifyDataSetChanged();
 
-                        ((AlertActivity) activity).correctListVisibility();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } finally {
-                        db.close();
-                    }
+                                        ((AlertActivity) activity).correctListVisibility();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    } finally {
+                                        db.close();
+                                    }
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, null).show();
+
                 }
             });
 
