@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 class CreateDatabase extends SQLiteOpenHelper {
 
-    private static int CURRENT_DB_VERSION = 2;
+    private static int CURRENT_DB_VERSION = 3;
 
     CreateDatabase(Context context, String dbName) {
         super(context, dbName, null, CURRENT_DB_VERSION);
@@ -53,6 +53,14 @@ class CreateDatabase extends SQLiteOpenHelper {
                             "widget_id integer," +
                             "exchange varchar(30)" +
                             ")");
+                } catch (Exception ignored) {
+                }
+
+                break;
+
+            case 3:
+                try {
+                    db.execSQL("ALTER TABLE coin_widgets ADD COLUMN fiat varchar(5)");
                 } catch (Exception ignored) {
                 }
 

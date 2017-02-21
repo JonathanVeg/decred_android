@@ -63,18 +63,17 @@ public class CoinWidgetProvider extends AppWidgetProvider {
 
         for (final int appWidgetId : appWidgetIds) {
 
-
-            if (db.search("select exchange from coin_widgets where widget_id = WID".replaceAll("WID", appWidgetId + "")) > 0) {
+            if (db.search("select exchange, fiat from coin_widgets where widget_id = WID".replaceAll("WID", appWidgetId + "")) > 0) {
 
                 if (db.getData(0).equalsIgnoreCase("poloniex"))
-                    loadDataFromPoloniex(context, appWidgetManager, appWidgetId);
+                    loadDataFromPoloniex(context, appWidgetManager, appWidgetId, db.getData(1));
                 else if (db.getData(0).equalsIgnoreCase("bittrex"))
-                    loadDataFromBittrex(context, appWidgetManager, appWidgetId);
+                    loadDataFromBittrex(context, appWidgetManager, appWidgetId, db.getData(1));
                 else
-                    loadDataFromBleutrade(context, appWidgetManager, appWidgetId);
+                    loadDataFromBleutrade(context, appWidgetManager, appWidgetId, db.getData(1));
 
             } else
-                loadDataFromPoloniex(context, appWidgetManager, appWidgetId);
+                loadDataFromPoloniex(context, appWidgetManager, appWidgetId, db.getData(1));
         }
 
         super.onUpdate(context, appWidgetManager, appWidgetIds);
@@ -111,7 +110,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
         }
     }
 
-    private void loadDataFromPoloniex(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId) {
+    private void loadDataFromPoloniex(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, final String fiat) {
         final AppWidgetManager manager = appWidgetManager;
 
         final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget_coin);
@@ -124,7 +123,6 @@ public class CoinWidgetProvider extends AppWidgetProvider {
             @Override
             public void onResponse(String response) {
                 try {
-
                     JSONObject obj = getSpecificSummary(response);
 
                     final String last = obj.getString("last");
@@ -137,7 +135,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
                             try {
                                 JSONObject obj = new JSONObject(response);
 
-                                views.setTextViewText(R.id.tvWidValInUsd, Utils.numberComplete(Double.parseDouble(last) * obj.getDouble("last"), 4));
+                                views.setTextViewText(R.id.tvWidValInFiat, Utils.numberComplete(Double.parseDouble(last) * obj.getDouble("last"), 4));
 
                                 Intent openApp = new Intent(context, MainActivity.class);
 
@@ -150,15 +148,19 @@ public class CoinWidgetProvider extends AppWidgetProvider {
                                 views.setOnClickPendingIntent(R.id.ivWidLogo, pendingIntentUpdate);
 
                                 manager.updateAppWidget(appWidgetId, views);
-
-
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
                     };
 
-                    Bitcoin.convertBtcToUsd(listener2);
+                    if (fiat != null && fiat.equalsIgnoreCase("BRL")) {
+                        views.setTextViewText(R.id.tvWidFiatName, "BRL: ");
+                        Bitcoin.convertBtcToBrl(listener2);
+                    } else {
+                        views.setTextViewText(R.id.tvWidFiatName, "USD: ");
+                        Bitcoin.convertBtcToUsd(listener2);
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -172,7 +174,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
                 try {
 
                     views.setTextViewText(R.id.tvWidValInBtc, "...");
-                    views.setTextViewText(R.id.tvWidValInUsd, "...");
+                    views.setTextViewText(R.id.tvWidValInFiat, "...");
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -186,7 +188,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
         internetRequests.executePost(url, listener, errorListener);
     }
 
-    private void loadDataFromBittrex(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId) {
+    private void loadDataFromBittrex(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, final String fiat) {
         final AppWidgetManager manager = appWidgetManager;
 
         final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget_coin);
@@ -215,7 +217,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
                                 try {
                                     JSONObject obj = new JSONObject(response);
 
-                                    views.setTextViewText(R.id.tvWidValInUsd, Utils.numberComplete(Double.parseDouble(last) * obj.getDouble("last"), 4));
+                                    views.setTextViewText(R.id.tvWidValInFiat, Utils.numberComplete(Double.parseDouble(last) * obj.getDouble("last"), 4));
 
                                     Intent openApp = new Intent(context, MainActivity.class);
 
@@ -229,14 +231,19 @@ public class CoinWidgetProvider extends AppWidgetProvider {
 
                                     manager.updateAppWidget(appWidgetId, views);
 
-
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }
                         };
 
-                        Bitcoin.convertBtcToUsd(listener2);
+                        if (fiat != null && fiat.equalsIgnoreCase("BRL")) {
+                            views.setTextViewText(R.id.tvWidFiatName, "BRL: ");
+                            Bitcoin.convertBtcToBrl(listener2);
+                        } else {
+                            views.setTextViewText(R.id.tvWidFiatName, "USD: ");
+                            Bitcoin.convertBtcToUsd(listener2);
+                        }
                     }
 
                 } catch (Exception e) {
@@ -251,7 +258,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
                 try {
 
                     views.setTextViewText(R.id.tvWidValInBtc, "...");
-                    views.setTextViewText(R.id.tvWidValInUsd, "...");
+                    views.setTextViewText(R.id.tvWidValInFiat, "...");
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -265,7 +272,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
         internetRequests.executePost(url, listener, errorListener);
     }
 
-    private void loadDataFromBleutrade(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId) {
+    private void loadDataFromBleutrade(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, final String fiat) {
         final AppWidgetManager manager = appWidgetManager;
 
         final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget_coin);
@@ -294,7 +301,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
                                 try {
                                     JSONObject obj = new JSONObject(response);
 
-                                    views.setTextViewText(R.id.tvWidValInUsd, Utils.numberComplete(Double.parseDouble(last) * obj.getDouble("last"), 4));
+                                    views.setTextViewText(R.id.tvWidValInFiat, Utils.numberComplete(Double.parseDouble(last) * obj.getDouble("last"), 4));
 
                                     Intent openApp = new Intent(context, MainActivity.class);
 
@@ -314,7 +321,13 @@ public class CoinWidgetProvider extends AppWidgetProvider {
                             }
                         };
 
-                        Bitcoin.convertBtcToUsd(listener2);
+                        if (fiat != null && fiat.equalsIgnoreCase("BRL")) {
+                            views.setTextViewText(R.id.tvWidFiatName, "BRL: ");
+                            Bitcoin.convertBtcToBrl(listener2);
+                        } else {
+                            views.setTextViewText(R.id.tvWidFiatName, "USD: ");
+                            Bitcoin.convertBtcToUsd(listener2);
+                        }
                     }
 
                 } catch (Exception e) {
@@ -329,7 +342,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
                 try {
 
                     views.setTextViewText(R.id.tvWidValInBtc, "...");
-                    views.setTextViewText(R.id.tvWidValInUsd, "...");
+                    views.setTextViewText(R.id.tvWidValInFiat, "...");
 
                 } catch (Exception e) {
                     e.printStackTrace();
