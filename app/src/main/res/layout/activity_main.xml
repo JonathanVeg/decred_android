@@ -70,9 +70,9 @@
         <!-- another way for showing the decredd.data - now only in test-->
         <!--<include layout="@layout/exchanges" />-->
 
-        <include layout="@layout/bittrex" />
-
         <include layout="@layout/poloniex" />
+
+        <include layout="@layout/bittrex" />
 
         <include layout="@layout/bleutrade" />
 

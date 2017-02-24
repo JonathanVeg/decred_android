@@ -20,6 +20,7 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:contentDescription="DCR Logo"
+        android:visibility="gone"
         app:srcCompat="@drawable/dcr_icon" />
 
     <TextView
@@ -46,14 +47,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tvAboutDonate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Donate DCR (click in the wallet to copy)"
+            android:text="Donation"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -62,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="VsShsTf3Za2MAy6e5waDNM6u7VBEVKfxgh"
+            android:text="loading wallet"
             android:textSize="12sp"
             android:textStyle="bold" />
     </LinearLayout>

@@ -11,6 +11,7 @@ public class Bitcoin {
 
         internetRequests.executeGet(url, listener);
     }
+
     public static void convertBtcToUsd(Response.Listener<String> listener) {
         InternetRequests internetRequests = new InternetRequests();
 

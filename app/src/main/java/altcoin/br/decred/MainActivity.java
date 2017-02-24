@@ -86,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
 
         loadSummary();
 
-        loadBittrexData();
-
         loadPoloniexData();
+
+        loadBittrexData();
 
         loadBleutradeData();
 
