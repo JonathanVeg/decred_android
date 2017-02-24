@@ -1,19 +1,19 @@
 # DCR Prices
 
-An native and open source Android Application for Decred.
+A native and open source Android Application for Decred.
 
 Features:
 
  * Prices through all the exchanges in Bitcoin, BRL and USD;
  * Charts from Poloniex data;
- * Alerts for getting notified when it reachs specific prices;
+ * Alerts for getting notified when it reaches specific prices;
  * Some Decred useful URLs;
  * Calculator for converting DCR to BTC, BRL and USD;
  * Widgets for seeing the price directly in your home screen, without needing to open the app.
 
 Technical data:
 
- * Develped in native Java for Android using Android Studio;
+ * Developed in native Java for Android using Android Studio;
  * Using fabric.io for tracking the quantity of daily users and getting notified if any crash happens.
  * Want to help? Feel free to fork and make a pull request. ;) 
 
