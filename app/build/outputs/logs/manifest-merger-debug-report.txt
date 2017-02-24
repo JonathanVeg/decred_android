@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:2:1-74:12
+ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:2:1-78:12
 	package
 		ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:3:5-32
 		INJECTED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml
@@ -28,7 +28,7 @@ MERGED from [com.google.firebase:firebase-iid:9.4.0] /home/jonathan/Desktop/decr
 	android:name
 		ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:7:5-72:19
+ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:7:5-76:19
 MERGED from [com.google.android.gms:play-services-base:9.4.0] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.4.0/AndroidManifest.xml:19:5-23:19
 MERGED from [com.google.android.gms:play-services-basement:9.4.0] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.4.0/AndroidManifest.xml:20:5-24:19
 MERGED from [com.android.support:support-v4:24.0.0] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/AndroidManifest.xml:25:5-20
@@ -152,19 +152,23 @@ ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xm
 	android:name
 		ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:62:25-76
 receiver#altcoin.br.decred.RestartPriceAlertService
-ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:65:9-69:20
+ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:66:9-73:20
+	android:enabled
+		ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:68:13-35
+	android:exported
+		ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:69:13-37
 	android:name
-		ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:65:19-59
+		ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:67:13-53
 intent-filter#KillPriceAlertService
-ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:66:13-68:29
+ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:70:13-72:29
 action#KillPriceAlertService
-ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:67:17-64
+ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:71:17-64
 	android:name
-		ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:67:25-61
+		ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:71:25-61
 activity#altcoin.br.decred.widget.ConfigureWidgetActivity
-ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:71:9-77
+ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:75:9-68
 	android:name
-		ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:71:19-65
+		ADDED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml:75:19-65
 uses-sdk
 INJECTED from /home/jonathan/Desktop/decred_android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.google.firebase:firebase-database:9.4.0] /home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/9.4.0/AndroidManifest.xml:5:5-43

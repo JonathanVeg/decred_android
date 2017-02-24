@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -59,6 +60,8 @@ public class CoinWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(final Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
+        Utils.log("CoinWidgetProvider ::: onUpdate");
+
         DBTools db = new DBTools(context);
 
         for (final int appWidgetId : appWidgetIds) {
@@ -108,84 +111,6 @@ public class CoinWidgetProvider extends AppWidgetProvider {
 
             return null;
         }
-    }
-
-    private void loadDataFromPoloniex(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, final String fiat) {
-        final AppWidgetManager manager = appWidgetManager;
-
-        final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget_coin);
-
-        views.setTextViewText(R.id.tvWidNameCoin, "DCR - Polo - " + getHour());
-
-        String url = "https://poloniex.com/public?command=returnTicker";
-
-        Response.Listener<String> listener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject obj = getSpecificSummary(response);
-
-                    final String last = obj.getString("last");
-
-                    views.setTextViewText(R.id.tvWidValInBtc, Utils.numberComplete(last, 8));
-
-                    Response.Listener<String> listener2 = new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-                                JSONObject obj = new JSONObject(response);
-
-                                views.setTextViewText(R.id.tvWidValInFiat, Utils.numberComplete(Double.parseDouble(last) * obj.getDouble("last"), 4));
-
-                                Intent openApp = new Intent(context, MainActivity.class);
-
-                                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, openApp, 0);
-
-                                views.setOnClickPendingIntent(R.id.tvWidNameCoin, pendingIntent);
-
-                                Intent intent = new Intent(WIDGET_BUTTON);
-                                PendingIntent pendingIntentUpdate = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                                views.setOnClickPendingIntent(R.id.ivWidLogo, pendingIntentUpdate);
-
-                                manager.updateAppWidget(appWidgetId, views);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    };
-
-                    if (fiat != null && fiat.equalsIgnoreCase("BRL")) {
-                        views.setTextViewText(R.id.tvWidFiatName, "BRL: ");
-                        Bitcoin.convertBtcToBrl(listener2);
-                    } else {
-                        views.setTextViewText(R.id.tvWidFiatName, "USD: ");
-                        Bitcoin.convertBtcToUsd(listener2);
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        Response.ErrorListener errorListener = new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                try {
-
-                    views.setTextViewText(R.id.tvWidValInBtc, "...");
-                    views.setTextViewText(R.id.tvWidValInFiat, "...");
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                manager.updateAppWidget(appWidgetId, views);
-            }
-        };
-
-        InternetRequests internetRequests = new InternetRequests();
-        internetRequests.executePost(url, listener, errorListener);
     }
 
     private void loadDataFromBittrex(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, final String fiat) {
@@ -374,6 +299,128 @@ public class CoinWidgetProvider extends AppWidgetProvider {
         }
 
         return h + ":" + m;
+    }
+
+
+    private void loadDataFromPoloniex(final Context context, final AppWidgetManager appWidgetManager, final int appWidgetId, final String fiat) {
+        final AppWidgetManager manager = appWidgetManager;
+
+        final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget_coin);
+
+        String url = "https://poloniex.com/public?command=returnTicker";
+
+        Response.Listener<String> listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    new atParsePoloniexData(context, appWidgetManager, appWidgetId, fiat, response).execute();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try {
+
+                    views.setTextViewText(R.id.tvWidValInBtc, "...");
+                    views.setTextViewText(R.id.tvWidValInFiat, "...");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                manager.updateAppWidget(appWidgetId, views);
+            }
+        };
+
+        InternetRequests internetRequests = new InternetRequests();
+        internetRequests.executePost(url, listener, errorListener);
+    }
+
+    private class atParsePoloniexData extends AsyncTask<Void, Void, Void> {
+
+        String response;
+        Context context;
+        AppWidgetManager appWidgetManager;
+        int appWidgetId;
+        String fiat;
+        AppWidgetManager manager;
+        RemoteViews views;
+
+        atParsePoloniexData(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, final String fiat, String data) {
+            this.response = data;
+            this.context = context;
+            this.appWidgetManager = appWidgetManager;
+            this.appWidgetId = appWidgetId;
+            this.fiat = fiat;
+
+            manager = appWidgetManager;
+
+            views = new RemoteViews(context.getPackageName(), R.layout.appwidget_coin);
+
+            views.setTextViewText(R.id.tvWidNameCoin, "DCR - Polo - " + getHour());
+        }
+
+        @Override
+        protected Void doInBackground(Void... data) {
+            try {
+                JSONObject obj = getSpecificSummary(response);
+
+                final String last = obj.getString("last");
+
+                views.setTextViewText(R.id.tvWidValInBtc, Utils.numberComplete(last, 8));
+
+                Response.Listener<String> listener2 = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+
+                            views.setTextViewText(R.id.tvWidValInFiat, Utils.numberComplete(Double.parseDouble(last) * obj.getDouble("last"), 4));
+
+                            Intent openApp = new Intent(context, MainActivity.class);
+
+                            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, openApp, 0);
+
+                            views.setOnClickPendingIntent(R.id.tvWidNameCoin, pendingIntent);
+
+                            Intent intent = new Intent(WIDGET_BUTTON);
+                            PendingIntent pendingIntentUpdate = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                            views.setOnClickPendingIntent(R.id.ivWidLogo, pendingIntentUpdate);
+
+                            Utils.log("CoinWidgetProvider ::: onUpdate ::: FINISHED");
+
+                            manager.updateAppWidget(appWidgetId, views);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                if (fiat != null && fiat.equalsIgnoreCase("BRL")) {
+                    views.setTextViewText(R.id.tvWidFiatName, "BRL: ");
+                    Bitcoin.convertBtcToBrl(listener2);
+                } else {
+                    views.setTextViewText(R.id.tvWidFiatName, "USD: ");
+                    Bitcoin.convertBtcToUsd(listener2);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
     }
 
 }
