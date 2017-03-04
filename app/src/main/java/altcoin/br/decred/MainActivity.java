@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.calculator:
                 startActivity(new Intent(this, CalculatorActivity.class));
-                
+
                 return true;
 
             case R.id.alerts:
@@ -930,7 +930,7 @@ public class MainActivity extends AppCompatActivity {
             tvBleutradeAsk.setText(ask);
             tvBleutradeChanges.setText(String.format("%s%%", changes));
 
-            if (Double.parseDouble(changes) >= 0)
+            if (changes != null && Double.parseDouble(changes) >= 0)
                 tvBleutradeChanges.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorChangesUp));
             else
                 tvBleutradeChanges.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorChangesDown));
