@@ -20,7 +20,7 @@
         android:icon="@drawable/ic_account_balance_wallet_white_24dp"
         android:showAsAction="ifRoom"
         android:title="Wallets"
-        android:visible="false" />
+        android:visible="true" />
 
     <item
         android:id="@+id/about"
@@ -29,11 +29,5 @@
         android:title="About"
         android:visible="true" />
 
-    <item
-        android:id="@+id/share"
-        android:icon="@drawable/ic_share_white_24dp"
-        android:showAsAction="ifRoom"
-        android:title="Share"
-        android:visible="false" />
 
 </menu>

@@ -264,10 +264,6 @@
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/support_simple_spinner_dropdown_item.xml"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/row_wallets.xml",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/row_wallets.xml"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/activity_alert.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/activity_alert.xml"
     }

@@ -18,7 +18,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.github.mikephil.charting.charts.CandleStickChart;
@@ -184,25 +183,6 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.about:
                 startActivity(new Intent(this, AboutActivity.class));
-
-                return true;
-
-            case R.id.share:
-
-                try {
-                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                    sharingIntent.setType("text/plain");
-
-                    String shareBody = "Decred Android App. Get here: https://play.google.com/store/apps/details?id=altcoin.br.decred | Via @JonathanVeg2";
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Decred Android App");
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-
-                    startActivity(Intent.createChooser(sharingIntent, "Share via"));
-                } catch (Exception e) {
-                    e.printStackTrace();
-
-                    Toast.makeText(this, "Error while sharing", Toast.LENGTH_LONG).show();
-                }
 
                 return true;
 
