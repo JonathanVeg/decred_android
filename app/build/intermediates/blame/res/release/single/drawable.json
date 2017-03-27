@@ -36,12 +36,12 @@
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable/button_style_white.xml"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable/ic_action_calculate.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable/ic_action_calculate.png"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable/abc_btn_colored_material.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable/ic_action_calculate.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable/ic_action_calculate.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable/abc_dialog_material_background.xml",
@@ -80,12 +80,12 @@
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable/ic_settings_white_24dp.png"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable/design_fab_background.xml",
-        "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/design/24.0.0/res/drawable/design_fab_background.xml"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable/common_plus_signin_btn_icon_light.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.4.0/res/drawable/common_plus_signin_btn_icon_light.xml"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable/design_fab_background.xml",
+        "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/design/24.0.0/res/drawable/design_fab_background.xml"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable/common_google_signin_btn_icon_light.xml",

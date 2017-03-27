@@ -1,84 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingEnd="@dimen/activity_margin"
-        android:paddingStart="@dimen/activity_margin"
-        android:paddingTop="@dimen/activity_margin">
+    <include layout="@layout/header" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:contentDescription="DCR Logo"
-            android:visibility="gone"
-            app:srcCompat="@drawable/dcr_icon" />
+    <include layout="@layout/summary" />
 
-        <TextView
-            android:id="@+id/tvOficialSite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="https://decred.org/" />
+    <include layout="@layout/chart" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+    <include layout="@layout/calculator" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Last update: "
-                android:textSize="10sp" />
+    <include layout="@layout/about" />
 
-            <TextView
-                android:id="@+id/tvLastUpdate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="10sp" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="8dp"
-            android:text="Summary"
-            android:textStyle="bold" />
-
-        <include layout="@layout/summary" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="8dp"
-            android:text="Exchanges"
-            android:textStyle="bold" />
-
-        <!-- another way for showing the decredd.data - now only in test-->
-        <!--<include layout="@layout/exchanges" />-->
-
-        <include layout="@layout/poloniex" />
-
-        <include layout="@layout/bittrex" />
-
-        <include layout="@layout/bleutrade" />
-
-        <include layout="@layout/chart" />
-
-        <include layout="@layout/market_chart" />
-
-    </LinearLayout>
-</ScrollView>
+    <include layout="@layout/ll_footer" />
+</LinearLayout>

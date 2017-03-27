@@ -1,23 +1,31 @@
 package altcoin.br.decred;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.github.mikephil.charting.charts.CandleStickChart;
@@ -29,6 +37,11 @@ import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,13 +51,15 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import altcoin.br.decred.adapter.AdapterLinks;
+import altcoin.br.decred.model.Link;
 import altcoin.br.decred.services.BalanceChangesService;
 import altcoin.br.decred.services.PriceAlertService;
 import altcoin.br.decred.utils.Bitcoin;
 import altcoin.br.decred.utils.InternetRequests;
 import altcoin.br.decred.utils.Utils;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private Handler handler;
 
@@ -69,6 +84,49 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> adapterZoom;
     private ArrayAdapter<String> adapterCandle;
 
+    // footer
+
+    ImageView bSummary;
+    ImageView bChart;
+    ImageView bCalculator;
+    ImageView bAbout;
+
+    LinearLayout llSummary;
+    LinearLayout llChart;
+    LinearLayout llCalculator;
+    LinearLayout llAbout;
+
+    // calculator
+    private Button bConvertBrlTo;
+    private Button bConvertBtcTo;
+    private Button bConvertUsdTo;
+    private Button bConvertDcrTo;
+
+    private EditText etValueToConvertBrl;
+    private EditText etValueToConvertBtc;
+    private EditText etValueToConvertUsd;
+    private EditText etValueToConvertDcr;
+
+    private TextView tvCalcBrlInDcr;
+    private TextView tvCalcBtcInDcr;
+    private TextView tvCalcUsdInDcr;
+    private TextView tvCalcDcrInBrl;
+    private TextView tvCalcDcrInBtc;
+    private TextView tvCalcDcrInUsd;
+
+    // about
+    private static String TAG = "Decred AboutActivity";
+
+    private List<Link> links;
+    private AdapterLinks adapterLinks;
+
+    private TextView tvAboutDeveloper;
+    private TextView tvAboutCode;
+
+    private LinearLayout llAboutDonate;
+    private TextView tvAboutDonateWallet;
+    private TextView tvAboutDonate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +141,10 @@ public class MainActivity extends AppCompatActivity {
 
         prepareListeners();
 
+        prepareLinks();
+
+        prepareFirebasePart();
+
         loadSummary();
 
         loadPoloniexData();
@@ -94,6 +156,10 @@ public class MainActivity extends AppCompatActivity {
         loadChart();
 
         loadMarketChart();
+
+        resetFooter();
+
+        bSummary.performClick();
 
         startService(new Intent(this, BalanceChangesService.class));
         startService(new Intent(this, PriceAlertService.class));
@@ -483,9 +549,74 @@ public class MainActivity extends AppCompatActivity {
 
         marketChartBid = (LineChart) findViewById(R.id.marketChartBid);
         marketChartAsk = (LineChart) findViewById(R.id.marketChartAsk);
+
+        // footer
+
+        bSummary = (ImageView) findViewById(R.id.bSummary);
+        bChart = (ImageView) findViewById(R.id.bChart);
+        bCalculator = (ImageView) findViewById(R.id.bCalculator);
+        bAbout = (ImageView) findViewById(R.id.bAbout);
+
+        llSummary = (LinearLayout) findViewById(R.id.llSummary);
+        llChart = (LinearLayout) findViewById(R.id.llChart);
+        llCalculator = (LinearLayout) findViewById(R.id.llCalculator);
+        llAbout = (LinearLayout) findViewById(R.id.llAbout);
+
+        instanceObjectsCalculator();
+
+        instanceObjectsAbout();
+    }
+
+    private void instanceObjectsAbout() {
+        ListView lvLinks = (ListView) findViewById(R.id.lvLinks);
+
+        links = new ArrayList<>();
+
+        adapterLinks = new AdapterLinks(this, links);
+
+        lvLinks.setAdapter(adapterLinks);
+
+        tvAboutDeveloper = (TextView) findViewById(R.id.tvAboutDeveloper);
+        tvAboutCode = (TextView) findViewById(R.id.tvAboutCode);
+
+        tvAboutDonateWallet = (TextView) findViewById(R.id.tvAboutDonateWallet);
+        tvAboutDonate = (TextView) findViewById(R.id.tvAboutDonate);
+        llAboutDonate = (LinearLayout) findViewById(R.id.llDonate);
+    }
+
+    private void instanceObjectsCalculator() {
+        bConvertBrlTo = (Button) findViewById(R.id.bConvertBrlTo);
+        bConvertBtcTo = (Button) findViewById(R.id.bConvertBtcTo);
+        bConvertUsdTo = (Button) findViewById(R.id.bConvertUsdTo);
+        bConvertDcrTo = (Button) findViewById(R.id.bConvertDcrTo);
+
+        etValueToConvertBrl = (EditText) findViewById(R.id.etValueToConvertBrl);
+        etValueToConvertBtc = (EditText) findViewById(R.id.etValueToConvertBtc);
+        etValueToConvertUsd = (EditText) findViewById(R.id.etValueToConvertUsd);
+        etValueToConvertDcr = (EditText) findViewById(R.id.etValueToConvertDcr);
+
+        tvCalcBrlInDcr = (TextView) findViewById(R.id.tvCalcBrlInDcr);
+        tvCalcBtcInDcr = (TextView) findViewById(R.id.tvCalcBtcInDcr);
+        tvCalcUsdInDcr = (TextView) findViewById(R.id.tvCalcUsdInDcr);
+        tvCalcDcrInBrl = (TextView) findViewById(R.id.tvCalcDcrInBrl);
+        tvCalcDcrInBtc = (TextView) findViewById(R.id.tvCalcDcrInBtc);
+        tvCalcDcrInUsd = (TextView) findViewById(R.id.tvCalcDcrInUsd);
+
+        // load in the lasts values used
+
+        etValueToConvertBrl.setText(Utils.readPreference(this, "etValueToConvertBrl", "0"));
+        etValueToConvertBtc.setText(Utils.readPreference(this, "etValueToConvertBtc", "0"));
+        etValueToConvertUsd.setText(Utils.readPreference(this, "etValueToConvertUsd", "0"));
+        etValueToConvertDcr.setText(Utils.readPreference(this, "etValueToConvertDcr", "0"));
     }
 
     private void prepareListeners() {
+        prepareListenersCalculator();
+
+        prepareListenersAbout();
+
+        prepareMenuListeners();
+
         // parte dos graficos
 
         sZoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -573,6 +704,312 @@ public class MainActivity extends AppCompatActivity {
                 loadChart();
             }
         });
+    }
+
+    private void prepareFirebasePart() {
+        try {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            final DatabaseReference showWallet = database.getReference("donation").child("show_wallet");
+
+            // Read from the database
+            showWallet.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    Boolean value = dataSnapshot.getValue(Boolean.class);
+
+                    if (value)
+                        llAboutDonate.setVisibility(View.VISIBLE);
+                    else
+                        llAboutDonate.setVisibility(View.GONE);
+
+                    showWallet.keepSynced(true);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
+
+            final DatabaseReference wallet = database.getReference("donation").child("wallet");
+
+            // Read from the database
+            wallet.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    String value = dataSnapshot.getValue(String.class);
+
+                    tvAboutDonateWallet.setText(value);
+
+                    wallet.keepSynced(true);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
+
+            final DatabaseReference title = database.getReference("donation").child("title");
+
+            // Read from the database
+            title.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    String value = dataSnapshot.getValue(String.class);
+
+                    tvAboutDonate.setText(value);
+
+                    wallet.keepSynced(true);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
+
+            // links
+            final DatabaseReference drLinks = database.getReference("links");
+
+            // Read from the database
+            drLinks.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+
+                    try {
+                        String value = dataSnapshot.getValue(String.class);
+
+                        List<Link> localLinks = new ArrayList<>();
+
+                        String[] arrLinks = value.split(",");
+
+                        for (int i = 0; i < arrLinks.length; i += 2) {
+                            localLinks.add(new Link(arrLinks[i], arrLinks[i + 1]));
+                        }
+
+                        links.clear();
+
+                        links.addAll(localLinks);
+
+                        adapterLinks.notifyDataSetChanged();
+
+                        drLinks.keepSynced(true);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void prepareListenersAbout() {
+        tvAboutDonateWallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    String wallet = tvAboutDonateWallet.getText().toString();
+
+                    Utils.copyToClipboard(MainActivity.this, wallet);
+
+                    Toast.makeText(MainActivity.this, "Wallet WALLET copied to clipboard".replaceAll("WALLET", wallet), Toast.LENGTH_LONG).show();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                    Toast.makeText(MainActivity.this, "Error while copying wallet", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+    }
+
+    private void prepareListenersCalculator() {
+        bConvertBtcTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (verifyEditTextNull(etValueToConvertBtc)) {
+                    hideKeyboard();
+
+                    Utils.writePreference(MainActivity.this, "etValueToConvertBtc", etValueToConvertBtc.getText().toString());
+
+                    Response.Listener<String> listener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+
+                                JSONObject obj = new JSONArray(response).getJSONObject(0);
+
+                                double quantity = Double.parseDouble(etValueToConvertBtc.getText().toString());
+
+                                tvCalcBtcInDcr.setText(Utils.numberComplete(String.format("%s", quantity / Double.parseDouble(obj.getString("price_btc"))), 8));
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+
+                                Toast.makeText(MainActivity.this, "Error while converting", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    };
+
+                    execApiCall(listener);
+                }
+            }
+        });
+
+        bConvertUsdTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (verifyEditTextNull(etValueToConvertUsd)) {
+                    hideKeyboard();
+
+                    Utils.writePreference(MainActivity.this, "etValueToConvertUsd", etValueToConvertUsd.getText().toString());
+
+                    Response.Listener<String> listener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+
+                                JSONObject obj = new JSONArray(response).getJSONObject(0);
+
+                                double quantity = Double.parseDouble(etValueToConvertUsd.getText().toString());
+
+                                tvCalcUsdInDcr.setText(Utils.numberComplete(String.format("%s", quantity / Double.parseDouble(obj.getString("price_usd"))), 8));
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+
+                                Toast.makeText(MainActivity.this, "Error while converting", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    };
+
+                    execApiCall(listener);
+                }
+            }
+        });
+
+        bConvertBrlTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (verifyEditTextNull(etValueToConvertBrl)) {
+                    hideKeyboard();
+
+                    Utils.writePreference(MainActivity.this, "etValueToConvertBrl", etValueToConvertBrl.getText().toString());
+
+                    Response.Listener<String> listener2 = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject obj = new JSONObject(response);
+
+                                final double quantity = Double.parseDouble(etValueToConvertBrl.getText().toString()) / obj.getDouble("last");
+
+                                Response.Listener<String> listener = new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        try {
+
+                                            JSONObject obj = new JSONArray(response).getJSONObject(0);
+
+                                            tvCalcBrlInDcr.setText(Utils.numberComplete(String.format("%s", quantity / Double.parseDouble(obj.getString("price_btc"))), 4));
+
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+
+                                            Toast.makeText(MainActivity.this, "Error while converting", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                };
+
+                                execApiCall(listener);
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+
+                    Bitcoin.convertBtcToBrl(listener2);
+                }
+            }
+        });
+
+        bConvertDcrTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (verifyEditTextNull(etValueToConvertDcr)) {
+                    hideKeyboard();
+
+                    Utils.writePreference(MainActivity.this, "etValueToConvertDcr", etValueToConvertDcr.getText().toString());
+
+                    Response.Listener<String> listener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+
+                                final JSONObject obj = new JSONArray(response).getJSONObject(0);
+
+                                final double quantity = Double.parseDouble(etValueToConvertDcr.getText().toString());
+
+                                tvCalcDcrInBtc.setText(Utils.numberComplete(String.format("%s", quantity * Double.parseDouble(obj.getString("price_btc"))), 8));
+
+                                tvCalcDcrInUsd.setText(Utils.numberComplete(String.format("%s", quantity * Double.parseDouble(obj.getString("price_usd"))), 4));
+
+                                Response.Listener<String> listener = new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+                                        try {
+                                            JSONObject obj2 = new JSONObject(response);
+
+                                            tvCalcDcrInBrl.setText(Utils.numberComplete(Double.parseDouble(obj.getString("price_btc")) * obj2.getDouble("last") * quantity, 4));
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                };
+
+                                Bitcoin.convertBtcToBrl(listener);
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+
+                                Toast.makeText(MainActivity.this, "Error while converting", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    };
+
+                    execApiCall(listener);
+                }
+            }
+        });
+
     }
 
     private void loadBittrexData() {
@@ -915,5 +1352,100 @@ public class MainActivity extends AppCompatActivity {
             else
                 tvBleutradeChanges.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorChangesDown));
         }
+    }
+
+    private void resetFooter() {
+        bSummary.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver));
+        bChart.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver));
+        bCalculator.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver));
+        bAbout.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver));
+
+        llSummary.setVisibility(View.GONE);
+        llChart.setVisibility(View.GONE);
+        llCalculator.setVisibility(View.GONE);
+        llAbout.setVisibility(View.GONE);
+    }
+
+    private void prepareMenuListeners() {
+        bSummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetFooter();
+
+                bSummary.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
+
+                llSummary.setVisibility(View.VISIBLE);
+            }
+        });
+
+        bChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetFooter();
+
+                bChart.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
+
+                llChart.setVisibility(View.VISIBLE);
+            }
+        });
+
+        bCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetFooter();
+
+                bCalculator.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
+
+                llCalculator.setVisibility(View.VISIBLE);
+            }
+        });
+
+        bAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetFooter();
+
+                bAbout.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
+
+                llAbout.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    private boolean verifyEditTextNull(EditText et) {
+        if (et.getText().toString().equals("")) {
+            Toast.makeText(this, "You need to fill the box", Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+
+        return true;
+    }
+
+    private void hideKeyboard() {
+        try {
+            View view = this.getCurrentFocus();
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void execApiCall(Response.Listener<String> listener) {
+
+        String url = "https://api.coinmarketcap.com/v1/ticker/decred/";
+
+        InternetRequests internetRequests = new InternetRequests();
+
+        internetRequests.executeGet(url, listener);
+
+    }
+
+    private void prepareLinks() {
+        Utils.textViewLink(tvAboutDeveloper, "https://twitter.com/jonathanveg2");
+        Utils.textViewLink(tvAboutCode, "https://github.com/JonathanVeg/decred_android");
     }
 }

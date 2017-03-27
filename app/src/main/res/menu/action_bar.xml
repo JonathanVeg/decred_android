@@ -6,28 +6,29 @@
         android:id="@+id/calculator"
         android:icon="@drawable/ic_action_calculate"
         android:showAsAction="ifRoom"
-        android:title="Calculator" />
+        android:title="Calculator"
+        android:visible="false" />
 
     <item
         android:id="@+id/alerts"
         android:icon="@drawable/ic_add_alert_white_24dp"
         android:showAsAction="ifRoom"
         android:title="Alerts"
-        android:visible="true" />
+        android:visible="false" />
 
     <item
         android:id="@+id/wallets"
         android:icon="@drawable/ic_account_balance_wallet_white_24dp"
         android:showAsAction="ifRoom"
         android:title="Wallets"
-        android:visible="true" />
+        android:visible="false" />
 
     <item
         android:id="@+id/about"
         android:icon="@drawable/ic_info_white_24dp"
         android:showAsAction="ifRoom"
         android:title="About"
-        android:visible="true" />
+        android:visible="false" />
 
 
 </menu>

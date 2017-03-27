@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="altcoin.br.decred"
-    android:versionCode="2"
-    android:versionName="1.1" >
+    android:versionCode="3"
+    android:versionName="2.0" >
 
     <uses-sdk
-        android:minSdkVersion="17"
+        android:minSdkVersion="16"
         android:targetSdkVersion="24" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -77,7 +77,10 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="altcoin.br.decred.RestartPriceAlertService" >
+        <receiver
+            android:name="altcoin.br.decred.RestartPriceAlertService"
+            android:enabled="true"
+            android:exported="false" >
             <intent-filter>
                 <action android:name="KillPriceAlertService" />
             </intent-filter>

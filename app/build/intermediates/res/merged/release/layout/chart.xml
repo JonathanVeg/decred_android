@@ -1,57 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llChart"
     android:layout_width="match_parent"
     android:layout_height="300dp"
-    android:orientation="vertical">
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:visibility="gone">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="8dp"
-        android:text="Charts (Poloniex Data)"
-        android:textStyle="bold" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Spinner
-            android:id="@+id/sZoom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_weight="0.3" />
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.4"
             android:orientation="vertical">
 
-            <CheckBox
-                android:id="@+id/cbShowValues"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:checked="false"
-                android:text="Show values" />
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:text="Charts (Poloniex Data)"
+                android:textStyle="bold" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/sZoom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/cbShowValues"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:checked="false"
+                        android:text="Show values" />
+
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/sCandle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3" />
+
+            </LinearLayout>
+
+            <com.github.mikephil.charting.charts.CandleStickChart
+                android:id="@+id/coinChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+
+            <include layout="@layout/market_chart" />
         </LinearLayout>
-
-        <Spinner
-            android:id="@+id/sCandle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_weight="0.3" />
-
-    </LinearLayout>
-
-    <com.github.mikephil.charting.charts.CandleStickChart
-        android:id="@+id/coinChart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+    </ScrollView>
 </LinearLayout>

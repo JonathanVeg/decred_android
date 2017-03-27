@@ -12,12 +12,12 @@
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.4.0/res/drawable-hdpi-v4/common_plus_signin_btn_text_light_normal.9.png"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_cab_background_top_mtrl_alpha.9.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_cab_background_top_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_ic_star_half_black_36dp.png",
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_ic_star_half_black_36dp.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_cab_background_top_mtrl_alpha.9.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/drawable-hdpi-v4/abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_list_longpressed_holo.9.png",

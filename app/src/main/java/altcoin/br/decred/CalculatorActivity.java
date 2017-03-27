@@ -76,13 +76,11 @@ public class CalculatorActivity extends AppCompatActivity {
     }
 
     private void execApiCall(Response.Listener<String> listener) {
-
         String url = "https://api.coinmarketcap.com/v1/ticker/decred/";
 
         InternetRequests internetRequests = new InternetRequests();
 
         internetRequests.executeGet(url, listener);
-
     }
 
     private void prepareListeners() {

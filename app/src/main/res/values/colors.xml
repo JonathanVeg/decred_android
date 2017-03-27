@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#0C1E3E</color>
     <color name="colorAccent">#0C1E3E</color>
     <color name="colorChangesUp">#41BF53</color>
+    <color name="transparent_silver">#88e0e0e0</color>
+
     <color name="colorChangesDown">#FD714A</color>
 
     <color name="white">#FFFFFF</color>
