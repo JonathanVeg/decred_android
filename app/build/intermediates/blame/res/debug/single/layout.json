@@ -180,6 +180,14 @@
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/abc_popup_menu_item_layout.xml"
     },
     {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/stats.xml",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/stats.xml"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/alerts.xml",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/alerts.xml"
+    },
+    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/abc_screen_content_include.xml"
     },
@@ -202,6 +210,10 @@
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/coin_market_cap.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/coin_market_cap.xml"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/searchable_list_dialog.xml",
+        "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.toptoche.searchablespinner/searchablespinnerlibrary/1.3.1/res/layout/searchable_list_dialog.xml"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/market_chart.xml",

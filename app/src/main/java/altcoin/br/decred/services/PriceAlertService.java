@@ -39,7 +39,8 @@ public class PriceAlertService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        sendBroadcast(new Intent("KillPriceAlertService"));
+
+        sendBroadcast(new Intent("DecredKillPriceAlertService"));
     }
 
     public IBinder onBind(Intent arg0) {

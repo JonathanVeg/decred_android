@@ -24,12 +24,12 @@
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_feed.png"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_box.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_box.png"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_heart.png",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_heart.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_box.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_box.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_mouse.png",
@@ -52,12 +52,12 @@
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_puzzle.png"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_drop.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_drop.png"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_bike.png",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_bike.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_drop.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_drop.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_location_2.png",
@@ -108,12 +108,12 @@
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_import.png"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_emo_wink.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_emo_wink.png"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_barcode_1.png",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_barcode_1.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_emo_wink.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_emo_wink.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_coffee.png",
@@ -140,12 +140,12 @@
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_pie_chart.png"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_collapse.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_collapse.png"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_tick.png",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_tick.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_collapse.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_collapse.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_laptop.png",
@@ -164,16 +164,16 @@
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/icon.png"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_dice1.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_dice1.png"
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_signal.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_signal.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/ic_swap_horiz_white_24dp.png",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/ic_swap_horiz_white_24dp.png"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_signal.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_signal.png"
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_dice1.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_dice1.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_stumbleupon.png",
@@ -204,12 +204,12 @@
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_minus.png"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_brush.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_brush.png"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_folder_open.png",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_folder_open.png"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_brush.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xhdpi/bdark_ic_action_brush.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xhdpi/bdark_ic_action_rocket.png",

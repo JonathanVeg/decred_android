@@ -12,6 +12,10 @@
 
     <include layout="@layout/calculator" />
 
+    <include layout="@layout/alerts" />
+
+    <include layout="@layout/stats" />
+
     <include layout="@layout/about" />
 
     <include layout="@layout/ll_footer" />

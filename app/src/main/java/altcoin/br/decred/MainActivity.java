@@ -9,6 +9,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +25,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,9 +55,11 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import altcoin.br.decred.adapter.AdapterAlerts;
 import altcoin.br.decred.adapter.AdapterLinks;
+import altcoin.br.decred.data.DBTools;
+import altcoin.br.decred.model.Alert;
 import altcoin.br.decred.model.Link;
-import altcoin.br.decred.services.BalanceChangesService;
 import altcoin.br.decred.services.PriceAlertService;
 import altcoin.br.decred.utils.Bitcoin;
 import altcoin.br.decred.utils.InternetRequests;
@@ -90,11 +96,15 @@ public class MainActivity extends Activity {
     ImageView bChart;
     ImageView bCalculator;
     ImageView bAbout;
+    ImageView bAlerts;
+    ImageView bStats;
 
     LinearLayout llSummary;
     LinearLayout llChart;
     LinearLayout llCalculator;
     LinearLayout llAbout;
+    ScrollView llAlerts;
+    LinearLayout llStats;
 
     // calculator
     private Button bConvertBrlTo;
@@ -127,6 +137,19 @@ public class MainActivity extends Activity {
     private TextView tvAboutDonateWallet;
     private TextView tvAboutDonate;
 
+    // alerts
+
+    private CheckBox cbAlertPoloniex;
+    private CheckBox cbAlertBittrex;
+    private Spinner sOptions;
+    private EditText etValue;
+    private Button bSaveAlert;
+    private AdapterAlerts adapterAlerts;
+    private List<Alert> alerts;
+    private RelativeLayout rlNoAlerts;
+    private LinearLayout llCurrentAlerts;
+    private RecyclerView rvAlerts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,27 +164,10 @@ public class MainActivity extends Activity {
 
         prepareListeners();
 
-        prepareLinks();
-
-        prepareFirebasePart();
-
-        loadSummary();
-
-        loadPoloniexData();
-
-        loadBittrexData();
-
-        loadBleutradeData();
-
-        loadChart();
-
-        loadMarketChart();
-
         resetFooter();
 
         bSummary.performClick();
 
-        startService(new Intent(this, BalanceChangesService.class));
         startService(new Intent(this, PriceAlertService.class));
     }
 
@@ -556,15 +562,45 @@ public class MainActivity extends Activity {
         bChart = (ImageView) findViewById(R.id.bChart);
         bCalculator = (ImageView) findViewById(R.id.bCalculator);
         bAbout = (ImageView) findViewById(R.id.bAbout);
+        bStats = (ImageView) findViewById(R.id.bStats);
+        bAlerts = (ImageView) findViewById(R.id.bAlerts);
 
         llSummary = (LinearLayout) findViewById(R.id.llSummary);
         llChart = (LinearLayout) findViewById(R.id.llChart);
         llCalculator = (LinearLayout) findViewById(R.id.llCalculator);
         llAbout = (LinearLayout) findViewById(R.id.llAbout);
+        llStats = (LinearLayout) findViewById(R.id.llStats);
+        llAlerts = (ScrollView) findViewById(R.id.llAlerts);
 
         instanceObjectsCalculator();
 
         instanceObjectsAbout();
+
+        instanceObjectsAlerts();
+    }
+
+    private void instanceObjectsAlerts() {
+        rvAlerts = (RecyclerView) findViewById(R.id.rvAlerts);
+        sOptions = (Spinner) findViewById(R.id.sOptions);
+        etValue = (EditText) findViewById(R.id.etValue);
+        bSaveAlert = (Button) findViewById(R.id.bSaveAlert);
+        rlNoAlerts = (RelativeLayout) findViewById(R.id.rlNoAlerts);
+        llCurrentAlerts = (LinearLayout) findViewById(R.id.llCurrentAlerts);
+        cbAlertPoloniex = (CheckBox) findViewById(R.id.cbAlertPoloniex);
+        cbAlertBittrex = (CheckBox) findViewById(R.id.cbAlertBittrex);
+
+        alerts = new ArrayList<>();
+
+        adapterAlerts = new AdapterAlerts(this, alerts);
+
+        rvAlerts.setHasFixedSize(true);
+
+        // use a linear layout manager
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        rvAlerts.setLayoutManager(linearLayoutManager);
+        rvAlerts.setAdapter(adapterAlerts);
     }
 
     private void instanceObjectsAbout() {
@@ -611,6 +647,8 @@ public class MainActivity extends Activity {
     }
 
     private void prepareListeners() {
+        prepareListenersAlerts();
+
         prepareListenersCalculator();
 
         prepareListenersAbout();
@@ -840,6 +878,7 @@ public class MainActivity extends Activity {
 
                     Toast.makeText(MainActivity.this, "Wallet WALLET copied to clipboard".replaceAll("WALLET", wallet), Toast.LENGTH_LONG).show();
 
+                    Utils.logFabric("donationWalletCopied");
                 } catch (Exception e) {
                     e.printStackTrace();
 
@@ -850,11 +889,59 @@ public class MainActivity extends Activity {
         });
     }
 
+    private void prepareListenersAlerts() {
+        bSaveAlert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    hideKeyboard();
+
+                    Alert alert = new Alert(MainActivity.this);
+
+                    alert.setWhen(sOptions.getSelectedItemPosition() == 0 ? Alert.GREATER : Alert.LOWER);
+
+                    alert.setValue(etValue.getText().toString());
+
+                    alert.setBittrex(cbAlertBittrex.isChecked());
+
+                    alert.setPoloniex(cbAlertPoloniex.isChecked());
+
+                    alert.setActive(true);
+
+                    if (alert.save()) {
+                        Utils.alert(MainActivity.this, "Alert saved");
+
+                        new atLoadAlerts(MainActivity.this).execute();
+
+                        stopService(new Intent(MainActivity.this, PriceAlertService.class));
+
+                        startService(new Intent(MainActivity.this, PriceAlertService.class));
+
+                        String where = "";
+
+                        if (alert.isPoloniex()) where += "P";
+
+                        if (alert.isBittrex()) where += "B";
+
+                        Utils.logFabric("alertSaved", "where", where);
+                    } else
+                        Utils.alert(MainActivity.this, "Error while saving alert");
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                    Utils.alert(MainActivity.this, "Error while saving alert");
+                }
+            }
+        });
+    }
+
     private void prepareListenersCalculator() {
         bConvertBtcTo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (verifyEditTextNull(etValueToConvertBtc)) {
+                    Utils.logFabric("calculator", "operation", "btcTo");
+
                     hideKeyboard();
 
                     Utils.writePreference(MainActivity.this, "etValueToConvertBtc", etValueToConvertBtc.getText().toString());
@@ -887,6 +974,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (verifyEditTextNull(etValueToConvertUsd)) {
+                    Utils.logFabric("calculator", "operation", "usdTo");
+
                     hideKeyboard();
 
                     Utils.writePreference(MainActivity.this, "etValueToConvertUsd", etValueToConvertUsd.getText().toString());
@@ -919,6 +1008,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (verifyEditTextNull(etValueToConvertBrl)) {
+                    Utils.logFabric("calculator", "operation", "brlTo");
+
                     hideKeyboard();
 
                     Utils.writePreference(MainActivity.this, "etValueToConvertBrl", etValueToConvertBrl.getText().toString());
@@ -965,6 +1056,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (verifyEditTextNull(etValueToConvertDcr)) {
+                    Utils.logFabric("calculator", "operation", "dcrTo");
+
                     hideKeyboard();
 
                     Utils.writePreference(MainActivity.this, "etValueToConvertDcr", etValueToConvertDcr.getText().toString());
@@ -1359,33 +1452,53 @@ public class MainActivity extends Activity {
         bChart.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver));
         bCalculator.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver));
         bAbout.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver));
+        bStats.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver));
+        bAlerts.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver));
 
         llSummary.setVisibility(View.GONE);
         llChart.setVisibility(View.GONE);
         llCalculator.setVisibility(View.GONE);
         llAbout.setVisibility(View.GONE);
+        llAlerts.setVisibility(View.GONE);
+        llStats.setVisibility(View.GONE);
     }
 
     private void prepareMenuListeners() {
         bSummary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loadSummary();
+
+                loadPoloniexData();
+
+                loadBittrexData();
+
+                loadBleutradeData();
+
                 resetFooter();
 
                 bSummary.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
 
                 llSummary.setVisibility(View.VISIBLE);
+
+                Utils.logFabric("tabChanged", "tab", "summary");
             }
         });
 
         bChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loadChart();
+
+                loadMarketChart();
+
                 resetFooter();
 
                 bChart.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
 
                 llChart.setVisibility(View.VISIBLE);
+
+                Utils.logFabric("tabChanged", "tab", "chart");
             }
         });
 
@@ -1397,6 +1510,8 @@ public class MainActivity extends Activity {
                 bCalculator.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
 
                 llCalculator.setVisibility(View.VISIBLE);
+
+                Utils.logFabric("tabChanged", "tab", "calculator");
             }
         });
 
@@ -1408,8 +1523,49 @@ public class MainActivity extends Activity {
                 bAbout.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
 
                 llAbout.setVisibility(View.VISIBLE);
+
+                prepareLinks();
+
+                prepareFirebasePart();
+
+                Utils.logFabric("tabChanged", "tab", "about");
             }
         });
+
+        bAlerts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetFooter();
+
+                bAlerts.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
+
+                llAlerts.setVisibility(View.VISIBLE);
+
+                new atLoadAlerts(MainActivity.this).execute();
+
+                Utils.logFabric("tabChanged", "tab", "alerts");
+            }
+        });
+
+        bStats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetFooter();
+
+                bStats.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
+
+                llStats.setVisibility(View.VISIBLE);
+
+                loadStatsData();
+
+                Utils.logFabric("tabChanged", "tab", "stats");
+            }
+        });
+    }
+
+    private void loadStatsData() {
+
+
     }
 
     private boolean verifyEditTextNull(EditText et) {
@@ -1447,5 +1603,73 @@ public class MainActivity extends Activity {
     private void prepareLinks() {
         Utils.textViewLink(tvAboutDeveloper, "https://twitter.com/jonathanveg2");
         Utils.textViewLink(tvAboutCode, "https://github.com/JonathanVeg/decred_android");
+    }
+
+    class atLoadAlerts extends io.fabric.sdk.android.services.concurrency.AsyncTask<Void, Void, Void> {
+        Context context;
+
+        List<Alert> list;
+
+        atLoadAlerts(Context context) {
+            this.context = context;
+
+            list = new ArrayList<>();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            DBTools db = new DBTools(context);
+
+            try {
+                int count = db.search("select * from alerts order by created_at desc");
+
+                Alert alert;
+
+                for (int i = 0; i < count; i++) {
+                    alert = new Alert(MainActivity.this);
+
+                    alert.setId(db.getData(i, 0));
+                    alert.setWhen(db.getData(i, 1));
+                    alert.setValue(db.getData(i, 2));
+                    alert.setCreatedAt(db.getData(i, 3));
+                    alert.setActive(Utils.isTrue(db.getData(i, 4)));
+                    alert.setPoloniex(Utils.isTrue(db.getData(i, 5)));
+                    alert.setBittrex(Utils.isTrue(db.getData(i, 6)));
+
+                    list.add(alert);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                db.close();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            alerts.clear();
+
+            alerts.addAll(list);
+
+            adapterAlerts.notifyDataSetChanged();
+
+            correctListVisibility();
+        }
+    }
+
+    public void correctListVisibility() {
+        if (alerts.size() > 0) {
+            rlNoAlerts.setVisibility(View.GONE);
+            llCurrentAlerts.setVisibility(View.VISIBLE);
+            rvAlerts.setVisibility(View.VISIBLE);
+        } else {
+            llCurrentAlerts.setVisibility(View.GONE);
+            rvAlerts.setVisibility(View.GONE);
+            rlNoAlerts.setVisibility(View.VISIBLE);
+        }
     }
 }

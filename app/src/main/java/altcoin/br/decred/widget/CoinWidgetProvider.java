@@ -47,8 +47,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
                     onUpdate(context, appWidgetManager, appWidgetIds);
                 }
 
-                Utils.answersLog("manuallyWidgetUpdate", "manuallyWidgetUpdate", "0002");
-
+                Utils.logFabric("widgetUpdateManually");
             } catch (Exception e) {
                 e.printStackTrace();
             }

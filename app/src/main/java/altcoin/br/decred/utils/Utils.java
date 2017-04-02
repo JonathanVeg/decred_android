@@ -16,14 +16,41 @@ import android.widget.Toast;
 
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.ContentViewEvent;
+import com.crashlytics.android.answers.CustomEvent;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
 public class Utils {
+
+    public static void logFabric(String event, String... items) {
+        try {
+            CustomEvent customEvent = new CustomEvent(event);
+
+            for (int i = 0; i < items.length; i += 2)
+                customEvent.putCustomAttribute(items[i], items[i + 1]);
+
+            Answers.getInstance().logCustom(customEvent);
+
+            log("logFabric", event + " - " + Arrays.toString(items));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void logFabric(String event) {
+        try {
+            Answers.getInstance().logCustom(new CustomEvent(event));
+
+            log("logFabric", event);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void textViewLink(TextView tv, String url) {
         // make a textview clickable
@@ -106,17 +133,6 @@ public class Utils {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         return preferences.getBoolean(key, defaultValue);
-    }
-
-    public static void answersLog(String contentName, String contentType, String contentId) {
-        try {
-            Answers.getInstance().logContentView(new ContentViewEvent()
-                    .putContentName(contentName)
-                    .putContentType(contentType)
-                    .putContentId(contentId));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public static boolean isTrue(String value) {

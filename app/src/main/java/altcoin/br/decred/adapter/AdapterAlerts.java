@@ -49,7 +49,19 @@ public class AdapterAlerts extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             Alert alert = alerts.get(holder.getAdapterPosition());
 
             myHolder.tvAlertId.setText(String.valueOf(alert.getId()));
-            myHolder.tvAlertWhen.setText(String.valueOf(alert.getWhenText()));
+
+            String when = "";
+
+            if (alert.isBittrex() && (!alert.isPoloniex()))
+                when = "Trex - ";
+            else if (alert.isPoloniex() && (!alert.isBittrex()))
+                when = "Polo - ";
+            else if (alert.isPoloniex() && alert.isBittrex())
+                when = "Polo/Trex - ";
+
+            when += alert.getWhenText();
+
+            myHolder.tvAlertWhen.setText(when);
             myHolder.tvAlertValue.setText(Utils.numberComplete(alert.getValue(), 8));
 
             if (alert.isActive()) {
@@ -78,7 +90,6 @@ public class AdapterAlerts extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private class myViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvAlertId;
-        TextView tvAlertCoin;
         TextView tvAlertWhen;
         TextView tvAlertValue;
         ImageView ivAlertDelete;
@@ -118,6 +129,8 @@ public class AdapterAlerts extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                                         notifyDataSetChanged();
 
                                         ((AlertActivity) activity).correctListVisibility();
+
+                                        Utils.logFabric("alertRemoved");
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     } finally {
@@ -139,6 +152,8 @@ public class AdapterAlerts extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
                     ivAlertInactive.setVisibility(View.VISIBLE);
                     ivAlertActive.setVisibility(View.GONE);
+
+                    Utils.logFabric("alertDeactivated");
                 }
             });
 
@@ -151,6 +166,8 @@ public class AdapterAlerts extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
                     ivAlertInactive.setVisibility(View.GONE);
                     ivAlertActive.setVisibility(View.VISIBLE);
+
+                    Utils.logFabric("alertActivated");
                 }
             });
         }

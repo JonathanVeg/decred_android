@@ -26,9 +26,6 @@
             android:label="@string/title_activity_wallets" />
 
         <service
-            android:name=".services.BalanceChangesService"
-            android:enabled="true" />
-        <service
             android:name=".services.PriceAlertService"
             android:enabled="true" />
 
@@ -50,6 +47,7 @@
         <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about" />
+
         <activity
             android:name=".AlertActivity"
             android:label="@string/title_activity_alerts" />
@@ -68,7 +66,7 @@
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="KillPriceAlertService" />
+                <action android:name="DecredKillPriceAlertService" />
             </intent-filter>
         </receiver>
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="altcoin.br.decred"
-    android:versionCode="3"
-    android:versionName="2.0" >
+    android:versionCode="4"
+    android:versionName="2.1" >
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -40,9 +40,6 @@
             android:name="altcoin.br.decred.WalletsActivity"
             android:label="@string/title_activity_wallets" />
 
-        <service
-            android:name="altcoin.br.decred.services.BalanceChangesService"
-            android:enabled="true" />
         <service
             android:name="altcoin.br.decred.services.PriceAlertService"
             android:enabled="true" />
@@ -82,7 +79,7 @@
             android:enabled="true"
             android:exported="false" >
             <intent-filter>
-                <action android:name="KillPriceAlertService" />
+                <action android:name="DecredKillPriceAlertService" />
             </intent-filter>
         </receiver>
 

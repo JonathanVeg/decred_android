@@ -140,6 +140,10 @@
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/chart.xml"
     },
     {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/layout/alerts.xml",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/alerts.xml"
+    },
+    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/layout/notification_media_cancel_action.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/notification_media_cancel_action.xml"
     },
@@ -240,6 +244,10 @@
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/notification_template_part_chronometer.xml"
     },
     {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/layout/searchable_list_dialog.xml",
+        "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.toptoche.searchablespinner/searchablespinnerlibrary/1.3.1/res/layout/searchable_list_dialog.xml"
+    },
+    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/layout/abc_screen_toolbar.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/abc_screen_toolbar.xml"
     },
@@ -250,6 +258,10 @@
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/layout/appwidget_coin.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/appwidget_coin.xml"
+    },
+    {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/layout/stats.xml",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/stats.xml"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/layout/abc_list_menu_item_layout.xml",

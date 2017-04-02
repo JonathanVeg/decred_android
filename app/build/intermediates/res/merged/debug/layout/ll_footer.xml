@@ -28,6 +28,24 @@
         android:src="@drawable/bdark_ic_action_calculator" />
 
     <ImageView
+        android:id="@+id/bAlerts"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/transparent_silver"
+        android:src="@drawable/bdark_ic_action_bell"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/bStats"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/transparent_silver"
+        android:src="@drawable/bdark_bdark_ic_action_achievement"
+        android:visibility="gone" />
+
+    <ImageView
         android:id="@+id/bAbout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
