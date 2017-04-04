@@ -220,6 +220,8 @@ public class MainActivity extends Activity {
 
             loadMarketChart();
 
+            loadStatsData();
+
             // after executing it creates another instance
             // i think there is a way to make it better.
             handler = new Handler();
@@ -1563,9 +1565,139 @@ public class MainActivity extends Activity {
         });
     }
 
+    long statsTimeStamp = 0;
+
     private void loadStatsData() {
+        statsTimeStamp = Utils.timestampLong();
+
+        String url = "https://dcrstats.com/api/v1/get_stats?" + statsTimeStamp;
+
+        Response.Listener<String> listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                new atParseStatsData(MainActivity.this, response).execute();
+
+                String url2 = "https://dcrstats.com/api/v1/fees";
+
+                Response.Listener<String> listener2 = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        new atParseStatsBlockData(MainActivity.this, response).execute();
+                    }
+                };
+
+                InternetRequests internetRequests = new InternetRequests();
+
+                internetRequests.executeGet(url2, listener2);
+            }
+        };
+
+        InternetRequests internetRequests = new InternetRequests();
+
+        internetRequests.executeGet(url, listener);
+    }
+
+    private class atParseStatsBlockData extends AsyncTask<Void, Void, Void> {
+        Context context;
+        String response;
+
+        String statsLastBlockNumber = "";
+
+        atParseStatsBlockData(Context c, String r) {
+            context = c;
+
+            response = r;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                JSONObject obj = new JSONObject(response);
+
+                statsLastBlockNumber = "";
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            TextView tvStatsLastBlockNumber = (TextView) findViewById(R.id.tvStatsLastBlockNumber);
+
+            tvStatsLastBlockNumber.setText(statsLastBlockNumber);
+        }
+    }
 
 
+    private class atParseStatsData extends AsyncTask<Void, Void, Void> {
+        Context context;
+        String response;
+
+        String statsTicketPrice = "";
+        String statsNextTicketPrice = "";
+        String statsMinTicketPrice = "";
+        String statsMaxTicketPrice = "";
+        String statsLastBlockDatetime = "";
+
+        atParseStatsData(Context c, String r) {
+            context = c;
+
+            response = r;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                JSONObject obj = new JSONObject(response);
+
+                statsTicketPrice = Utils.numberComplete(obj.getString("sbits"), 2);
+                statsNextTicketPrice = Utils.numberComplete(obj.getString("est_sbits"), 2);
+                statsMinTicketPrice = Utils.numberComplete(obj.getString("est_sbits_min"), 2);
+                statsMaxTicketPrice = Utils.numberComplete(obj.getString("est_sbits_max"), 2);
+
+                Long timestamp = statsTimeStamp - obj.getLong("last_block_datetime");
+
+                String min = (timestamp / 60) + "";
+
+                String sec = (timestamp % 60) + "";
+
+                if (min.length() == 1)
+                    min = "0" + min;
+
+                if (sec.length() == 1)
+                    sec = "0" + sec;
+
+
+                statsLastBlockDatetime = min + ":" + sec;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            TextView tvStatsTicketPrice = (TextView) findViewById(R.id.tvStatsTicketPrice);
+            TextView tvStatsNextTicketPrice = (TextView) findViewById(R.id.tvStatsNextTicketPrice);
+            TextView tvStatsMinTicketPrice = (TextView) findViewById(R.id.tvStatsMinTicketPrice);
+            TextView tvStatsMaxTicketPrice = (TextView) findViewById(R.id.tvStatsMaxTicketPrice);
+            TextView tvStatsLastBlockDatetime = (TextView) findViewById(R.id.tvStatsLastBlockDatetime);
+
+            tvStatsTicketPrice.setText(statsTicketPrice);
+            tvStatsNextTicketPrice.setText(statsNextTicketPrice);
+            tvStatsMinTicketPrice.setText(statsMinTicketPrice);
+            tvStatsMaxTicketPrice.setText(statsMaxTicketPrice);
+
+            tvStatsLastBlockDatetime.setText(statsLastBlockDatetime);
+        }
     }
 
     private boolean verifyEditTextNull(EditText et) {

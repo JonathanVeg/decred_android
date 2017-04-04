@@ -1227,7 +1227,7 @@ int drawable ic_zoom_out_black_24dp 0x7f020294
 int drawable icon 0x7f020295
 int drawable notification_template_icon_bg 0x7f020297
 int drawable usa 0x7f020296
-int id about 0x7f0d00e9
+int id about 0x7f0d00ee
 int id action0 0x7f0d00c8
 int id action_bar 0x7f0d0064
 int id action_bar_activity_content 0x7f0d0000
@@ -1249,7 +1249,7 @@ int id add 0x7f0d001a
 int id adjust_height 0x7f0d0035
 int id adjust_width 0x7f0d0036
 int id alertTitle 0x7f0d0052
-int id alerts 0x7f0d00e7
+int id alerts 0x7f0d00ec
 int id always 0x7f0d0037
 int id auto 0x7f0d0031
 int id bAbout 0x7f0d00c5
@@ -1267,7 +1267,7 @@ int id bWidSave 0x7f0d0094
 int id beginning 0x7f0d0033
 int id bottom 0x7f0d0021
 int id buttonPanel 0x7f0d004d
-int id calculator 0x7f0d00e6
+int id calculator 0x7f0d00eb
 int id cancel_action 0x7f0d00c9
 int id cbAlertBittrex 0x7f0d007d
 int id cbAlertPoloniex 0x7f0d007c
@@ -1336,7 +1336,7 @@ int id llChart 0x7f0d00a9
 int id llCurrentAlerts 0x7f0d0080
 int id llDonate 0x7f0d0076
 int id llStats 0x7f0d00e4
-int id llSummary 0x7f0d00e5
+int id llSummary 0x7f0d00ea
 int id lvLinks 0x7f0d0079
 int id marketChartAsk 0x7f0d00c7
 int id marketChartBid 0x7f0d00c6
@@ -1443,6 +1443,11 @@ int id tvPoloniexBid 0x7f0d00d8
 int id tvPoloniexChanges 0x7f0d00da
 int id tvPoloniexLast 0x7f0d00d6
 int id tvPoloniexTitle 0x7f0d00d5
+int id tvStatsLastBlockDatetime 0x7f0d00e9
+int id tvStatsMaxTicketPrice 0x7f0d00e8
+int id tvStatsMinTicketPrice 0x7f0d00e7
+int id tvStatsNextTicketPrice 0x7f0d00e6
+int id tvStatsTicketPrice 0x7f0d00e5
 int id tvSummary24hChanges 0x7f0d00b2
 int id tvSummaryBrlPrice 0x7f0d00b1
 int id tvSummaryBtcPrice 0x7f0d00af
@@ -1456,7 +1461,7 @@ int id tvWidValInFiat 0x7f0d009b
 int id up 0x7f0d0009
 int id useLogo 0x7f0d0014
 int id view_offset_helper 0x7f0d000a
-int id wallets 0x7f0d00e8
+int id wallets 0x7f0d00ed
 int id wide 0x7f0d003e
 int id withText 0x7f0d003b
 int id wrap_content 0x7f0d0020
