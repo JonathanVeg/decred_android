@@ -1612,9 +1612,10 @@ public class MainActivity extends Activity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                JSONObject obj = new JSONObject(response);
+                JSONArray arr = new JSONArray(response);
 
-                statsLastBlockNumber = "";
+                statsLastBlockNumber = arr.getJSONObject(0).getString("height");
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -1632,16 +1633,25 @@ public class MainActivity extends Activity {
         }
     }
 
-
     private class atParseStatsData extends AsyncTask<Void, Void, Void> {
         Context context;
         String response;
 
-        String statsTicketPrice = "";
-        String statsNextTicketPrice = "";
-        String statsMinTicketPrice = "";
-        String statsMaxTicketPrice = "";
-        String statsLastBlockDatetime = "";
+        String statsTicketPrice = ""; // done
+        String statsNextTicketPrice = ""; // done
+        String statsMinTicketPrice = ""; // done
+        String statsMaxTicketPrice = ""; // done
+        String statsLastBlockDatetime = ""; // done
+
+        String statsLastAvgBlockTime = ""; // done
+        String statsLastAvgHashrate = ""; // done
+        String statsStakeReward = "";
+        String statsAdjustIn = "";
+        String statsAvailableSupply = "";
+        String statsPowReward = "";
+        String statsTicketPollSize = ""; // done
+        String statsLockedDcr = "";
+        String statsAvgTicketPrice = "";
 
         atParseStatsData(Context c, String r) {
             context = c;
@@ -1662,7 +1672,6 @@ public class MainActivity extends Activity {
                 Long timestamp = statsTimeStamp - obj.getLong("last_block_datetime");
 
                 String min = (timestamp / 60) + "";
-
                 String sec = (timestamp % 60) + "";
 
                 if (min.length() == 1)
@@ -1671,8 +1680,14 @@ public class MainActivity extends Activity {
                 if (sec.length() == 1)
                     sec = "0" + sec;
 
-
                 statsLastBlockDatetime = min + ":" + sec;
+                statsLastAvgBlockTime = obj.getString("average_minutes") + ":" + obj.getString("average_seconds");
+
+                statsTicketPollSize = obj.getString("poolsize");
+
+                statsLastAvgHashrate = Utils.numberComplete(obj.getLong("networkhashps") / (1000000000000.0), 2);
+
+                statsAvailableSupply = String.valueOf(Utils.numberComplete(obj.getLong("coinsupply") / 1000000.0, 0));
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1691,10 +1706,30 @@ public class MainActivity extends Activity {
             TextView tvStatsMaxTicketPrice = (TextView) findViewById(R.id.tvStatsMaxTicketPrice);
             TextView tvStatsLastBlockDatetime = (TextView) findViewById(R.id.tvStatsLastBlockDatetime);
 
+            TextView tvStatsLastAvgBlockTime = (TextView) findViewById(R.id.tvStatsLastAvgBlockTime);
+            TextView tvStatsLastAvgHashrate = (TextView) findViewById(R.id.tvStatsLastAvgHashrate);
+            TextView tvStatsStakeReward = (TextView) findViewById(R.id.tvStatsStakeReward);
+            TextView tvStatsAdjustIn = (TextView) findViewById(R.id.tvStatsAdjustIn);
+            TextView tvStatsAvailableSupply = (TextView) findViewById(R.id.tvStatsAvailableSupply);
+            TextView tvStatsPowReward = (TextView) findViewById(R.id.tvStatsPowReward);
+            TextView tvStatsTicketPollSize = (TextView) findViewById(R.id.tvStatsTicketPollSize);
+            TextView tvStatsLockedDcr = (TextView) findViewById(R.id.tvStatsLockedDcr);
+            TextView tvStatsAvgTicketPrice = (TextView) findViewById(R.id.tvStatsAvgTicketPrice);
+
             tvStatsTicketPrice.setText(statsTicketPrice);
             tvStatsNextTicketPrice.setText(statsNextTicketPrice);
             tvStatsMinTicketPrice.setText(statsMinTicketPrice);
             tvStatsMaxTicketPrice.setText(statsMaxTicketPrice);
+            tvStatsLastBlockDatetime.setText(statsLastBlockDatetime);
+            tvStatsLastAvgBlockTime.setText(statsLastAvgBlockTime);
+            tvStatsLastAvgHashrate.setText(statsLastAvgHashrate);
+            tvStatsStakeReward.setText(statsStakeReward);
+            tvStatsAdjustIn.setText(statsAdjustIn);
+            tvStatsAvailableSupply.setText(statsAvailableSupply);
+            tvStatsPowReward.setText(statsPowReward);
+            tvStatsTicketPollSize.setText(statsTicketPollSize);
+            tvStatsLockedDcr.setText(statsLockedDcr);
+            tvStatsAvgTicketPrice.setText(statsAvgTicketPrice);
 
             tvStatsLastBlockDatetime.setText(statsLastBlockDatetime);
         }

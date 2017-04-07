@@ -3158,7 +3158,7 @@ containing a value of this type.
         public static final int usa=0x7f020296;
     }
     public static final class id {
-        public static final int about=0x7f0d00ee;
+        public static final int about=0x7f0d00f8;
         public static final int action0=0x7f0d00c8;
         public static final int action_bar=0x7f0d0064;
         public static final int action_bar_activity_content=0x7f0d0000;
@@ -3180,7 +3180,7 @@ containing a value of this type.
         public static final int adjust_height=0x7f0d0035;
         public static final int adjust_width=0x7f0d0036;
         public static final int alertTitle=0x7f0d0052;
-        public static final int alerts=0x7f0d00ec;
+        public static final int alerts=0x7f0d00f6;
         public static final int always=0x7f0d0037;
         public static final int auto=0x7f0d0031;
         public static final int bAbout=0x7f0d00c5;
@@ -3198,7 +3198,7 @@ containing a value of this type.
         public static final int beginning=0x7f0d0033;
         public static final int bottom=0x7f0d0021;
         public static final int buttonPanel=0x7f0d004d;
-        public static final int calculator=0x7f0d00eb;
+        public static final int calculator=0x7f0d00f5;
         public static final int cancel_action=0x7f0d00c9;
         public static final int cbAlertBittrex=0x7f0d007d;
         public static final int cbAlertPoloniex=0x7f0d007c;
@@ -3267,7 +3267,7 @@ containing a value of this type.
         public static final int llCurrentAlerts=0x7f0d0080;
         public static final int llDonate=0x7f0d0076;
         public static final int llStats=0x7f0d00e4;
-        public static final int llSummary=0x7f0d00ea;
+        public static final int llSummary=0x7f0d00f4;
         public static final int lvLinks=0x7f0d0079;
         public static final int marketChartAsk=0x7f0d00c7;
         public static final int marketChartBid=0x7f0d00c6;
@@ -3374,10 +3374,20 @@ containing a value of this type.
         public static final int tvPoloniexChanges=0x7f0d00da;
         public static final int tvPoloniexLast=0x7f0d00d6;
         public static final int tvPoloniexTitle=0x7f0d00d5;
+        public static final int tvStatsAdjustIn=0x7f0d00ee;
+        public static final int tvStatsAvailableSupply=0x7f0d00ef;
+        public static final int tvStatsAvgTicketPrice=0x7f0d00f3;
+        public static final int tvStatsLastAvgBlockTime=0x7f0d00ea;
+        public static final int tvStatsLastAvgHashrate=0x7f0d00ec;
         public static final int tvStatsLastBlockDatetime=0x7f0d00e9;
+        public static final int tvStatsLastBlockNumber=0x7f0d00eb;
+        public static final int tvStatsLockedDcr=0x7f0d00f2;
         public static final int tvStatsMaxTicketPrice=0x7f0d00e8;
         public static final int tvStatsMinTicketPrice=0x7f0d00e7;
         public static final int tvStatsNextTicketPrice=0x7f0d00e6;
+        public static final int tvStatsPowReward=0x7f0d00f0;
+        public static final int tvStatsStakeReward=0x7f0d00ed;
+        public static final int tvStatsTicketPollSize=0x7f0d00f1;
         public static final int tvStatsTicketPrice=0x7f0d00e5;
         public static final int tvSummary24hChanges=0x7f0d00b2;
         public static final int tvSummaryBrlPrice=0x7f0d00b1;
@@ -3392,7 +3402,7 @@ containing a value of this type.
         public static final int up=0x7f0d0009;
         public static final int useLogo=0x7f0d0014;
         public static final int view_offset_helper=0x7f0d000a;
-        public static final int wallets=0x7f0d00ed;
+        public static final int wallets=0x7f0d00f7;
         public static final int wide=0x7f0d003e;
         public static final int withText=0x7f0d003b;
         public static final int wrap_content=0x7f0d0020;
