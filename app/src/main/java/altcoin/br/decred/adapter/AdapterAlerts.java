@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import altcoin.br.decred.AlertActivity;
+import altcoin.br.decred.MainActivity;
 import altcoin.br.decred.R;
 import altcoin.br.decred.data.DBTools;
 import altcoin.br.decred.model.Alert;
@@ -128,7 +128,7 @@ public class AdapterAlerts extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
                                         notifyDataSetChanged();
 
-                                        ((AlertActivity) activity).correctListVisibility();
+                                        ((MainActivity) activity).correctListVisibility();
 
                                         Utils.logFabric("alertRemoved");
                                     } catch (Exception e) {

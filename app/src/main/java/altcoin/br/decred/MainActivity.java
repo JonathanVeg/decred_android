@@ -12,8 +12,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -125,7 +123,6 @@ public class MainActivity extends Activity {
     private TextView tvCalcDcrInUsd;
 
     // about
-    private static String TAG = "Decred AboutActivity";
 
     private List<Link> links;
     private AdapterLinks adapterLinks;
@@ -229,41 +226,6 @@ public class MainActivity extends Activity {
             handler.postDelayed(runnableCode, 10000);
         }
     };
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.action_bar, menu);
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.calculator:
-                startActivity(new Intent(this, CalculatorActivity.class));
-
-                return true;
-
-            case R.id.alerts:
-                startActivity(new Intent(this, AlertActivity.class));
-
-                return true;
-
-            case R.id.wallets:
-                startActivity(new Intent(this, WalletsActivity.class));
-
-                return true;
-
-            case R.id.about:
-                startActivity(new Intent(this, AboutActivity.class));
-
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     private void loadMarketChart() {
         String url = "https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_DCR&depth=750";
@@ -775,8 +737,6 @@ public class MainActivity extends Activity {
 
                 @Override
                 public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                    Log.w(TAG, "Failed to read value.", error.toException());
                 }
             });
 
@@ -797,8 +757,6 @@ public class MainActivity extends Activity {
 
                 @Override
                 public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                    Log.w(TAG, "Failed to read value.", error.toException());
                 }
             });
 
@@ -819,8 +777,6 @@ public class MainActivity extends Activity {
 
                 @Override
                 public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                    Log.w(TAG, "Failed to read value.", error.toException());
                 }
             });
 
@@ -859,8 +815,6 @@ public class MainActivity extends Activity {
 
                 @Override
                 public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                    Log.w(TAG, "Failed to read value.", error.toException());
                 }
             });
         } catch (Exception e) {

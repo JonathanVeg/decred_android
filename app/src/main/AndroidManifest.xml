@@ -13,14 +13,6 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".AboutActivity"
-            android:label="@string/title_activity_about" />
-
-        <activity
-            android:name=".AlertActivity"
-            android:label="@string/title_activity_alerts" />
-
-        <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize">
             <intent-filter>
@@ -29,14 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".CalculatorActivity"
-            android:label="@string/title_activity_calculator" />
-
-        <activity
-            android:name=".WalletsActivity"
-            android:label="@string/title_activity_wallets" />
 
         <service
             android:name=".services.PriceAlertService"
