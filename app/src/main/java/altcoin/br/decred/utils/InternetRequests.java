@@ -118,7 +118,7 @@ public class InternetRequests {
         executeGet(url, responseListener, null);
     }
 
-    public void executeGet(String url, Response.Listener responseListener, Response.ErrorListener errorListener) {
+    private void executeGet(String url, Response.Listener responseListener, Response.ErrorListener errorListener) {
         executeRequest(Request.Method.GET, url, responseListener, errorListener, params);
     }
 

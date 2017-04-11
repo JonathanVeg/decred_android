@@ -90,19 +90,19 @@ public class MainActivity extends Activity {
 
     // footer
 
-    ImageView bSummary;
-    ImageView bChart;
-    ImageView bCalculator;
-    ImageView bAbout;
-    ImageView bAlerts;
-    ImageView bStats;
+    private ImageView bSummary;
+    private ImageView bChart;
+    private ImageView bCalculator;
+    private ImageView bAbout;
+    private ImageView bAlerts;
+    private ImageView bStats;
 
-    LinearLayout llSummary;
-    LinearLayout llChart;
-    LinearLayout llCalculator;
-    LinearLayout llAbout;
-    ScrollView llAlerts;
-    LinearLayout llStats;
+    private ScrollView llSummary;
+    private ScrollView llChart;
+    private ScrollView llCalculator;
+    private LinearLayout llAbout;
+    private ScrollView llAlerts;
+    private LinearLayout llStats;
 
     // calculator
     private Button bConvertBrlTo;
@@ -529,9 +529,9 @@ public class MainActivity extends Activity {
         bStats = (ImageView) findViewById(R.id.bStats);
         bAlerts = (ImageView) findViewById(R.id.bAlerts);
 
-        llSummary = (LinearLayout) findViewById(R.id.llSummary);
-        llChart = (LinearLayout) findViewById(R.id.llChart);
-        llCalculator = (LinearLayout) findViewById(R.id.llCalculator);
+        llSummary = (ScrollView) findViewById(R.id.llSummary);
+        llChart = (ScrollView) findViewById(R.id.llChart);
+        llCalculator = (ScrollView) findViewById(R.id.llCalculator);
         llAbout = (LinearLayout) findViewById(R.id.llAbout);
         llStats = (LinearLayout) findViewById(R.id.llStats);
         llAlerts = (ScrollView) findViewById(R.id.llAlerts);
@@ -1519,7 +1519,7 @@ public class MainActivity extends Activity {
         });
     }
 
-    long statsTimeStamp = 0;
+    private long statsTimeStamp = 0;
 
     private void loadStatsData() {
         statsTimeStamp = Utils.timestampLong();
@@ -1588,7 +1588,6 @@ public class MainActivity extends Activity {
     }
 
     private class atParseStatsData extends AsyncTask<Void, Void, Void> {
-        Context context;
         String response;
 
         String statsTicketPrice = ""; // done
@@ -1608,7 +1607,6 @@ public class MainActivity extends Activity {
         String statsAvgTicketPrice = "";
 
         atParseStatsData(Context c, String r) {
-            context = c;
 
             response = r;
         }

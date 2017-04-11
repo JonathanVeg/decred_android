@@ -81,7 +81,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
-    JSONObject getSpecificSummary(String response) {
+    private JSONObject getSpecificSummary(String response) {
         try {
             String coin = "DCR";
 
@@ -345,7 +345,6 @@ public class CoinWidgetProvider extends AppWidgetProvider {
 
         String response;
         Context context;
-        AppWidgetManager appWidgetManager;
         int appWidgetId;
         String fiat;
         AppWidgetManager manager;
@@ -354,7 +353,6 @@ public class CoinWidgetProvider extends AppWidgetProvider {
         atParsePoloniexData(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, final String fiat, String data) {
             this.response = data;
             this.context = context;
-            this.appWidgetManager = appWidgetManager;
             this.appWidgetId = appWidgetId;
             this.fiat = fiat;
 

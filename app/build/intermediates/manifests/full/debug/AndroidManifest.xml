@@ -35,12 +35,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="altcoin.br.decred.CalculatorActivity"
-            android:label="@string/title_activity_calculator" />
-        <activity
-            android:name="altcoin.br.decred.WalletsActivity"
-            android:label="@string/title_activity_wallets" />
 
         <service
             android:name="altcoin.br.decred.services.PriceAlertService"
@@ -60,14 +54,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/appwidget_provider_info" />
         </receiver>
-
-        <activity
-            android:name="altcoin.br.decred.AboutActivity"
-            android:label="@string/title_activity_about" />
-        <activity
-            android:name="altcoin.br.decred.AlertActivity"
-            android:label="@string/title_activity_alerts" />
-
         <receiver
             android:name="altcoin.br.decred.ReceiverOnBootComplete"
             android:enabled="true"

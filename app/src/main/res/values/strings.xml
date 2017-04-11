@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">DCR Prices</string>
-    <string name="title_activity_calculator">Calculator</string>
-    <string name="title_activity_wallets">Wallets</string>
-    <string name="title_activity_about">About</string>
-    <string name="title_activity_alerts">Alerts</string>
 
     <string name="alert_reached_for"><![CDATA[Alert reached for <b>COIN</b> in <b>EXCHANGE</b>!\n]]></string>
     <string name="gets_greater_than"><![CDATA[<b>COIN</b> gets greater than <b>VALUE</b>. \n]]></string>

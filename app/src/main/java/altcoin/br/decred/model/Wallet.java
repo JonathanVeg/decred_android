@@ -8,7 +8,7 @@ import java.util.List;
 import altcoin.br.decred.data.DBTools;
 import altcoin.br.decred.utils.Utils;
 
-public class Wallet {
+class Wallet {
     private String address;
     private String balance;
 
@@ -17,7 +17,7 @@ public class Wallet {
         this.balance = "0";
     }
 
-    public Wallet(String address) {
+    private Wallet(String address) {
         this.address = address;
         this.balance = "0";
     }
@@ -84,7 +84,7 @@ public class Wallet {
     }
 
 
-    public String getAddress() {
+    private String getAddress() {
         return address;
     }
 
@@ -92,7 +92,7 @@ public class Wallet {
         this.address = address;
     }
 
-    public String getBalance() {
+    private String getBalance() {
         return balance;
     }
 

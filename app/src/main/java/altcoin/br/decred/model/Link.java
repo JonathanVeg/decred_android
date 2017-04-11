@@ -13,7 +13,7 @@ public class Link {
         return label;
     }
 
-    public void setLabel(String label) {
+    private void setLabel(String label) {
         this.label = label;
     }
 
@@ -21,7 +21,7 @@ public class Link {
         return url;
     }
 
-    public void setUrl(String url) {
+    private void setUrl(String url) {
         this.url = url;
     }
 }

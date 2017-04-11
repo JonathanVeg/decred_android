@@ -24,10 +24,6 @@
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/abc_action_menu_layout.xml"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/activity_calculator.xml",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/activity_calculator.xml"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar_include.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/design/24.0.0/res/layout/design_layout_snackbar_include.xml"
     },
@@ -122,14 +118,6 @@
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/calculator.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/calculator.xml"
-    },
-    {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/activity_wallets.xml",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/activity_wallets.xml"
-    },
-    {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/activity_about.xml",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/activity_about.xml"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
@@ -294,10 +282,6 @@
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/support_simple_spinner_dropdown_item.xml"
-    },
-    {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/activity_alert.xml",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/activity_alert.xml"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/ll_footer.xml",
