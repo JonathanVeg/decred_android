@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Apr 11 07:53:56 BRT 2017
+#Tue Apr 11 07:57:25 BRT 2017
 210.set=ANDROID_RESOURCE
 282.file=/home/jonathan/Desktop/decred_android/app/build/intermediates/res/resources-debug.ap_/res/drawable-xhdpi-v4/abc_btn_radio_to_on_mtrl_015.png
 14.set=ANDROID_RESOURCE
