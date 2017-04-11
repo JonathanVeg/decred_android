@@ -11,16 +11,29 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about" />
+
+        <activity
+            android:name=".AlertActivity"
+            android:label="@string/title_activity_alerts" />
+
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".CalculatorActivity"
             android:label="@string/title_activity_calculator" />
+
         <activity
             android:name=".WalletsActivity"
             android:label="@string/title_activity_wallets" />
@@ -43,14 +56,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/appwidget_provider_info" />
         </receiver>
-
-        <activity
-            android:name=".AboutActivity"
-            android:label="@string/title_activity_about" />
-
-        <activity
-            android:name=".AlertActivity"
-            android:label="@string/title_activity_alerts" />
 
         <receiver
             android:name=".ReceiverOnBootComplete"
