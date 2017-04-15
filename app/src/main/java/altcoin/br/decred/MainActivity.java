@@ -129,6 +129,7 @@ public class MainActivity extends Activity {
 
     private TextView tvAboutDeveloper;
     private TextView tvAboutCode;
+    private TextView tvDcrStatsLink;
 
     private LinearLayout llAboutDonate;
     private TextView tvAboutDonateWallet;
@@ -578,6 +579,7 @@ public class MainActivity extends Activity {
 
         tvAboutDeveloper = (TextView) findViewById(R.id.tvAboutDeveloper);
         tvAboutCode = (TextView) findViewById(R.id.tvAboutCode);
+        tvDcrStatsLink = (TextView) findViewById(R.id.tvDcrStatsLink);
 
         tvAboutDonateWallet = (TextView) findViewById(R.id.tvAboutDonateWallet);
         tvAboutDonate = (TextView) findViewById(R.id.tvAboutDonate);
@@ -1514,6 +1516,8 @@ public class MainActivity extends Activity {
 
                 loadStatsData();
 
+                prepareLinks();
+
                 Utils.logFabric("tabChanged", "tab", "stats");
             }
         });
@@ -1595,16 +1599,17 @@ public class MainActivity extends Activity {
         String statsMinTicketPrice = ""; // done
         String statsMaxTicketPrice = ""; // done
         String statsLastBlockDatetime = ""; // done
+        String statsVoteReward = ""; // done
 
         String statsLastAvgBlockTime = ""; // done
         String statsLastAvgHashrate = ""; // done
-        String statsStakeReward = "";
-        String statsAdjustIn = "";
+        String statsStakeReward = ""; // done
+        String statsAdjustIn = ""; // done
         String statsAvailableSupply = "";
-        String statsPowReward = "";
+        String statsPowReward = ""; // done
         String statsTicketPollSize = ""; // done
-        String statsLockedDcr = "";
-        String statsAvgTicketPrice = "";
+        String statsLockedDcr = ""; // done
+        String statsAvgTicketPrice = ""; // done
 
         atParseStatsData(Context c, String r) {
 
@@ -1620,6 +1625,12 @@ public class MainActivity extends Activity {
                 statsNextTicketPrice = Utils.numberComplete(obj.getString("est_sbits"), 2);
                 statsMinTicketPrice = Utils.numberComplete(obj.getString("est_sbits_min"), 2);
                 statsMaxTicketPrice = Utils.numberComplete(obj.getString("est_sbits_max"), 2);
+                statsPowReward = Utils.numberComplete(obj.getString("pow_reward"), 2);
+                statsAdjustIn = obj.getString("pos_adjustment");
+                statsStakeReward = Utils.numberComplete(obj.getString("block_reward"), 2);
+                statsVoteReward = Utils.numberComplete(obj.getString("vote_reward"), 2);
+                statsLockedDcr = obj.getString("ticketpoolvalue");
+                statsAvgTicketPrice = Utils.numberComplete(obj.getString("avg_ticket_price"), 2);
 
                 Long timestamp = statsTimeStamp - obj.getLong("last_block_datetime");
 
@@ -1667,21 +1678,23 @@ public class MainActivity extends Activity {
             TextView tvStatsTicketPollSize = (TextView) findViewById(R.id.tvStatsTicketPollSize);
             TextView tvStatsLockedDcr = (TextView) findViewById(R.id.tvStatsLockedDcr);
             TextView tvStatsAvgTicketPrice = (TextView) findViewById(R.id.tvStatsAvgTicketPrice);
+            TextView tvStatsVoteReward = (TextView) findViewById(R.id.tvStatsVoteReward);
 
             tvStatsTicketPrice.setText(statsTicketPrice);
             tvStatsNextTicketPrice.setText(statsNextTicketPrice);
             tvStatsMinTicketPrice.setText(statsMinTicketPrice);
             tvStatsMaxTicketPrice.setText(statsMaxTicketPrice);
             tvStatsLastBlockDatetime.setText(statsLastBlockDatetime);
-            tvStatsLastAvgBlockTime.setText(statsLastAvgBlockTime);
-            tvStatsLastAvgHashrate.setText(statsLastAvgHashrate);
+            tvStatsLastAvgBlockTime.setText(statsLastAvgBlockTime + " min");
+            tvStatsLastAvgHashrate.setText(statsLastAvgHashrate + " TH/s");
             tvStatsStakeReward.setText(statsStakeReward);
-            tvStatsAdjustIn.setText(statsAdjustIn);
+            tvStatsAdjustIn.setText(statsAdjustIn + " blocks");
             tvStatsAvailableSupply.setText(statsAvailableSupply);
             tvStatsPowReward.setText(statsPowReward);
             tvStatsTicketPollSize.setText(statsTicketPollSize);
             tvStatsLockedDcr.setText(statsLockedDcr);
             tvStatsAvgTicketPrice.setText(statsAvgTicketPrice);
+            tvStatsVoteReward.setText(statsVoteReward);
 
             tvStatsLastBlockDatetime.setText(statsLastBlockDatetime);
         }
@@ -1722,6 +1735,7 @@ public class MainActivity extends Activity {
     private void prepareLinks() {
         Utils.textViewLink(tvAboutDeveloper, "https://twitter.com/jonathanveg2");
         Utils.textViewLink(tvAboutCode, "https://github.com/JonathanVeg/decred_android");
+        Utils.textViewLink(tvDcrStatsLink, "https://dcrstats.com/");
     }
 
     class atLoadAlerts extends io.fabric.sdk.android.services.concurrency.AsyncTask<Void, Void, Void> {

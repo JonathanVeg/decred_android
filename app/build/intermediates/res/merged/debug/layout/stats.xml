@@ -115,6 +115,26 @@
                         android:text="......" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Price adjusts in:"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvStatsAdjustIn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="......" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -240,7 +260,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="5dp"
                         android:layout_marginRight="5dp"
-                        android:text="Stake Reward:"
+                        android:text="Block Reward:"
                         android:textStyle="bold" />
 
                     <TextView
@@ -260,11 +280,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="5dp"
                         android:layout_marginRight="5dp"
-                        android:text="Adjusts in (blocks):"
+                        android:text="Vote Reward:"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvStatsAdjustIn"
+                        android:id="@+id/tvStatsVoteReward"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="......" />
@@ -392,6 +412,7 @@
     </ScrollView>
 
     <TextView
+        android:id="@+id/tvDcrStatsLink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
