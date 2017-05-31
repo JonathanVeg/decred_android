@@ -1,26 +1,50 @@
 [
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/bdark_bdark_ic_action_achievement.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-mdpi/bdark_bdark_ic_action_achievement.png"
+        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/ic_notifications_off_black_24dp.png",
+        "source": "/home/jonathan/projects/myapps/decred_android/app/src/main/res/drawable-mdpi/ic_notifications_off_black_24dp.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/bdark_bdark_ic_action_line_chart.png",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-mdpi/bdark_bdark_ic_action_line_chart.png"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/ic_monetization_on_white_36dp.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-mdpi/ic_monetization_on_white_36dp.png"
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/bdark_bdark_ic_action_achievement.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-mdpi/bdark_bdark_ic_action_achievement.png"
     },
     {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/ic_notifications_active_black_24dp.png",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-mdpi/ic_notifications_active_black_24dp.png"
     },
     {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/ic_monetization_on_white_36dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-mdpi/ic_monetization_on_white_36dp.png"
+    },
+    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/ic_notifications_off_black_24dp.png",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-mdpi/ic_notifications_off_black_24dp.png"
     },
     {
+        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/ic_delete_black_24dp.png",
+        "source": "/home/jonathan/projects/myapps/decred_android/app/src/main/res/drawable-mdpi/ic_delete_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/bdark_bdark_ic_action_line_chart.png",
+        "source": "/home/jonathan/projects/myapps/decred_android/app/src/main/res/drawable-mdpi/bdark_bdark_ic_action_line_chart.png"
+    },
+    {
+        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/ic_notifications_active_black_24dp.png",
+        "source": "/home/jonathan/projects/myapps/decred_android/app/src/main/res/drawable-mdpi/ic_notifications_active_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/bdark_bdark_ic_action_achievement.png",
+        "source": "/home/jonathan/projects/myapps/decred_android/app/src/main/res/drawable-mdpi/bdark_bdark_ic_action_achievement.png"
+    },
+    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/ic_delete_black_24dp.png",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-mdpi/ic_delete_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/release/drawable-mdpi/ic_monetization_on_white_36dp.png",
+        "source": "/home/jonathan/projects/myapps/decred_android/app/src/main/res/drawable-mdpi/ic_monetization_on_white_36dp.png"
     }
 ]

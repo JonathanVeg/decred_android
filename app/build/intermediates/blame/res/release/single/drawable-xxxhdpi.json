@@ -1,9 +1,5 @@
 [
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxxhdpi/ic_notifications_active_black_24dp.png",
-        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxxhdpi/ic_notifications_active_black_24dp.png"
-    },
-    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxxhdpi/ic_monetization_on_white_36dp.png",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxxhdpi/ic_monetization_on_white_36dp.png"
     },
@@ -12,7 +8,27 @@
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxxhdpi/ic_delete_black_24dp.png"
     },
     {
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxxhdpi/ic_notifications_active_black_24dp.png",
+        "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxxhdpi/ic_notifications_active_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/release/drawable-xxxhdpi/ic_monetization_on_white_36dp.png",
+        "source": "/home/jonathan/projects/myapps/decred_android/app/src/main/res/drawable-xxxhdpi/ic_monetization_on_white_36dp.png"
+    },
+    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/drawable-xxxhdpi/ic_notifications_off_black_24dp.png",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/drawable-xxxhdpi/ic_notifications_off_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/release/drawable-xxxhdpi/ic_delete_black_24dp.png",
+        "source": "/home/jonathan/projects/myapps/decred_android/app/src/main/res/drawable-xxxhdpi/ic_delete_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/release/drawable-xxxhdpi/ic_notifications_off_black_24dp.png",
+        "source": "/home/jonathan/projects/myapps/decred_android/app/src/main/res/drawable-xxxhdpi/ic_notifications_off_black_24dp.png"
+    },
+    {
+        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/release/drawable-xxxhdpi/ic_notifications_active_black_24dp.png",
+        "source": "/home/jonathan/projects/myapps/decred_android/app/src/main/res/drawable-xxxhdpi/ic_notifications_active_black_24dp.png"
     }
 ]

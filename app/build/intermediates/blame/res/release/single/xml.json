@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/release/xml/appwidget_provider_info.xml",
+        "source": "/home/jonathan/projects/myapps/decred_android/app/src/main/res/xml/appwidget_provider_info.xml"
+    },
+    {
         "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/release/xml/appwidget_provider_info.xml",
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/xml/appwidget_provider_info.xml"
     }

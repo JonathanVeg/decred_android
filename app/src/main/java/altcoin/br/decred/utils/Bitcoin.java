@@ -7,7 +7,7 @@ public class Bitcoin {
     public static void convertBtcToBrl(Response.Listener<String> listener) {
         InternetRequests internetRequests = new InternetRequests();
 
-        String url = "https://api.blinktrade.com/api/v1/BRL/ticker";
+        String url = "http://api.bitvalor.com/v1/ticker.json";
 
         internetRequests.executeGet(url, listener);
     }

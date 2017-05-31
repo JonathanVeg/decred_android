@@ -976,7 +976,7 @@ public class MainActivity extends Activity {
                         @Override
                         public void onResponse(String response) {
                             try {
-                                JSONObject obj = new JSONObject(response);
+                                JSONObject obj = new JSONObject(response).getJSONObject("ticker_24h").getJSONObject("total");
 
                                 final double quantity = Double.parseDouble(etValueToConvertBrl.getText().toString()) / obj.getDouble("last");
 
@@ -1037,7 +1037,7 @@ public class MainActivity extends Activity {
                                     @Override
                                     public void onResponse(String response) {
                                         try {
-                                            JSONObject obj2 = new JSONObject(response);
+                                            JSONObject obj2 = new JSONObject(response).getJSONObject("ticker_24h").getJSONObject("total");
 
                                             tvCalcDcrInBrl.setText(Utils.numberComplete(Double.parseDouble(obj.getString("price_btc")) * obj2.getDouble("last") * quantity, 4));
                                         } catch (Exception e) {
@@ -1330,7 +1330,7 @@ public class MainActivity extends Activity {
                 @Override
                 public void onResponse(String response) {
                     try {
-                        JSONObject obj = new JSONObject(response);
+                        JSONObject obj = new JSONObject(response).getJSONObject("ticker_24h").getJSONObject("total");
 
                         tvSummaryBrlPrice.setText(Utils.numberComplete(Double.parseDouble(btcPrice) * obj.getDouble("last"), 4));
                     } catch (Exception e) {
