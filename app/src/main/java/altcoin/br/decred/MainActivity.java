@@ -10,7 +10,6 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import altcoin.br.decred.fragments.AboutFragment;
@@ -23,6 +22,15 @@ import altcoin.br.decred.services.PriceAlertService;
 import altcoin.br.decred.utils.Utils;
 
 public class MainActivity extends Activity {
+
+    private int TAB_SUMMARY = 0;
+    private int TAB_CHART = 1;
+    private int TAB_CALC = 2;
+    private int TAB_ALERT = 3;
+    private int TAB_STATS = 4;
+    private int TAB_ABOUT = 5;
+
+    private int currentTab = 0;
 
     private Handler handler;
 
@@ -54,6 +62,17 @@ public class MainActivity extends Activity {
         bSummary.performClick();
 
         startService(new Intent(this, PriceAlertService.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (currentTab != TAB_SUMMARY) {
+            bSummary.performClick();
+
+            return;
+        }
+
+        super.onBackPressed();
     }
 
     @Override
@@ -132,6 +151,8 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 resetFooter();
 
+                currentTab = TAB_SUMMARY;
+
                 bSummary.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
 
                 FragmentManager fm = getFragmentManager();
@@ -150,6 +171,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 resetFooter();
+
+                currentTab = TAB_CHART;
 
                 bChart.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
 
@@ -170,6 +193,8 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 resetFooter();
 
+                currentTab = TAB_CALC;
+
                 bCalculator.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
 
                 FragmentManager fm = getFragmentManager();
@@ -188,6 +213,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 resetFooter();
+
+                currentTab = TAB_ABOUT;
 
                 bAbout.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
 
@@ -208,6 +235,8 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 resetFooter();
 
+                currentTab = TAB_ALERT;
+
                 bAlerts.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
 
                 FragmentManager fm = getFragmentManager();
@@ -226,6 +255,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 resetFooter();
+
+                currentTab = TAB_STATS;
 
                 bStats.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
 
