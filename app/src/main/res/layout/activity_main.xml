@@ -6,17 +6,12 @@
 
     <include layout="@layout/header" />
 
-    <include layout="@layout/summary" />
-
-    <include layout="@layout/chart" />
-
-    <include layout="@layout/calculator" />
-
-    <include layout="@layout/alerts" />
-
-    <include layout="@layout/stats" />
-
-    <include layout="@layout/about" />
+    <LinearLayout
+        android:id="@+id/llFragments"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" />
 
     <include layout="@layout/ll_footer" />
 </LinearLayout>

@@ -11,11 +11,11 @@ public final class R {
 		public static final int hintText = 0x7f0100f7;
 	}
 	public static final class id {
-		public static final int listItems = 0x7f0d00e2;
-		public static final int search = 0x7f0d00e1;
+		public static final int listItems = 0x7f0d00f6;
+		public static final int search = 0x7f0d00f5;
 	}
 	public static final class layout {
-		public static final int searchable_list_dialog = 0x7f030041;
+		public static final int searchable_list_dialog = 0x7f030043;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f060036;

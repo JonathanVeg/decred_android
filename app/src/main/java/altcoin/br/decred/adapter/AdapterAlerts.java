@@ -11,9 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.json.JSONObject;
+
 import java.util.List;
 
-import altcoin.br.decred.MainActivity;
 import altcoin.br.decred.R;
 import altcoin.br.decred.data.DBTools;
 import altcoin.br.decred.model.Alert;
@@ -128,7 +130,15 @@ public class AdapterAlerts extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
                                         notifyDataSetChanged();
 
-                                        ((MainActivity) activity).correctListVisibility();
+                                        try {
+                                            JSONObject obj = new JSONObject();
+
+                                            obj.put("tag", "correctListVisibility");
+
+                                            EventBus.getDefault().post(obj);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
 
                                         Utils.logFabric("alertRemoved");
                                     } catch (Exception e) {
