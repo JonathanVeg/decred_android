@@ -111,15 +111,23 @@ public class Utils {
     }
 
     public static void writePreference(Context context, String key, String value) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        try {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-        preferences.edit().putString(key, value).apply();
+            preferences.edit().putString(key, value).apply();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void writePreference(Context context, String key, Boolean value) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        try {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-        preferences.edit().putBoolean(key, value).apply();
+            preferences.edit().putBoolean(key, value).apply();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static String readPreference(Context context, String key, String defaultValue) {

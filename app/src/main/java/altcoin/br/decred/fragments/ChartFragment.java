@@ -67,8 +67,6 @@ public class ChartFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        loadChart();
-
         loadMarketChart();
     }
 
@@ -79,6 +77,8 @@ public class ChartFragment extends Fragment {
                 String item = adapterZoom.getItem(position);
 
                 if (item == null) return;
+
+                Utils.writePreference(getActivity(), "chartZoom", item);
 
                 switch (item) {
                     case "3h":
@@ -118,9 +118,17 @@ public class ChartFragment extends Fragment {
         sCandle.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                if (adapterCandle.getItem(position) == null) return;
+                String item = adapterCandle.getItem(position);
 
-                String item = adapterCandle.getItem(position).split("-")[0];
+                if (item == null)
+                    return;
+
+                Utils.log("sCandle changed ::: " + item);
+
+                Utils.writePreference(getActivity(), "chartCandle", item);
+
+                item = item.split("-")[0];
+
                 switch (item) {
                     case "5":
                         chartCandle = 5 * 60;
@@ -198,8 +206,8 @@ public class ChartFragment extends Fragment {
         adapterCandle.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sCandle.setAdapter(adapterCandle);
 
-        sCandle.setSelection(2);
-        sZoom.setSelection(1);
+        sZoom.setSelection(adapterZoom.getPosition(Utils.readPreference(getActivity(), "chartZoom", "3h")));
+        sCandle.setSelection(adapterCandle.getPosition(Utils.readPreference(getActivity(), "chartCandle", "15-min")));
 
         // market chart
 
