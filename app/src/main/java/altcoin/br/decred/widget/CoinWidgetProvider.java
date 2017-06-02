@@ -378,6 +378,9 @@ public class CoinWidgetProvider extends AppWidgetProvider {
                         try {
                             JSONObject obj = new JSONObject(response);
 
+                            if (fiat.equalsIgnoreCase("brl"))
+                                obj = new JSONObject(response).getJSONObject("ticker_24h").getJSONObject("total");
+
                             views.setTextViewText(R.id.tvWidValInFiat, Utils.numberComplete(Double.parseDouble(last) * obj.getDouble("last"), 4));
 
                             Intent openApp = new Intent(context, MainActivity.class);

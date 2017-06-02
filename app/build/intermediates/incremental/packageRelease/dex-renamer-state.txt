@@ -1,4 +1,4 @@
-#Tue May 30 23:33:33 BRT 2017
+#Wed May 31 19:17:55 BRT 2017
 base.0=/home/jonathan/projects/myapps/decred_android/app/build/intermediates/transforms/dex/release/folders/1000/1f/main
 renamed.0=classes.dex
 file.0=/home/jonathan/projects/myapps/decred_android/app/build/intermediates/transforms/dex/release/folders/1000/1f/main/classes.dex
