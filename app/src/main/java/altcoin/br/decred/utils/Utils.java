@@ -155,4 +155,20 @@ public class Utils {
     public static void alert(Context context, String text) {
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
     }
+
+    public static long readPreference(Context context, String key, long defaultValue) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        return preferences.getLong(key, defaultValue);
+    }
+
+    public static void writePreference(Context context, String key, long value) {
+        try {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+            preferences.edit().putLong(key, value).apply();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package altcoin.br.decred.fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,8 +32,8 @@ public class SummaryFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
         loadSummary();
 
@@ -43,20 +44,9 @@ public class SummaryFragment extends Fragment {
         loadBleutradeData();
     }
 
-    private void prepareListeners() {
-    }
-
-    private void instanceObjects() {
-
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_summary, container, false);
-
-        instanceObjects();
-
-        prepareListeners();
 
         return view;
     }

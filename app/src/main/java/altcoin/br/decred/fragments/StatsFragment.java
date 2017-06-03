@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import altcoin.br.decred.R;
+import altcoin.br.decred.adapter.bitcoin.FiatPriceFiat;
 import altcoin.br.decred.utils.InternetRequests;
 import altcoin.br.decred.utils.Utils;
 
@@ -25,13 +25,8 @@ public class StatsFragment extends Fragment {
     private long statsTimeStamp = 0;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
         loadStatsData();
     }
@@ -51,7 +46,7 @@ public class StatsFragment extends Fragment {
         Response.Listener<String> listener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                new atParseStatsData(getActivity(), response).execute();
+                new atParseStatsData(response).execute();
 
                 String url2 = "https://dcrstats.com/api/v1/fees";
 
@@ -116,6 +111,12 @@ public class StatsFragment extends Fragment {
         String statsNextTicketPrice = ""; // done
         String statsMinTicketPrice = ""; // done
         String statsMaxTicketPrice = ""; // done
+
+        double statsTicketPriceUsd = 0; 
+        double statsNextTicketPriceUsd = 0; 
+        double statsMinTicketPriceUsd = 0; 
+        double statsMaxTicketPriceUsd = 0; 
+
         String statsLastBlockDatetime = ""; // done
         String statsVoteReward = ""; // done
 
@@ -129,8 +130,7 @@ public class StatsFragment extends Fragment {
         String statsLockedDcr = ""; // done
         String statsAvgTicketPrice = ""; // done
 
-        atParseStatsData(Context c, String r) {
-
+        atParseStatsData(String r) {
             response = r;
         }
 
@@ -149,6 +149,15 @@ public class StatsFragment extends Fragment {
                 statsVoteReward = Utils.numberComplete(obj.getString("vote_reward"), 2);
                 statsLockedDcr = obj.getString("ticketpoolvalue");
                 statsAvgTicketPrice = Utils.numberComplete(obj.getString("avg_ticket_price"), 2);
+
+                new FiatPriceFiat(getActivity(), "USD"){
+                    @Override
+                    public void onValueLoaded() {
+                        super.onValueLoaded();
+
+                        
+                    }
+                };
 
                 Long timestamp = statsTimeStamp - obj.getLong("last_block_datetime");
 
@@ -170,6 +179,8 @@ public class StatsFragment extends Fragment {
 
                 statsAvailableSupply = String.valueOf(Utils.numberComplete(obj.getLong("coinsupply") / 1000000.0, 0));
 
+
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -182,9 +193,17 @@ public class StatsFragment extends Fragment {
             super.onPostExecute(aVoid);
 
             TextView tvStatsTicketPrice = (TextView) getActivity().findViewById(R.id.tvStatsTicketPrice);
+            TextView tvStatsTicketPriceUsd = (TextView) getActivity().findViewById(R.id.tvStatsTicketPriceUsd);
+
             TextView tvStatsNextTicketPrice = (TextView) getActivity().findViewById(R.id.tvStatsNextTicketPrice);
+            TextView tvStatsNextTicketPriceUsd = (TextView) getActivity().findViewById(R.id.tvStatsNextTicketPriceUsd);
+
             TextView tvStatsMinTicketPrice = (TextView) getActivity().findViewById(R.id.tvStatsMinTicketPrice);
+            TextView tvStatsMinTicketPriceUsd = (TextView) getActivity().findViewById(R.id.tvStatsMinTicketPriceUsd);
+
             TextView tvStatsMaxTicketPrice = (TextView) getActivity().findViewById(R.id.tvStatsMaxTicketPrice);
+            TextView tvStatsMaxTicketPriceUsd = (TextView) getActivity().findViewById(R.id.tvStatsMaxTicketPriceUsd);
+
             TextView tvStatsLastBlockDatetime = (TextView) getActivity().findViewById(R.id.tvStatsLastBlockDatetime);
 
             TextView tvStatsLastAvgBlockTime = (TextView) getActivity().findViewById(R.id.tvStatsLastAvgBlockTime);

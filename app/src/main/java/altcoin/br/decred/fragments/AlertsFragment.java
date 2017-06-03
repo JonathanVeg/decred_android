@@ -58,8 +58,8 @@ public class AlertsFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
         new atLoadAlerts(getActivity()).execute();
     }

@@ -149,126 +149,42 @@ public class MainActivity extends Activity {
         bSummary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resetFooter();
-
-                currentTab = TAB_SUMMARY;
-
-                bSummary.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
-
-                FragmentManager fm = getFragmentManager();
-
-                FragmentTransaction ft = fm.beginTransaction();
-
-                SummaryFragment fragment = new SummaryFragment();
-
-                ft.replace(R.id.llFragments, fragment, "task").commit();
-
-                Utils.logFabric("tabChanged", "tab", "summary");
+                changeTab(TAB_SUMMARY);
             }
         });
 
         bChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resetFooter();
-
-                currentTab = TAB_CHART;
-
-                bChart.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
-
-                FragmentManager fm = getFragmentManager();
-
-                FragmentTransaction ft = fm.beginTransaction();
-
-                ChartFragment fragment = new ChartFragment();
-
-                ft.replace(R.id.llFragments, fragment, "task").commit();
-
-                Utils.logFabric("tabChanged", "tab", "chart");
+                changeTab(TAB_CHART);
             }
         });
 
         bCalculator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resetFooter();
-
-                currentTab = TAB_CALC;
-
-                bCalculator.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
-
-                FragmentManager fm = getFragmentManager();
-
-                FragmentTransaction ft = fm.beginTransaction();
-
-                CalculatorFragment fragment = new CalculatorFragment();
-
-                ft.replace(R.id.llFragments, fragment, "task").commit();
-
-                Utils.logFabric("tabChanged", "tab", "calculator");
+                changeTab(TAB_CALC);
             }
         });
 
         bAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resetFooter();
-
-                currentTab = TAB_ABOUT;
-
-                bAbout.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
-
-                FragmentManager fm = getFragmentManager();
-
-                FragmentTransaction ft = fm.beginTransaction();
-
-                AboutFragment fragment = new AboutFragment();
-
-                ft.replace(R.id.llFragments, fragment, "task").commit();
-
-                Utils.logFabric("tabChanged", "tab", "about");
+                changeTab(TAB_ABOUT);
             }
         });
 
         bAlerts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resetFooter();
-
-                currentTab = TAB_ALERT;
-
-                bAlerts.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
-
-                FragmentManager fm = getFragmentManager();
-
-                FragmentTransaction ft = fm.beginTransaction();
-
-                AlertsFragment fragment = new AlertsFragment();
-
-                ft.replace(R.id.llFragments, fragment, "task").commit();
-
-                Utils.logFabric("tabChanged", "tab", "alerts");
+                changeTab(TAB_ALERT);
             }
         });
 
         bStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resetFooter();
-
-                currentTab = TAB_STATS;
-
-                bStats.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
-
-                FragmentManager fm = getFragmentManager();
-
-                FragmentTransaction ft = fm.beginTransaction();
-
-                StatsFragment fragment = new StatsFragment();
-
-                ft.replace(R.id.llFragments, fragment, "task").commit();
-
-                Utils.logFabric("tabChanged", "tab", "stats");
+                changeTab(TAB_STATS);
             }
         });
     }
@@ -282,4 +198,84 @@ public class MainActivity extends Activity {
         bAlerts.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver));
     }
 
+    private void changeTab(int tab) {
+        FragmentManager fm = getFragmentManager();
+
+        FragmentTransaction ft = fm.beginTransaction();
+
+        if (tab == TAB_SUMMARY) {
+            resetFooter();
+
+            currentTab = TAB_SUMMARY;
+
+            bSummary.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
+
+            SummaryFragment fragment = new SummaryFragment();
+
+            ft.replace(R.id.llFragments, fragment, "task").commit();
+
+            Utils.logFabric("tabChanged", "tab", "summary");
+        } else if (tab == TAB_CHART) {
+            resetFooter();
+
+            currentTab = TAB_CHART;
+
+            bChart.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
+
+            ChartFragment fragment = new ChartFragment();
+
+            ft.replace(R.id.llFragments, fragment, "task").commit();
+
+            Utils.logFabric("tabChanged", "tab", "chart");
+        } else if (tab == TAB_CALC) {
+            resetFooter();
+
+            currentTab = TAB_CALC;
+
+            bCalculator.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
+
+            CalculatorFragment fragment = new CalculatorFragment();
+
+            ft.replace(R.id.llFragments, fragment, "task").commit();
+
+            Utils.logFabric("tabChanged", "tab", "calculator");
+        } else if (tab == TAB_ABOUT) {
+            resetFooter();
+
+            currentTab = TAB_ABOUT;
+
+            bAbout.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
+
+            AboutFragment fragment = new AboutFragment();
+
+            ft.replace(R.id.llFragments, fragment, "task").commit();
+
+            Utils.logFabric("tabChanged", "tab", "about");
+        } else if (tab == TAB_ALERT) {
+            resetFooter();
+
+            currentTab = TAB_ALERT;
+
+            bAlerts.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
+
+            AlertsFragment fragment = new AlertsFragment();
+
+            ft.replace(R.id.llFragments, fragment, "task").commit();
+
+            Utils.logFabric("tabChanged", "tab", "alerts");
+        } else if (tab == TAB_STATS) {
+            resetFooter();
+
+            currentTab = TAB_STATS;
+
+            bStats.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.silver));
+
+            StatsFragment fragment = new StatsFragment();
+
+            ft.replace(R.id.llFragments, fragment, "task").commit();
+
+            Utils.logFabric("tabChanged", "tab", "stats");
+        }
+
+    }
 }

@@ -3,7 +3,6 @@ package altcoin.br.decred.fragments;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,16 +41,6 @@ public class CalculatorFragment extends Fragment {
     private TextView tvCalcDcrInBrl;
     private TextView tvCalcDcrInBtc;
     private TextView tvCalcDcrInUsd;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
 
     private void prepareListeners() {
         bConvertBtcTo.setOnClickListener(new View.OnClickListener() {
