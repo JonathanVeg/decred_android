@@ -53,6 +53,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="......" />
+
+                    <TextView
+                        android:id="@+id/tvStatsTicketPriceUsd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -73,6 +78,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="......" />
+
+                    <TextView
+                        android:id="@+id/tvStatsNextTicketPriceUsd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -93,6 +103,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="......" />
+
+                    <TextView
+                        android:id="@+id/tvStatsMinTicketPriceUsd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -113,6 +128,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="......" />
+
+                    <TextView
+                        android:id="@+id/tvStatsMaxTicketPriceUsd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout

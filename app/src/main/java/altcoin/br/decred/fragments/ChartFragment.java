@@ -26,6 +26,8 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -58,11 +60,42 @@ public class ChartFragment extends Fragment {
     private ArrayAdapter<String> adapterZoom;
     private ArrayAdapter<String> adapterCandle;
 
+    private boolean running;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
         loadMarketChart();
+
+        running = true;
+
+        try {
+            EventBus.getDefault().register(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Subscribe
+    @SuppressWarnings("unused")
+    public void eventBusReceiver(JSONObject obj) {
+        try {
+            if (obj.has("tag") && obj.getString("tag").equalsIgnoreCase("update") && running) {
+                loadMarketChart();
+
+                Utils.log("update ::: ChartFragment");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        running = false;
     }
 
     private void prepareListeners() {
@@ -287,6 +320,8 @@ public class ChartFragment extends Fragment {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
+            if (!running) return;
+
             YAxis yAxis = coinChart.getAxisLeft();
 
             yAxis.setStartAtZero(false);
@@ -391,6 +426,8 @@ public class ChartFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+
+            if (!running) return;
 
             // bid
 

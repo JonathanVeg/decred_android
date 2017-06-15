@@ -16,12 +16,12 @@
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/activity_configure_widget.xml"
     },
     {
-        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/debug/layout/design_menu_item_action_area.xml",
-        "source": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/exploded-aar/com.android.support/design/24.0.0/res/layout/design_menu_item_action_area.xml"
-    },
-    {
         "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
         "source": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/debug/layout/design_menu_item_action_area.xml",
+        "source": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/exploded-aar/com.android.support/design/24.0.0/res/layout/design_menu_item_action_area.xml"
     },
     {
         "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/debug/layout/header.xml",
@@ -40,16 +40,16 @@
         "source": "/home/jonathan/Desktop/decred_android/app/src/main/res/layout/bleutrade.xml"
     },
     {
-        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
-        "source": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/abc_screen_content_include.xml"
+        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
+        "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/notification_template_big_media_narrow.xml"
     },
     {
         "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
         "source": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/notification_template_big_media_narrow.xml"
     },
     {
-        "merged": "/home/jonathan/Desktop/decred_android/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
-        "source": "/home/jonathan/Desktop/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/notification_template_big_media_narrow.xml"
+        "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
+        "source": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/res/layout/abc_screen_content_include.xml"
     },
     {
         "merged": "/home/jonathan/projects/myapps/decred_android/app/build/intermediates/res/merged/debug/layout/design_layout_tab_text.xml",

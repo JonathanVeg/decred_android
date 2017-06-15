@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.android.volley.Response;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -25,6 +27,8 @@ import altcoin.br.decred.utils.Utils;
 
 public class SummaryFragment extends Fragment {
     View view;
+
+    boolean running;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +46,41 @@ public class SummaryFragment extends Fragment {
         loadBittrexData();
 
         loadBleutradeData();
+
+        running = true;
+
+        try {
+            EventBus.getDefault().register(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Subscribe
+    @SuppressWarnings("unused")
+    public void eventBusReceiver(JSONObject obj) {
+        try {
+            if (obj.has("tag") && obj.getString("tag").equalsIgnoreCase("update") && running) {
+                loadSummary();
+
+                loadPoloniexData();
+
+                loadBittrexData();
+
+                loadBleutradeData();
+
+                Utils.log("update ::: SummaryFragment");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        running = false;
     }
 
     @Override
@@ -100,6 +139,8 @@ public class SummaryFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+
+            if (!running) return;
 
             TextView tvSummaryBtcPrice = (TextView) view.findViewById(R.id.tvSummaryBtcPrice);
             TextView tvSummaryUsdPrice = (TextView) view.findViewById(R.id.tvSummaryUsdPrice);
@@ -197,6 +238,8 @@ public class SummaryFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+
+            if (!running) return;
 
             TextView tvBittrexLast = (TextView) view.findViewById(R.id.tvBittrexLast);
             TextView tvBittrexBaseVolume = (TextView) view.findViewById(R.id.tvBittrexBaseVolume);
@@ -300,6 +343,8 @@ public class SummaryFragment extends Fragment {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
+            if (!running) return;
+
             TextView tvPoloniexLast = (TextView) view.findViewById(R.id.tvPoloniexLast);
             TextView tvPoloniexBaseVolume = (TextView) view.findViewById(R.id.tvPoloniexBaseVolume);
             TextView tvPoloniexBid = (TextView) view.findViewById(R.id.tvPoloniexBid);
@@ -373,6 +418,8 @@ public class SummaryFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+
+            if (!running) return;
 
             TextView tvBleutradeLast = (TextView) view.findViewById(R.id.tvBleutradeLast);
             TextView tvBleutradeBaseVolume = (TextView) view.findViewById(R.id.tvBleutradeBaseVolume);

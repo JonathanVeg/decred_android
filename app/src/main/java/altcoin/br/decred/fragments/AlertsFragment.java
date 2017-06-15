@@ -46,6 +46,8 @@ public class AlertsFragment extends Fragment {
     private LinearLayout llCurrentAlerts;
     private RecyclerView rvAlerts;
 
+    private boolean running;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,15 @@ public class AlertsFragment extends Fragment {
         super.onAttach(context);
 
         new atLoadAlerts(getActivity()).execute();
+
+        running = true;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        running = false;
     }
 
     // listener do eventBus
@@ -205,6 +216,8 @@ public class AlertsFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+
+            if (!running) return;
 
             alerts.clear();
 

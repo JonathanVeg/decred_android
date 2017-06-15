@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.android.volley.Response;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -24,11 +26,42 @@ public class StatsFragment extends Fragment {
 
     private long statsTimeStamp = 0;
 
+    boolean running;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
         loadStatsData();
+
+        running = true;
+
+        try {
+            EventBus.getDefault().register(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Subscribe
+    @SuppressWarnings("unused")
+    public void eventBusReceiver(JSONObject obj) {
+        try {
+            if (obj.has("tag") && obj.getString("tag").equalsIgnoreCase("update") && running) {
+                loadStatsData();
+
+                Utils.log("update ::: StatsFragment");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        running = false;
     }
 
     @Override
@@ -98,6 +131,8 @@ public class StatsFragment extends Fragment {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
+            if (!running) return;
+
             TextView tvStatsLastBlockNumber = (TextView) getActivity().findViewById(R.id.tvStatsLastBlockNumber);
 
             tvStatsLastBlockNumber.setText(statsLastBlockNumber);
@@ -112,10 +147,10 @@ public class StatsFragment extends Fragment {
         String statsMinTicketPrice = ""; // done
         String statsMaxTicketPrice = ""; // done
 
-        double statsTicketPriceUsd = 0; 
-        double statsNextTicketPriceUsd = 0; 
-        double statsMinTicketPriceUsd = 0; 
-        double statsMaxTicketPriceUsd = 0; 
+        double statsTicketPriceUsd = 0;
+        double statsNextTicketPriceUsd = 0;
+        double statsMinTicketPriceUsd = 0;
+        double statsMaxTicketPriceUsd = 0;
 
         String statsLastBlockDatetime = ""; // done
         String statsVoteReward = ""; // done
@@ -150,12 +185,12 @@ public class StatsFragment extends Fragment {
                 statsLockedDcr = obj.getString("ticketpoolvalue");
                 statsAvgTicketPrice = Utils.numberComplete(obj.getString("avg_ticket_price"), 2);
 
-                new FiatPriceFiat(getActivity(), "USD"){
+                new FiatPriceFiat(getActivity(), "USD") {
                     @Override
                     public void onValueLoaded() {
                         super.onValueLoaded();
 
-                        
+
                     }
                 };
 
@@ -180,7 +215,6 @@ public class StatsFragment extends Fragment {
                 statsAvailableSupply = String.valueOf(Utils.numberComplete(obj.getLong("coinsupply") / 1000000.0, 0));
 
 
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -191,6 +225,8 @@ public class StatsFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+
+            if (!running) return;
 
             TextView tvStatsTicketPrice = (TextView) getActivity().findViewById(R.id.tvStatsTicketPrice);
             TextView tvStatsTicketPriceUsd = (TextView) getActivity().findViewById(R.id.tvStatsTicketPriceUsd);

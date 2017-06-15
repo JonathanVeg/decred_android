@@ -12,6 +12,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.json.JSONObject;
+
 import altcoin.br.decred.fragments.AboutFragment;
 import altcoin.br.decred.fragments.AlertsFragment;
 import altcoin.br.decred.fragments.CalculatorFragment;
@@ -62,6 +65,12 @@ public class MainActivity extends Activity {
         bSummary.performClick();
 
         startService(new Intent(this, PriceAlertService.class));
+
+        try {
+            EventBus.getDefault().register(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -112,7 +121,13 @@ public class MainActivity extends Activity {
     private Runnable runnableCode = new Runnable() {
         @Override
         public void run() {
-            tvLastUpdate.setText(" ... ");
+            tvLastUpdate.setText(Utils.now());
+
+            try {
+                EventBus.getDefault().post(new JSONObject("{}").put("tag", "update"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             handler = new Handler();
 
