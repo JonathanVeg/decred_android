@@ -39,7 +39,7 @@ public class SummaryFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        loadSummary();
+        loadCoinMarketCapData();
 
         loadPoloniexData();
 
@@ -56,12 +56,20 @@ public class SummaryFragment extends Fragment {
         }
     }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        running = false;
+    }
+
     @Subscribe
     @SuppressWarnings("unused")
     public void eventBusReceiver(JSONObject obj) {
         try {
             if (obj.has("tag") && obj.getString("tag").equalsIgnoreCase("update") && running) {
-                loadSummary();
+                loadCoinMarketCapData();
 
                 loadPoloniexData();
 
@@ -77,20 +85,13 @@ public class SummaryFragment extends Fragment {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-
-        running = false;
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_summary, container, false);
 
         return view;
     }
 
-    private void loadSummary() {
+    private void loadCoinMarketCapData() {
         String url = "https://api.coinmarketcap.com/v1/ticker/decred/";
 
         Response.Listener<String> listener = new Response.Listener<String>() {

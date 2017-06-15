@@ -94,7 +94,7 @@ public class ConfigureWidgetActivity extends AppCompatActivity {
 
                         Utils.writePreference(context, "temp_widget_coin", sExchanges.getSelectedItem().toString());
 
-                        new CoinWidgetProvider()
+                        new PriceWidgetProvider()
                                 .onUpdate(context,
                                         AppWidgetManager.getInstance(context),
                                         new int[]{mAppWidgetId}

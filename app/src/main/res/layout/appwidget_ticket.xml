@@ -13,14 +13,14 @@
               android:paddingTop="4dp">
 
     <ImageView
-        android:id="@+id/ivWidLogo"
+        android:id="@+id/ivTicWidLogo"
         android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:contentDescription="DCR Logo"
-        android:src="@drawable/dcr_icon" />
+        android:src="@drawable/dcr_icon"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,14 +34,14 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvWidNameCoin"
+                android:id="@+id/tvTicWidNameCoin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="DCR"
+                android:text="DCR - Tickets"
                 android:textColor="@color/colorPrimary"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <LinearLayout
@@ -52,19 +52,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="BTC: "
+                android:text="Price: "
                 android:textColor="@color/colorPrimary"
-                android:textSize="12sp" />
+                android:textSize="12sp"/>
 
             <TextView
-                android:id="@+id/tvWidValInBtc"
+                android:id="@+id/tvTicWidPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
                 android:text="..."
                 android:textColor="@color/colorAccent"
-                android:textSize="12sp" />
+                android:textSize="12sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -73,49 +71,62 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvWidFiatName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fiat: "
+                android:text="Next: "
                 android:textColor="@color/colorPrimary"
-                android:textSize="12sp" />
+                android:textSize="12sp"/>
 
             <TextView
-                android:id="@+id/tvWidValInFiat"
+                android:id="@+id/tvTicWidNextPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
                 android:text="..."
                 android:textColor="@color/colorAccent"
-                android:textSize="12sp" />
-
+                android:textSize="12sp"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingEnd="5dp"
-            android:paddingRight="5dp"
-            android:visibility="gone">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Changes:"
+                android:text="Min: "
                 android:textColor="@color/colorPrimary"
-                android:textSize="12sp" />
+                android:textSize="12sp"/>
 
             <TextView
+                android:id="@+id/tvTicWidMinPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
                 android:text="..."
-                android:textColor="@color/colorChangesUp"
-                android:textSize="12sp" />
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvTicWidFiatName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max: "
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/tvTicWidMaxPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="..."
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

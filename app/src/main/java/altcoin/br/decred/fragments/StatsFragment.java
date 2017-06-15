@@ -4,6 +4,8 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.renderscript.Double2;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import org.json.JSONObject;
 
 import altcoin.br.decred.R;
 import altcoin.br.decred.adapter.bitcoin.FiatPriceFiat;
+import altcoin.br.decred.utils.Bitcoin;
 import altcoin.br.decred.utils.InternetRequests;
 import altcoin.br.decred.utils.Utils;
 
@@ -32,7 +35,7 @@ public class StatsFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        loadStatsData();
+        loadData();
 
         running = true;
 
@@ -48,12 +51,82 @@ public class StatsFragment extends Fragment {
     public void eventBusReceiver(JSONObject obj) {
         try {
             if (obj.has("tag") && obj.getString("tag").equalsIgnoreCase("update") && running) {
-                loadStatsData();
+                loadData();
 
                 Utils.log("update ::: StatsFragment");
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    double brlPrice;
+    double usdPrice;
+    double btcPrice;
+
+    private void loadData() {
+        String url = "https://api.coinmarketcap.com/v1/ticker/decred/";
+
+        Response.Listener<String> listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                new atParseSummaryData(response).execute();
+            }
+        };
+
+        InternetRequests internetRequests = new InternetRequests();
+        internetRequests.executeGet(url, listener);
+    }
+
+    private class atParseSummaryData extends AsyncTask<Void, Void, Void> {
+        String response;
+
+        atParseSummaryData(String response) {
+            this.response = response;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+
+                JSONObject obj = new JSONArray(response).getJSONObject(0);
+
+                usdPrice = obj.getDouble("price_usd");
+                btcPrice = obj.getDouble("price_btc");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            if (!running) return;
+
+            Response.Listener<String> listener = new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+
+                        JSONObject obj = new JSONObject(response).getJSONObject("ticker_24h").getJSONObject("total");
+
+                        brlPrice = btcPrice * obj.getDouble("last");
+
+                        loadStatsData();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+
+            Bitcoin.convertBtcToBrl(listener);
+
+            // tvLastUpdate.setText(Utils.now());
         }
     }
 
@@ -147,11 +220,6 @@ public class StatsFragment extends Fragment {
         String statsMinTicketPrice = ""; // done
         String statsMaxTicketPrice = ""; // done
 
-        double statsTicketPriceUsd = 0;
-        double statsNextTicketPriceUsd = 0;
-        double statsMinTicketPriceUsd = 0;
-        double statsMaxTicketPriceUsd = 0;
-
         String statsLastBlockDatetime = ""; // done
         String statsVoteReward = ""; // done
 
@@ -229,16 +297,12 @@ public class StatsFragment extends Fragment {
             if (!running) return;
 
             TextView tvStatsTicketPrice = (TextView) getActivity().findViewById(R.id.tvStatsTicketPrice);
-            TextView tvStatsTicketPriceUsd = (TextView) getActivity().findViewById(R.id.tvStatsTicketPriceUsd);
 
             TextView tvStatsNextTicketPrice = (TextView) getActivity().findViewById(R.id.tvStatsNextTicketPrice);
-            TextView tvStatsNextTicketPriceUsd = (TextView) getActivity().findViewById(R.id.tvStatsNextTicketPriceUsd);
 
             TextView tvStatsMinTicketPrice = (TextView) getActivity().findViewById(R.id.tvStatsMinTicketPrice);
-            TextView tvStatsMinTicketPriceUsd = (TextView) getActivity().findViewById(R.id.tvStatsMinTicketPriceUsd);
 
             TextView tvStatsMaxTicketPrice = (TextView) getActivity().findViewById(R.id.tvStatsMaxTicketPrice);
-            TextView tvStatsMaxTicketPriceUsd = (TextView) getActivity().findViewById(R.id.tvStatsMaxTicketPriceUsd);
 
             TextView tvStatsLastBlockDatetime = (TextView) getActivity().findViewById(R.id.tvStatsLastBlockDatetime);
 
@@ -253,10 +317,10 @@ public class StatsFragment extends Fragment {
             TextView tvStatsAvgTicketPrice = (TextView) getActivity().findViewById(R.id.tvStatsAvgTicketPrice);
             TextView tvStatsVoteReward = (TextView) getActivity().findViewById(R.id.tvStatsVoteReward);
 
-            tvStatsTicketPrice.setText(statsTicketPrice);
-            tvStatsNextTicketPrice.setText(statsNextTicketPrice);
-            tvStatsMinTicketPrice.setText(statsMinTicketPrice);
-            tvStatsMaxTicketPrice.setText(statsMaxTicketPrice);
+            tvStatsTicketPrice.setText(statsTicketPrice + " (" + Utils.numberComplete(Double.parseDouble(statsTicketPrice) * usdPrice, 2) + " USD" + " - " + Utils.numberComplete(Double.parseDouble(statsTicketPrice) * brlPrice, 2) + " BRL)");
+            tvStatsNextTicketPrice.setText(statsNextTicketPrice + " (" + Utils.numberComplete(Double.parseDouble(statsNextTicketPrice) * usdPrice, 2) + " USD" + " - " + Utils.numberComplete(Double.parseDouble(statsNextTicketPrice) * brlPrice, 2) + " BRL)");
+            tvStatsMinTicketPrice.setText(statsMinTicketPrice + " (" + Utils.numberComplete(Double.parseDouble(statsMinTicketPrice) * usdPrice, 2) + " USD" + " - " + Utils.numberComplete(Double.parseDouble(statsMinTicketPrice) * brlPrice, 2) + " BRL)");
+            tvStatsMaxTicketPrice.setText(statsMaxTicketPrice + " (" + Utils.numberComplete(Double.parseDouble(statsMaxTicketPrice) * usdPrice, 2) + " USD" + " - " + Utils.numberComplete(Double.parseDouble(statsMaxTicketPrice) * brlPrice, 2) + " BRL)");
             tvStatsLastBlockDatetime.setText(statsLastBlockDatetime);
             tvStatsLastAvgBlockTime.setText(statsLastAvgBlockTime + " min");
             tvStatsLastAvgHashrate.setText(statsLastAvgHashrate + " TH/s");

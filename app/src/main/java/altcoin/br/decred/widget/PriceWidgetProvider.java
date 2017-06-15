@@ -25,7 +25,7 @@ import altcoin.br.decred.utils.Bitcoin;
 import altcoin.br.decred.utils.InternetRequests;
 import altcoin.br.decred.utils.Utils;
 
-public class CoinWidgetProvider extends AppWidgetProvider {
+public class PriceWidgetProvider extends AppWidgetProvider {
 
     private static String WIDGET_BUTTON = "android.appwidget.action.UPDATE_DRC_WIDGET";
 
@@ -39,7 +39,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
 
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
 
-                ComponentName thisWidget = new ComponentName(context.getApplicationContext(), CoinWidgetProvider.class);
+                ComponentName thisWidget = new ComponentName(context.getApplicationContext(), PriceWidgetProvider.class);
 
                 int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
 
@@ -59,7 +59,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(final Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
-        Utils.log("CoinWidgetProvider ::: onUpdate");
+        Utils.log("PriceWidgetProvider ::: onUpdate");
 
         DBTools db = new DBTools(context);
 
@@ -260,24 +260,8 @@ public class CoinWidgetProvider extends AppWidgetProvider {
             }
         };
 
-        Response.ErrorListener errorListener = new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                try {
-
-                    views.setTextViewText(R.id.tvWidValInBtc, "...");
-                    views.setTextViewText(R.id.tvWidValInFiat, "...");
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                manager.updateAppWidget(appWidgetId, views);
-            }
-        };
-
         InternetRequests internetRequests = new InternetRequests();
-        internetRequests.executePost(url, listener, errorListener);
+        internetRequests.executePost(url, listener);
     }
 
     private String getHour() {
@@ -393,7 +377,7 @@ public class CoinWidgetProvider extends AppWidgetProvider {
                             PendingIntent pendingIntentUpdate = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                             views.setOnClickPendingIntent(R.id.ivWidLogo, pendingIntentUpdate);
 
-                            Utils.log("CoinWidgetProvider ::: onUpdate ::: FINISHED");
+                            Utils.log("PriceWidgetProvider ::: onUpdate ::: FINISHED");
 
                             manager.updateAppWidget(appWidgetId, views);
                         } catch (Exception e) {
