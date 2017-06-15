@@ -33,7 +33,7 @@ import altcoin.br.decred.services.PriceAlertService;
 import altcoin.br.decred.utils.Utils;
 
 public class AlertsFragment extends Fragment {
-    View view;
+    private View view;
 
     private CheckBox cbAlertPoloniex;
     private CheckBox cbAlertBittrex;
@@ -60,8 +60,8 @@ public class AlertsFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onStart() {
+        super.onStart();
 
         new atLoadAlerts(getActivity()).execute();
 
@@ -172,9 +172,9 @@ public class AlertsFragment extends Fragment {
     }
 
     class atLoadAlerts extends io.fabric.sdk.android.services.concurrency.AsyncTask<Void, Void, Void> {
-        Context context;
+        final Context context;
 
-        List<Alert> list;
+        final List<Alert> list;
 
         atLoadAlerts(Context context) {
             this.context = context;
@@ -229,7 +229,7 @@ public class AlertsFragment extends Fragment {
         }
     }
 
-    public void correctListVisibility() {
+    private void correctListVisibility() {
         if (alerts.size() > 0) {
             rlNoAlerts.setVisibility(View.GONE);
             llCurrentAlerts.setVisibility(View.VISIBLE);

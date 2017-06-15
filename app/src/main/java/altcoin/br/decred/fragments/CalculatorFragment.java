@@ -23,7 +23,7 @@ import altcoin.br.decred.utils.InternetRequests;
 import altcoin.br.decred.utils.Utils;
 
 public class CalculatorFragment extends Fragment {
-    View view;
+    private View view;
 
     private Button bConvertBrlTo;
     private Button bConvertBtcTo;

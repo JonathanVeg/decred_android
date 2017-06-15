@@ -11,7 +11,6 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 
 import org.json.JSONObject;
 
@@ -27,7 +26,7 @@ import altcoin.br.decred.utils.Utils;
 
 public class PriceWidgetProvider extends AppWidgetProvider {
 
-    private static String WIDGET_BUTTON = "android.appwidget.action.UPDATE_DRC_WIDGET";
+    private static final String WIDGET_BUTTON = "android.appwidget.action.UPDATE_DRC_WIDGET";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -176,24 +175,8 @@ public class PriceWidgetProvider extends AppWidgetProvider {
             }
         };
 
-        Response.ErrorListener errorListener = new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                try {
-
-                    views.setTextViewText(R.id.tvWidValInBtc, "...");
-                    views.setTextViewText(R.id.tvWidValInFiat, "...");
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                manager.updateAppWidget(appWidgetId, views);
-            }
-        };
-
         InternetRequests internetRequests = new InternetRequests();
-        internetRequests.executePost(url, listener, errorListener);
+        internetRequests.executePost(url, listener);
     }
 
     private void loadDataFromBleutrade(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, final String fiat) {
@@ -305,34 +288,18 @@ public class PriceWidgetProvider extends AppWidgetProvider {
             }
         };
 
-        Response.ErrorListener errorListener = new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                try {
-
-                    views.setTextViewText(R.id.tvWidValInBtc, "...");
-                    views.setTextViewText(R.id.tvWidValInFiat, "...");
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                manager.updateAppWidget(appWidgetId, views);
-            }
-        };
-
         InternetRequests internetRequests = new InternetRequests();
-        internetRequests.executePost(url, listener, errorListener);
+        internetRequests.executePost(url, listener);
     }
 
     private class atParsePoloniexData extends AsyncTask<Void, Void, Void> {
 
-        String response;
-        Context context;
-        int appWidgetId;
-        String fiat;
-        AppWidgetManager manager;
-        RemoteViews views;
+        final String response;
+        final Context context;
+        final int appWidgetId;
+        final String fiat;
+        final AppWidgetManager manager;
+        final RemoteViews views;
 
         atParsePoloniexData(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, final String fiat, String data) {
             this.response = data;

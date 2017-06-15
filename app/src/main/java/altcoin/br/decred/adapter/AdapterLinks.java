@@ -14,8 +14,8 @@ import altcoin.br.decred.model.Link;
 import altcoin.br.decred.utils.Utils;
 
 public class AdapterLinks extends BaseAdapter {
-    private List<Link> links;
-    private Context context;
+    private final List<Link> links;
+    private final Context context;
 
     public AdapterLinks(Context context, List<Link> links) {
         this.context = context;

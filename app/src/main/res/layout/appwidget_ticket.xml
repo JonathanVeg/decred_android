@@ -94,12 +94,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Min: "
+                android:text="B. adjust: "
                 android:textColor="@color/colorPrimary"
                 android:textSize="12sp"/>
 
             <TextView
-                android:id="@+id/tvTicWidMinPrice"
+                android:id="@+id/tvTicWidPriceAjustBlocks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="..."
@@ -116,12 +116,12 @@
                 android:id="@+id/tvTicWidFiatName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Max: "
+                android:text="T. adjust: "
                 android:textColor="@color/colorPrimary"
                 android:textSize="12sp"/>
 
             <TextView
-                android:id="@+id/tvTicWidMaxPrice"
+                android:id="@+id/tvTicWidPriceAdjustTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="..."

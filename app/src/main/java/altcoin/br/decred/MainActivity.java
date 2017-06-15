@@ -26,12 +26,12 @@ import altcoin.br.decred.utils.Utils;
 
 public class MainActivity extends Activity {
 
-    private int TAB_SUMMARY = 0;
-    private int TAB_CHART = 1;
-    private int TAB_CALC = 2;
-    private int TAB_ALERT = 3;
-    private int TAB_STATS = 4;
-    private int TAB_ABOUT = 5;
+    private final int TAB_SUMMARY = 0;
+    private final int TAB_CHART = 1;
+    private final int TAB_CALC = 2;
+    private final int TAB_ALERT = 3;
+    private final int TAB_STATS = 4;
+    private final int TAB_ABOUT = 5;
 
     private int currentTab = 0;
 
@@ -118,7 +118,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    private Runnable runnableCode = new Runnable() {
+    private final Runnable runnableCode = new Runnable() {
         @Override
         public void run() {
             tvLastUpdate.setText(Utils.now());

@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 class CreateDatabase extends SQLiteOpenHelper {
 
-    private static int CURRENT_DB_VERSION = 3;
+    private static final int CURRENT_DB_VERSION = 3;
 
     CreateDatabase(Context context, String dbName) {
         super(context, dbName, null, CURRENT_DB_VERSION);

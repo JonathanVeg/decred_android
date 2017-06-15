@@ -120,26 +120,10 @@ public class Utils {
         }
     }
 
-    public static void writePreference(Context context, String key, Boolean value) {
-        try {
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-
-            preferences.edit().putBoolean(key, value).apply();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public static String readPreference(Context context, String key, String defaultValue) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         return preferences.getString(key, defaultValue);
-    }
-
-    public static boolean readPreference(Context context, String key, boolean defaultValue) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-
-        return preferences.getBoolean(key, defaultValue);
     }
 
     public static boolean isTrue(String value) {
@@ -154,12 +138,6 @@ public class Utils {
 
     public static void alert(Context context, String text) {
         Toast.makeText(context, text, Toast.LENGTH_LONG).show();
-    }
-
-    public static long readPreference(Context context, String key, long defaultValue) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-
-        return preferences.getLong(key, defaultValue);
     }
 
     public static void writePreference(Context context, String key, long value) {

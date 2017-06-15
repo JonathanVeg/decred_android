@@ -34,7 +34,7 @@ import altcoin.br.decred.utils.InternetRequests;
 import altcoin.br.decred.utils.Utils;
 
 public class PriceAlertService extends Service {
-    private Timer timer = new Timer();
+    private final Timer timer = new Timer();
 
     @Override
     public void onDestroy() {
@@ -178,11 +178,11 @@ public class PriceAlertService extends Service {
     }
 
     private class atParseBittrexData extends AsyncTask<Void, Void, Void> {
-        String response;
+        final String response;
 
         double last;
 
-        Alert alert;
+        final Alert alert;
 
         atParseBittrexData(String response, Alert alert) {
             this.response = response;
@@ -249,11 +249,11 @@ public class PriceAlertService extends Service {
     }
 
     private class atParsePoloniexData extends AsyncTask<Void, Void, Void> {
-        String response;
+        final String response;
 
         double last;
 
-        Alert alert;
+        final Alert alert;
 
         atParsePoloniexData(String response, Alert alert) {
             this.response = response;

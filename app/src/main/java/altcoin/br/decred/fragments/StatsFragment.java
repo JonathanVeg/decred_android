@@ -4,8 +4,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.renderscript.Double2;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,15 +23,17 @@ import altcoin.br.decred.utils.InternetRequests;
 import altcoin.br.decred.utils.Utils;
 
 public class StatsFragment extends Fragment {
-    View view;
+    private View view;
 
     private long statsTimeStamp = 0;
 
-    boolean running;
+    private boolean running;
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onStart() {
+        super.onStart();
+
+        Utils.log("onAttach");
 
         loadData();
 
@@ -60,9 +60,9 @@ public class StatsFragment extends Fragment {
         }
     }
 
-    double brlPrice;
-    double usdPrice;
-    double btcPrice;
+    private double brlPrice;
+    private double usdPrice;
+    private double btcPrice;
 
     private void loadData() {
         String url = "https://api.coinmarketcap.com/v1/ticker/decred/";
@@ -79,7 +79,7 @@ public class StatsFragment extends Fragment {
     }
 
     private class atParseSummaryData extends AsyncTask<Void, Void, Void> {
-        String response;
+        final String response;
 
         atParseSummaryData(String response) {
             this.response = response;
@@ -159,7 +159,7 @@ public class StatsFragment extends Fragment {
                 Response.Listener<String> listener2 = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        new atParseStatsBlockData(getActivity(), response).execute();
+                        new atParseStatsBlockData(response).execute();
                     }
                 };
 
@@ -175,14 +175,11 @@ public class StatsFragment extends Fragment {
     }
 
     private class atParseStatsBlockData extends AsyncTask<Void, Void, Void> {
-        Context context;
-        String response;
+        final String response;
 
         String statsLastBlockNumber = "";
 
-        atParseStatsBlockData(Context c, String r) {
-            context = c;
-
+        atParseStatsBlockData(String r) {
             response = r;
         }
 
@@ -213,7 +210,7 @@ public class StatsFragment extends Fragment {
     }
 
     private class atParseStatsData extends AsyncTask<Void, Void, Void> {
-        String response;
+        final String response;
 
         String statsTicketPrice = ""; // done
         String statsNextTicketPrice = ""; // done
@@ -322,10 +319,10 @@ public class StatsFragment extends Fragment {
             tvStatsMinTicketPrice.setText(statsMinTicketPrice + " (" + Utils.numberComplete(Double.parseDouble(statsMinTicketPrice) * usdPrice, 2) + " USD" + " - " + Utils.numberComplete(Double.parseDouble(statsMinTicketPrice) * brlPrice, 2) + " BRL)");
             tvStatsMaxTicketPrice.setText(statsMaxTicketPrice + " (" + Utils.numberComplete(Double.parseDouble(statsMaxTicketPrice) * usdPrice, 2) + " USD" + " - " + Utils.numberComplete(Double.parseDouble(statsMaxTicketPrice) * brlPrice, 2) + " BRL)");
             tvStatsLastBlockDatetime.setText(statsLastBlockDatetime);
-            tvStatsLastAvgBlockTime.setText(statsLastAvgBlockTime + " min");
-            tvStatsLastAvgHashrate.setText(statsLastAvgHashrate + " TH/s");
+            tvStatsLastAvgBlockTime.setText(String.format("%s min", statsLastAvgBlockTime));
+            tvStatsLastAvgHashrate.setText(String.format("%s TH/s", statsLastAvgHashrate));
             tvStatsStakeReward.setText(statsStakeReward);
-            tvStatsAdjustIn.setText(statsAdjustIn + " blocks");
+            tvStatsAdjustIn.setText(String.format("%s blocks", statsAdjustIn));
             tvStatsAvailableSupply.setText(statsAvailableSupply);
             tvStatsPowReward.setText(statsPowReward);
             tvStatsTicketPollSize.setText(statsTicketPollSize);

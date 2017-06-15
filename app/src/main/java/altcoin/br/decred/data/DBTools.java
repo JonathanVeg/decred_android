@@ -13,7 +13,7 @@ import altcoin.br.decred.application.MyApplication;
 
 public class DBTools {
 
-    private CreateDatabase dbCreate;
+    private final CreateDatabase dbCreate;
     private SQLiteDatabase db;
     private Cursor cursor;
     private String _lastError = null;
@@ -31,27 +31,6 @@ public class DBTools {
 
     public DBTools(Context context) {
         this(context, "dcr_android_db");
-    }
-
-    public static void clearDatabase(Context context) {
-        DBTools db = new DBTools(context);
-
-        int count = db.search("SELECT name FROM sqlite_master WHERE type='table' and name != 'android_metadata'");
-
-        String name;
-        boolean exec;
-
-        String sql;
-
-        for (int i = 0; i < count; i++) {
-            name = db.getData(i, 0);
-            sql = "delete from " + name;
-            exec = db.exec(sql);
-
-            Log.d("clearDatabase", "Limpando tabela: " + name + " - " + sql + " - " + exec);
-        }
-
-        db.close();
     }
 
     public boolean exec(String sql) {

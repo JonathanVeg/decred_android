@@ -41,7 +41,7 @@ import altcoin.br.decred.utils.InternetRequests;
 import altcoin.br.decred.utils.Utils;
 
 public class ChartFragment extends Fragment {
-    View view;
+    private View view;
 
     private int chartZoom;
     private int chartCandle;
@@ -63,8 +63,8 @@ public class ChartFragment extends Fragment {
     private boolean running;
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onStart() {
+        super.onStart();
 
         loadMarketChart();
 
@@ -273,10 +273,10 @@ public class ChartFragment extends Fragment {
     }
 
     private class atParseCandleJson extends AsyncTask<Void, Void, Void> {
-        String response;
+        final String response;
 
         CandleData data;
-        ArrayList<CandleEntry> entries = new ArrayList<>();
+        final ArrayList<CandleEntry> entries = new ArrayList<>();
 
         atParseCandleJson(String response) {
             this.response = response;
@@ -353,13 +353,13 @@ public class ChartFragment extends Fragment {
     }
 
     private class atParseMarketChart extends AsyncTask<Void, Void, Void> {
-        String response;
+        final String response;
 
-        ArrayList<Entry> entriesBid;
-        ArrayList<Entry> entriesAsk;
+        final ArrayList<Entry> entriesBid;
+        final ArrayList<Entry> entriesAsk;
 
-        ArrayList<String> labelsBid;
-        ArrayList<String> labelsAsk;
+        final ArrayList<String> labelsBid;
+        final ArrayList<String> labelsAsk;
 
         atParseMarketChart(String response) {
             this.response = response;

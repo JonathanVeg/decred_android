@@ -1,7 +1,6 @@
 package altcoin.br.decred.fragments;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +25,7 @@ import altcoin.br.decred.model.Link;
 import altcoin.br.decred.utils.Utils;
 
 public class AboutFragment extends Fragment {
-    View view;
+    private View view;
 
     private List<Link> links;
     private AdapterLinks adapterLinks;
@@ -40,8 +39,8 @@ public class AboutFragment extends Fragment {
     private TextView tvAboutDonate;
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onStart() {
+        super.onStart();
 
         prepareFirebasePart();
 
@@ -150,6 +149,7 @@ public class AboutFragment extends Fragment {
 
                 @Override
                 public void onCancelled(DatabaseError error) {
+                    tvAboutDonateWallet.setText("DsUJTC7MZDWfnWyYnmm9P6ijsA44oRQVsSn");
                 }
             });
 

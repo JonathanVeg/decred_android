@@ -26,18 +26,13 @@ import altcoin.br.decred.utils.InternetRequests;
 import altcoin.br.decred.utils.Utils;
 
 public class SummaryFragment extends Fragment {
-    View view;
+    private View view;
 
-    boolean running;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    private boolean running;
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onStart() {
+        super.onStart();
 
         loadCoinMarketCapData();
 
@@ -106,7 +101,7 @@ public class SummaryFragment extends Fragment {
     }
 
     private class atParseSummaryData extends AsyncTask<Void, Void, Void> {
-        String response;
+        final String response;
 
         String usdPrice;
         String btcPrice;
@@ -195,7 +190,7 @@ public class SummaryFragment extends Fragment {
     }
 
     private class atParseBittrexData extends AsyncTask<Void, Void, Void> {
-        String response;
+        final String response;
 
         String last;
         String baseVolume;
@@ -278,7 +273,7 @@ public class SummaryFragment extends Fragment {
     }
 
     private class atParsePoloniexData extends AsyncTask<Void, Void, Void> {
-        String response;
+        final String response;
 
         String last;
         String baseVolume;
@@ -380,7 +375,7 @@ public class SummaryFragment extends Fragment {
     }
 
     private class atParseBleutradeData extends AsyncTask<Void, Void, Void> {
-        String response;
+        final String response;
 
         String last;
         String baseVolume;

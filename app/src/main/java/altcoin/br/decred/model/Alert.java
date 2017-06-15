@@ -6,10 +6,10 @@ import android.content.Context;
 import altcoin.br.decred.data.DBTools;
 
 public class Alert {
-    public static int GREATER = 1;
-    public static int LOWER = 2;
+    public static final int GREATER = 1;
+    public static final int LOWER = 2;
 
-    private Context context;
+    private final Context context;
 
     private int id;
     private int when;

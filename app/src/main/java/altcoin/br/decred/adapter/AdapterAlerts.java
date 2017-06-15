@@ -23,10 +23,10 @@ import altcoin.br.decred.utils.Utils;
 
 public class AdapterAlerts extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private LayoutInflater layoutInflater;
-    private List<Alert> alerts;
+    private final LayoutInflater layoutInflater;
+    private final List<Alert> alerts;
 
-    private Activity activity;
+    private final Activity activity;
 
     public AdapterAlerts(Activity activity, List<Alert> alerts) {
         this.activity = activity;
@@ -91,12 +91,12 @@ public class AdapterAlerts extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     private class myViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvAlertId;
-        TextView tvAlertWhen;
-        TextView tvAlertValue;
-        ImageView ivAlertDelete;
-        ImageView ivAlertActive;
-        ImageView ivAlertInactive;
+        final TextView tvAlertId;
+        final TextView tvAlertWhen;
+        final TextView tvAlertValue;
+        final ImageView ivAlertDelete;
+        final ImageView ivAlertActive;
+        final ImageView ivAlertInactive;
 
         myViewHolder(View v) {
             super(v);

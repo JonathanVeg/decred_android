@@ -10,36 +10,36 @@ import altcoin.br.decred.utils.InternetRequests;
 import altcoin.br.decred.utils.Utils;
 
 public class FiatPriceFiat extends FiatCoinPrice {
-    private String fiat;
+    private final String fiat;
 
-    private Context context;
+    private final Context context;
 
-    static String usdUrl() {
+    private static String usdUrl() {
         return "https://www.bitstamp.net/api/v2/ticker/btcusd/";
     }
 
-    static String eurUrl() {
+    private static String eurUrl() {
         return "https://www.bitstamp.net/api/v2/ticker/btceur/";
     }
 
-    static String audUrl() {
+    private static String audUrl() {
         return "https://api.btcmarkets.net/market/BTC/AUD/tick";
     }
 
-    static String brlUrl() {
+    private static String brlUrl() {
         // return "https://api.blinktrade.com/api/v1/BRL/ticker";
         return "https://www.mercadobitcoin.net/api/v2/ticker/";
     }
 
-    static String gbpUrl() {
+    private static String gbpUrl() {
         return "https://webapi.coinfloor.co.uk:8090/bist/XBT/GBP/ticker/";
     }
 
-    static String cadUrl() {
+    private static String cadUrl() {
         return "https://api.cbix.ca/v1/index";
     }
 
-    static String yenUrl() {
+    private static String yenUrl() {
         return "https://api.bitflyer.jp/v1/getticker";
     }
 
@@ -70,40 +70,6 @@ public class FiatPriceFiat extends FiatCoinPrice {
             url = yenUrl();
 
         internetRequests.executeGet(url, this);
-    }
-
-    public static ArrayList<String> availableFiats() {
-        ArrayList<String> available = new ArrayList<>();
-
-        available.add("USD");
-        available.add("BRL");
-        available.add("EUR");
-        available.add("AUD");
-        available.add("GBP");
-        available.add("CAD");
-        available.add("YEN");
-
-        return available;
-    }
-
-    public static String getMainFiat1(Context context) {
-        try {
-            return Utils.readPreference(context, "fiatCurrency1", "USD");
-        } catch (Exception e) {
-            e.printStackTrace();
-
-            return "USD";
-        }
-    }
-
-    public static String getMainFiat2(Context context) {
-        try {
-            return Utils.readPreference(context, "fiatCurrency2", "EUR");
-        } catch (Exception e) {
-            e.printStackTrace();
-
-            return "EUR";
-        }
     }
 
     public void onValueLoaded() {

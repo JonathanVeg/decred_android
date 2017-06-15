@@ -16,13 +16,14 @@ import org.json.JSONObject;
 
 import java.util.Calendar;
 
+import altcoin.br.decred.MainActivity;
 import altcoin.br.decred.R;
 import altcoin.br.decred.utils.InternetRequests;
 import altcoin.br.decred.utils.Utils;
 
 public class TicketWidgetProvider extends AppWidgetProvider {
 
-    private static String WIDGET_BUTTON = "android.appwidget.action.UPDATE_DRC_TICKET_WIDGET";
+    private static final String WIDGET_BUTTON = "android.appwidget.action.UPDATE_DRC_TICKET_WIDGET";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -105,11 +106,11 @@ public class TicketWidgetProvider extends AppWidgetProvider {
 
     private class atParseTicketData extends AsyncTask<Void, Void, Void> {
 
-        String response;
-        Context context;
-        int appWidgetId;
-        AppWidgetManager manager;
-        RemoteViews views;
+        final String response;
+        final Context context;
+        final int appWidgetId;
+        final AppWidgetManager manager;
+        final RemoteViews views;
 
         atParseTicketData(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, String data) {
             this.response = data;
@@ -131,12 +132,16 @@ public class TicketWidgetProvider extends AppWidgetProvider {
                 views.setTextViewText(R.id.tvTicWidNameCoin, "DCR Tickets - " + getHour());
                 views.setTextViewText(R.id.tvTicWidPrice, Utils.numberComplete(obj.getString("sbits"), 2) + " DCRs");
                 views.setTextViewText(R.id.tvTicWidNextPrice, Utils.numberComplete(obj.getString("est_sbits"), 2) + " DCRs");
-                views.setTextViewText(R.id.tvTicWidMinPrice, Utils.numberComplete(obj.getString("est_sbits_min"), 2) + " DCRs");
-                views.setTextViewText(R.id.tvTicWidMaxPrice, Utils.numberComplete(obj.getString("est_sbits_max"), 2) + " DCRs");
+                views.setTextViewText(R.id.tvTicWidPriceAjustBlocks, obj.getString("pos_adjustment"));
+                views.setTextViewText(R.id.tvTicWidPriceAdjustTime, String.valueOf(obj.getDouble("pos_adjustment") * obj.getDouble("average_minutes")) + " min");
 
                 Intent intent = new Intent(WIDGET_BUTTON);
                 PendingIntent pendingIntentUpdate = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 views.setOnClickPendingIntent(R.id.ivTicWidLogo, pendingIntentUpdate);
+
+                Intent openApp = new Intent(context, MainActivity.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, openApp, 0);
+                views.setOnClickPendingIntent(R.id.tvTicWidNameCoin, pendingIntent);
 
                 manager.updateAppWidget(appWidgetId, views);
             } catch (Exception e) {
