@@ -155,7 +155,7 @@ public class PriceAlertService extends Service {
         Response.Listener<String> listener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                new atParseBittrexData(response, alert).execute();
+                new AtParseBittrexData(response, alert).execute();
             }
         };
 
@@ -169,7 +169,7 @@ public class PriceAlertService extends Service {
         Response.Listener<String> listener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                new atParsePoloniexData(response, alert).execute();
+                new AtParsePoloniexData(response, alert).execute();
             }
         };
 
@@ -177,14 +177,14 @@ public class PriceAlertService extends Service {
         internetRequests.executePost(url, listener);
     }
 
-    private class atParseBittrexData extends AsyncTask<Void, Void, Void> {
+    private class AtParseBittrexData extends AsyncTask<Void, Void, Void> {
         final String response;
 
         double last;
 
         final Alert alert;
 
-        atParseBittrexData(String response, Alert alert) {
+        AtParseBittrexData(String response, Alert alert) {
             this.response = response;
             this.alert = alert;
         }
@@ -248,14 +248,14 @@ public class PriceAlertService extends Service {
         }
     }
 
-    private class atParsePoloniexData extends AsyncTask<Void, Void, Void> {
+    private class AtParsePoloniexData extends AsyncTask<Void, Void, Void> {
         final String response;
 
         double last;
 
         final Alert alert;
 
-        atParsePoloniexData(String response, Alert alert) {
+        AtParsePoloniexData(String response, Alert alert) {
             this.response = response;
             this.alert = alert;
         }

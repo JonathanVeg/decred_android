@@ -75,7 +75,6 @@ public class ConfigureWidgetActivity extends AppCompatActivity {
         bWidSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Context context = ConfigureWidgetActivity.this;
 
                 DBTools db = new DBTools(context);

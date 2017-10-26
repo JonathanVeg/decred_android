@@ -162,10 +162,10 @@ public class PriceWidgetProvider extends AppWidgetProvider {
 
                         if (fiat != null && fiat.equalsIgnoreCase("BRL")) {
                             views.setTextViewText(R.id.tvWidFiatName, "BRL: ");
-                            Bitcoin.convertBtcToBrl(listener2);
+                            Bitcoin.INSTANCE.convertBtcToBrl(listener2);
                         } else {
                             views.setTextViewText(R.id.tvWidFiatName, "USD: ");
-                            Bitcoin.convertBtcToUsd(listener2);
+                            Bitcoin.INSTANCE.convertBtcToUsd(listener2);
                         }
                     }
 
@@ -230,10 +230,10 @@ public class PriceWidgetProvider extends AppWidgetProvider {
 
                         if (fiat != null && fiat.equalsIgnoreCase("BRL")) {
                             views.setTextViewText(R.id.tvWidFiatName, "BRL: ");
-                            Bitcoin.convertBtcToBrl(listener2);
+                            Bitcoin.INSTANCE.convertBtcToBrl(listener2);
                         } else {
                             views.setTextViewText(R.id.tvWidFiatName, "USD: ");
-                            Bitcoin.convertBtcToUsd(listener2);
+                            Bitcoin.INSTANCE.convertBtcToUsd(listener2);
                         }
                     }
 
@@ -280,7 +280,7 @@ public class PriceWidgetProvider extends AppWidgetProvider {
             public void onResponse(String response) {
                 try {
 
-                    new atParsePoloniexData(context, appWidgetManager, appWidgetId, fiat, response).execute();
+                    new AtParsePoloniexData(context, appWidgetManager, appWidgetId, fiat, response).execute();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -292,7 +292,7 @@ public class PriceWidgetProvider extends AppWidgetProvider {
         internetRequests.executePost(url, listener);
     }
 
-    private class atParsePoloniexData extends AsyncTask<Void, Void, Void> {
+    private class AtParsePoloniexData extends AsyncTask<Void, Void, Void> {
 
         final String response;
         final Context context;
@@ -301,7 +301,7 @@ public class PriceWidgetProvider extends AppWidgetProvider {
         final AppWidgetManager manager;
         final RemoteViews views;
 
-        atParsePoloniexData(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, final String fiat, String data) {
+        AtParsePoloniexData(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, final String fiat, String data) {
             this.response = data;
             this.context = context;
             this.appWidgetId = appWidgetId;
@@ -330,7 +330,7 @@ public class PriceWidgetProvider extends AppWidgetProvider {
                             JSONObject obj = new JSONObject(response);
 
                             if (fiat.equalsIgnoreCase("brl"))
-                                obj = new JSONObject(response).getJSONObject("ticker_24h").getJSONObject("total");
+                                obj = new JSONObject(response); //.getJSONObject("ticker_24h").getJSONObject("total");
 
                             views.setTextViewText(R.id.tvWidValInFiat, Utils.numberComplete(Double.parseDouble(last) * obj.getDouble("last"), 4));
 
@@ -355,10 +355,10 @@ public class PriceWidgetProvider extends AppWidgetProvider {
 
                 if (fiat != null && fiat.equalsIgnoreCase("BRL")) {
                     views.setTextViewText(R.id.tvWidFiatName, "BRL: ");
-                    Bitcoin.convertBtcToBrl(listener2);
+                    Bitcoin.INSTANCE.convertBtcToBrl(listener2);
                 } else {
                     views.setTextViewText(R.id.tvWidFiatName, "USD: ");
-                    Bitcoin.convertBtcToUsd(listener2);
+                    Bitcoin.INSTANCE.convertBtcToUsd(listener2);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

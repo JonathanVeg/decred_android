@@ -90,7 +90,6 @@ public class AdapterAlerts extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     private class myViewHolder extends RecyclerView.ViewHolder {
-
         final TextView tvAlertId;
         final TextView tvAlertWhen;
         final TextView tvAlertValue;

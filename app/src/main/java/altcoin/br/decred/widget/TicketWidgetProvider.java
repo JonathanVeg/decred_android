@@ -92,7 +92,7 @@ public class TicketWidgetProvider extends AppWidgetProvider {
             public void onResponse(String response) {
                 try {
 
-                    new atParseTicketData(context, appWidgetManager, appWidgetId, response).execute();
+                    new AtParseTicketData(context, appWidgetManager, appWidgetId, response).execute();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -104,15 +104,14 @@ public class TicketWidgetProvider extends AppWidgetProvider {
         internetRequests.executeGet(url, listener);
     }
 
-    private class atParseTicketData extends AsyncTask<Void, Void, Void> {
-
+    private class AtParseTicketData extends AsyncTask<Void, Void, Void> {
         final String response;
         final Context context;
         final int appWidgetId;
         final AppWidgetManager manager;
         final RemoteViews views;
 
-        atParseTicketData(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, String data) {
+        AtParseTicketData(final Context context, AppWidgetManager appWidgetManager, final int appWidgetId, String data) {
             this.response = data;
             this.context = context;
             this.appWidgetId = appWidgetId;
@@ -156,5 +155,4 @@ public class TicketWidgetProvider extends AppWidgetProvider {
             super.onPostExecute(aVoid);
         }
     }
-
 }
