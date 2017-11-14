@@ -1,6 +1,7 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="30dp"
+    android:layout_height="48dp"
     android:orientation="horizontal">
 
     <ImageView
@@ -9,7 +10,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/silver"
-        android:src="@drawable/bdark_ic_action_list" />
+        android:scaleType="center"
+        android:src="@drawable/bdark_ic_action_list"/>
 
     <ImageView
         android:id="@+id/bChart"
@@ -17,7 +19,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/transparent_silver"
-        android:src="@drawable/bdark_bdark_ic_action_line_chart" />
+        android:scaleType="center"
+        android:src="@drawable/bdark_bdark_ic_action_line_chart"/>
 
     <ImageView
         android:id="@+id/bCalculator"
@@ -25,7 +28,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/transparent_silver"
-        android:src="@drawable/bdark_ic_action_calculator" />
+        android:scaleType="center"
+        android:src="@drawable/bdark_ic_action_calculator"/>
 
     <ImageView
         android:id="@+id/bAlerts"
@@ -33,8 +37,9 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/transparent_silver"
+        android:scaleType="center"
         android:src="@drawable/bdark_ic_action_bell"
-        android:visibility="visible" />
+        android:visibility="visible"/>
 
     <ImageView
         android:id="@+id/bStats"
@@ -42,7 +47,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/transparent_silver"
-        android:src="@drawable/bdark_bdark_ic_action_achievement" />
+        android:scaleType="center"
+        android:src="@drawable/bdark_bdark_ic_action_achievement"/>
 
     <ImageView
         android:id="@+id/bAbout"
@@ -50,5 +56,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/transparent_silver"
-        android:src="@drawable/bdark_ic_action_info" />
+        android:scaleType="center"
+        android:src="@drawable/bdark_ic_action_info"/>
 </LinearLayout>

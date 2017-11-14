@@ -3,6 +3,7 @@ package altcoin.br.decred.fragments
 import altcoin.br.decred.R
 import altcoin.br.decred.utils.InternetRequests
 import altcoin.br.decred.utils.Utils
+import altcoin.br.decred.utils.numberComplete
 import android.annotation.SuppressLint
 import android.app.Fragment
 import android.graphics.Paint
@@ -13,8 +14,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.android.volley.Response
+import com.github.mikephil.charting.charts.CombinedChart
+import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.fragment_chart.*
 import kotlinx.android.synthetic.main.market_chart.*
 import org.greenrobot.eventbus.EventBus
@@ -24,353 +30,408 @@ import org.json.JSONObject
 import java.util.*
 
 class ChartFragment : Fragment() {
-    private var chartZoom: Int = 0
-    private var chartCandle: Int = 0
-    private var showValues: Boolean = false
+	private var chartZoom: Int = 0
+	private var chartCandle: Int = 0
+	private var showValues: Boolean = false
 
-    private var adapterZoom: ArrayAdapter<String>? = null
-    private var adapterCandle: ArrayAdapter<String>? = null
+	private var adapterZoom: ArrayAdapter<String>? = null
+	private var adapterCandle: ArrayAdapter<String>? = null
 
-    private var running: Boolean = false
+	private var running: Boolean = false
 
-    override fun onStart() {
-        super.onStart()
+	var toast: Toast? = null
 
-        loadMarketChart()
+	override fun onStart() {
+		super.onStart()
 
-        running = true
+		loadMarketChart()
 
-        try {
-            EventBus.getDefault().register(this)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+		running = true
 
-    }
+		try {
+			EventBus.getDefault().register(this)
+		} catch (e: Exception) {
+			e.printStackTrace()
+		}
 
-    @Subscribe
-    fun eventBusReceiver(obj: JSONObject) {
-        try {
-            if (obj.has("tag") && obj.getString("tag").equals("update", ignoreCase = true) && running) {
-                loadMarketChart()
+	}
 
-                Utils.log("update ::: ChartFragment")
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+	@Subscribe
+	fun eventBusReceiver(obj: JSONObject) {
+		try {
+			if (obj.has("tag") && obj.getString("tag").equals("update", ignoreCase = true) && running) {
+				loadMarketChart()
 
-    }
+				Utils.log("update ::: ChartFragment")
+			}
+		} catch (e: Exception) {
+			e.printStackTrace()
+		}
 
-    override fun onPause() {
-        super.onPause()
+	}
 
-        running = false
-    }
+	override fun onPause() {
+		super.onPause()
 
-    private fun prepareListeners() {
-        sZoom?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                val item = adapterZoom?.getItem(position) ?: return
+		running = false
+	}
 
-                Utils.writePreference(activity, "chartZoom", item)
+	private fun prepareListeners() {
+		coinChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
+			override fun onValueSelected(e: Entry, dataSetIndex: Int, h: Highlight) {
+				try {
+					val text = "High: ${entries[e.xIndex].high.toString().numberComplete(8)}\n" +
+							"Low: ${entries[e.xIndex].low.toString().numberComplete(8)}\n" +
+							"Open: ${entries[e.xIndex].open.toString().numberComplete(8)}\n" +
+							"Close: ${entries[e.xIndex].close.toString().numberComplete(8)}\n" +
+							"Volume (BTC): ${volumes[e.xIndex].toString().numberComplete(8)}"
 
-                chartZoom = when (item) {
-                    "3h" -> 3
-                    "6h" -> 6
-                    "24h" -> 24
-                    "2d" -> 48
-                    "1w" -> 24 * 7
-                    "2w" -> 24 * 7 * 2
-                    "1m" -> 24 * 30
+					toast?.cancel()
 
-                    else -> 3
-                }
+					toast = Toast.makeText(activity, text, Toast.LENGTH_LONG)
+					toast?.show()
+				} catch (e: Exception) {
+					e.printStackTrace()
+				}
+			}
 
-                loadChart()
-            }
+			override fun onNothingSelected() {
+			}
+		})
 
-            override fun onNothingSelected(parentView: AdapterView<*>) {}
-        }
+		sZoom?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+			override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+				val item = adapterZoom?.getItem(position) ?: return
 
-        sCandle?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                var item: String? = adapterCandle?.getItem(position) ?: return
+				Utils.writePreference(activity, "chartZoom", item)
+
+				chartZoom = when (item) {
+					"3h" -> 3
+					"6h" -> 6
+					"24h" -> 24
+					"2d" -> 48
+					"1w" -> 24 * 7
+					"2w" -> 24 * 7 * 2
+					"1m" -> 24 * 30
+					"3m" -> 3 * 24 * 30
+					"6m" -> 6 * 24 * 30
+					"12m" -> 12 * 24 * 30
 
-                Utils.log("sCandle changed ::: " + item!!)
+					else -> 3
+				}
+
+				loadChart()
+			}
 
-                Utils.writePreference(activity, "chartCandle", item)
+			override fun onNothingSelected(parentView: AdapterView<*>) {}
+		}
 
-                item = item.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0]
+		sCandle?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+			override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+				var item: String? = adapterCandle?.getItem(position) ?: return
 
-                chartCandle = when (item) {
-                    "5" -> 5 * 60
-                    "15" -> 15 * 60
-                    "30" -> 30 * 60
-                    "120" -> 120 * 60
-                    "240" -> 240 * 60
+				Utils.log("sCandle changed ::: " + item!!)
 
-                    else -> 5 * 60
-                }
+				Utils.writePreference(activity, "chartCandle", item)
 
-                loadChart()
-            }
+				item = item.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0]
 
-            override fun onNothingSelected(parentView: AdapterView<*>) {}
-        }
+				chartCandle = when (item) {
+					"5" -> 5 * 60
+					"15" -> 15 * 60
+					"30" -> 30 * 60
+					"120" -> 120 * 60
+					"240" -> 240 * 60
 
-        cbShowValues?.setOnCheckedChangeListener { _, b ->
-            showValues = b
+					else -> 5 * 60
+				}
 
-            loadChart()
-        }
-    }
+				loadChart()
+			}
 
-    private fun instanceObjects() {
-        chartZoom = 3
-        chartCandle = 30 * 60
+			override fun onNothingSelected(parentView: AdapterView<*>) {}
+		}
 
-        showValues = false
+		cbShowValues?.setOnCheckedChangeListener { _, b ->
+			showValues = b
 
-        val zoom = ArrayList<String>()
-        val candle = ArrayList<String>()
+			loadChart()
+		}
+	}
 
-        zoom.add("3h")
-        zoom.add("6h")
-        zoom.add("24h")
-        zoom.add("2d")
-        zoom.add("1w")
-        zoom.add("2w")
-        zoom.add("1m")
+	private fun instanceObjects() {
+		coinChart?.drawOrder = arrayOf(CombinedChart.DrawOrder.BAR, CombinedChart.DrawOrder.CANDLE)
 
-        candle.add("5-min")
-        candle.add("15-min")
-        candle.add("30-min")
-        candle.add("120-min")
-        candle.add("240-min")
+		chartZoom = 3
+		chartCandle = 30 * 60
 
-        adapterZoom = ArrayAdapter(activity, android.R.layout.simple_spinner_item, zoom)
-        adapterZoom?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        sZoom?.adapter = adapterZoom
+		showValues = false
 
-        adapterCandle = ArrayAdapter(activity, android.R.layout.simple_spinner_item, candle)
-        adapterCandle?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        sCandle?.adapter = adapterCandle
+		val zoom = ArrayList<String>()
+		val candle = ArrayList<String>()
 
-        adapterZoom?.getPosition(Utils.readPreference(activity, "chartZoom", "3h"))?.let { sZoom?.setSelection(it) }
-        adapterCandle?.getPosition(Utils.readPreference(activity, "chartCandle", "15-min"))?.let { sCandle?.setSelection(it) }
-    }
+		zoom.add("3h")
+		zoom.add("6h")
+		zoom.add("24h")
+		zoom.add("2d")
+		zoom.add("1w")
+		zoom.add("2w")
+		zoom.add("1m")
+		zoom.add("3m")
+		zoom.add("6m")
+		zoom.add("12m")
 
-    private fun loadChart() {
-        val url = "https://poloniex.com/public?" +
-                "command=returnChartData" +
-                "&currencyPair=BTC_DCR" +
-                "&start=" + (Utils.timestampLong() - 60 * chartZoom * 60) +
-                "&period=" + chartCandle
+		candle.add("5-min")
+		candle.add("15-min")
+		candle.add("30-min")
+		candle.add("120-min")
+		candle.add("240-min")
 
-        val listener = Response.Listener<String> { response -> AtParseCandleJson(response).execute() }
+		adapterZoom = ArrayAdapter(activity, android.R.layout.simple_spinner_item, zoom)
+		adapterZoom?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+		sZoom?.adapter = adapterZoom
 
-        val internetRequests = InternetRequests()
-        internetRequests.executePost(url, listener)
-    }
+		adapterCandle = ArrayAdapter(activity, android.R.layout.simple_spinner_item, candle)
+		adapterCandle?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+		sCandle?.adapter = adapterCandle
 
-    private inner class AtParseCandleJson internal constructor(internal val response: String) : AsyncTask<Void?, Void?, Void?>() {
-        internal lateinit var data: CandleData
-        internal val entries = ArrayList<CandleEntry>()
+		adapterZoom?.getPosition(Utils.readPreference(activity, "chartZoom", "3h"))?.let { sZoom?.setSelection(it) }
+		adapterCandle?.getPosition(Utils.readPreference(activity, "chartCandle", "15-min"))?.let { sCandle?.setSelection(it) }
+	}
 
-        @SuppressLint("DefaultLocale")
-        override fun doInBackground(vararg voids: Void?): Void? {
-            try {
-                val arr = JSONArray(response)
+	private fun loadChart() {
+		val url = "https://poloniex.com/public?" +
+				"command=returnChartData" +
+				"&currencyPair=BTC_DCR" +
+				"&start=" + (Utils.timestampLong() - 60 * chartZoom * 60) +
+				"&period=" + chartCandle
 
-                var obj: JSONObject
+		val listener = Response.Listener<String> { response -> AtParseCandleJson(response).execute() }
 
-                val labels = ArrayList<String>()
+		val internetRequests = InternetRequests()
+		internetRequests.executePost(url, listener)
+	}
 
-                for (i in 0 until arr.length()) {
-                    obj = arr.getJSONObject(i)
+	private val volumeEntries = ArrayList<BarEntry>()
+	private val volumes = ArrayList<Double>()
+	private val entries = ArrayList<CandleEntry>()
 
-                    entries.add(CandleEntry(i, obj.getDouble("high").toFloat(),
-                            obj.getDouble("low").toFloat(), obj.getDouble("open").toFloat(), obj.getDouble("close").toFloat()))
+	private inner class AtParseCandleJson internal constructor(internal val response: String) : AsyncTask<Void?, Void?, Void?>() {
+		internal var data: CandleData? = null
+		internal var volumeData: BarData? = null
 
-                    labels.add(i.toString() + "")
-                }
+		val labels = ArrayList<String>()
 
-                val dataset = CandleDataSet(entries, "")
-                dataset.increasingColor = -0xff0100
-                dataset.decreasingColor = -0x10000
-                dataset.decreasingPaintStyle = Paint.Style.FILL
-                dataset.shadowColor = -0xffff01
-                dataset.setDrawValues(showValues)
+		@SuppressLint("DefaultLocale")
+		override fun doInBackground(vararg voids: Void?): Void? {
+			try {
+				entries.clear()
+				volumeEntries.clear()
+				volumes.clear()
 
-                data = CandleData(labels, dataset)
+				val arr = JSONArray(response)
 
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+				var obj: JSONObject
 
-            return null
-        }
+				for (i in 0 until arr.length()) {
+					obj = arr.getJSONObject(i)
 
-        override fun onPostExecute(aVoid: Void?) {
-            super.onPostExecute(aVoid)
+					entries.add(CandleEntry(i, obj.getDouble("high").toFloat(), obj.getDouble("low").toFloat(), obj.getDouble("open").toFloat(), obj.getDouble("close").toFloat()))
 
-            if (!running) return
+					volumeEntries.add(BarEntry(obj.getDouble("volume").toFloat(), i))
 
-            val yAxis = coinChart?.axisLeft
+					volumes.add(obj.getDouble("volume"))
 
-            yAxis?.setStartAtZero(false)
+					labels.add(i.toString() + "")
+				}
 
-            coinChart?.data = data
+				val dataset = CandleDataSet(entries, "")
+				dataset.increasingColor = -0xff0100
+				dataset.decreasingColor = -0x10000
+				dataset.axisDependency = YAxis.AxisDependency.LEFT
+				dataset.decreasingPaintStyle = Paint.Style.FILL
+				dataset.shadowColor = -0xffff01
+				dataset.setDrawValues(showValues)
 
-            coinChart?.axisRight?.setDrawLabels(false)
+				data = CandleData(labels, dataset)
 
-            coinChart?.setDescription("")
+				val volumeDataSet = BarDataSet(volumeEntries, "")
+				volumeDataSet.barShadowColor = -0x333334
+				volumeDataSet.highLightColor = -0x333334
+				volumeDataSet.axisDependency = YAxis.AxisDependency.RIGHT
+				volumeDataSet.color = -0x333334
+				volumeDataSet.setDrawValues(false)
 
-            coinChart?.notifyDataSetChanged()
+				volumeData = BarData(labels, volumeDataSet)
 
-            coinChart?.invalidate()
-        }
-    }
+			} catch (e: Exception) {
+				e.printStackTrace()
+			}
 
-    private fun loadMarketChart() {
-        val url = "https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_DCR&depth=750"
+			return null
+		}
 
-        val listener = Response.Listener<String> { response -> AtParseMarketChart(response).execute() }
+		override fun onPostExecute(aVoid: Void?) {
+			super.onPostExecute(aVoid)
 
-        val internetRequests = InternetRequests()
-        internetRequests.executePost(url, listener)
-    }
+			if (!running) return
 
-    private inner class AtParseMarketChart internal constructor(internal val response: String) : AsyncTask<Void?, Void?, Void?>() {
-        internal val entriesBid: ArrayList<Entry> = ArrayList()
-        internal val entriesAsk: ArrayList<Entry> = ArrayList()
+			val cd = CombinedData(labels)
+			cd.setData(data)
+			cd.setData(volumeData)
 
-        internal val labelsBid: ArrayList<String> = ArrayList()
-        internal val labelsAsk: ArrayList<String> = ArrayList()
+			val yAxis = coinChart?.axisLeft
 
-        override fun doInBackground(vararg voids: Void?): Void? {
-            try {
-                val jObject = JSONObject(response)
+			yAxis?.setStartAtZero(false)
 
-                val keys = jObject.keys()
+			coinChart?.data = cd
 
-                var internal: JSONArray
+			coinChart?.setDescription("")
 
-                while (keys.hasNext()) {
-                    val key = keys.next() as String
+			coinChart?.notifyDataSetChanged()
 
-                    if (jObject.get(key) is JSONArray) {
-                        if (key == "bids") {
-                            internal = jObject.getJSONArray(key)
+			coinChart?.invalidate()
+		}
+	}
 
-                            var totalAsk = 0.0
+	private fun loadMarketChart() {
+		val url = "https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_DCR&depth=750"
 
-                            for (i in 0 until internal.length()) {
-                                val item = internal.getJSONArray(i)
+		val listener = Response.Listener<String> { response -> AtParseMarketChart(response).execute() }
 
-                                totalAsk += item.getDouble(0) * item.getDouble(1)
+		val internetRequests = InternetRequests()
+		internetRequests.executePost(url, listener)
+	}
 
-                                entriesBid.add(Entry(totalAsk.toFloat(), i))
-                                labelsBid.add(item.getString(0))
-                            }
-                        }
+	private inner class AtParseMarketChart internal constructor(internal val response: String) : AsyncTask<Void?, Void?, Void?>() {
+		internal val entriesBid: ArrayList<Entry> = ArrayList()
+		internal val entriesAsk: ArrayList<Entry> = ArrayList()
 
-                        if (key == "asks") {
-                            internal = jObject.getJSONArray(key)
+		internal val labelsBid: ArrayList<String> = ArrayList()
+		internal val labelsAsk: ArrayList<String> = ArrayList()
 
-                            var totalBid = 0.0
+		override fun doInBackground(vararg voids: Void?): Void? {
+			try {
+				val jObject = JSONObject(response)
 
-                            for (i in 0 until internal.length()) {
-                                val item = internal.getJSONArray(i)
+				val keys = jObject.keys()
 
-                                totalBid += item.getDouble(0) * item.getDouble(1)
+				var internal: JSONArray
 
-                                entriesAsk.add(Entry(totalBid.toFloat(), i))
-                                labelsAsk.add(item.getString(0))
-                            }
-                        }
-                    }
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+				while (keys.hasNext()) {
+					val key = keys.next() as String
 
-            return null
-        }
+					if (jObject.get(key) is JSONArray) {
+						if (key == "bids") {
+							internal = jObject.getJSONArray(key)
 
-        override fun onPostExecute(aVoid: Void?) {
-            super.onPostExecute(aVoid)
+							var totalAsk = 0.0
 
-            if (!running) return
+							for (i in 0 until internal.length()) {
+								val item = internal.getJSONArray(i)
 
-            // bid
-            // invert the data
-            for (i in entriesBid.indices)
-                entriesBid[i].xIndex = entriesBid.size - 1 - i
+								totalAsk += item.getDouble(0) * item.getDouble(1)
 
-            Collections.reverse(labelsBid)
+								entriesBid.add(Entry(totalAsk.toFloat(), i))
+								labelsBid.add(item.getString(0))
+							}
+						}
 
-            val datasetBid = LineDataSet(entriesBid, "Bids")
+						if (key == "asks") {
+							internal = jObject.getJSONArray(key)
 
-            datasetBid.color = -0xff0100
+							var totalBid = 0.0
 
-            datasetBid.setDrawValues(false)
+							for (i in 0 until internal.length()) {
+								val item = internal.getJSONArray(i)
 
-            datasetBid.fillColor = -0xff0100
+								totalBid += item.getDouble(0) * item.getDouble(1)
 
-            datasetBid.setDrawCircles(false)
+								entriesAsk.add(Entry(totalBid.toFloat(), i))
+								labelsAsk.add(item.getString(0))
+							}
+						}
+					}
+				}
+			} catch (e: Exception) {
+				e.printStackTrace()
+			}
 
-            datasetBid.setDrawFilled(true)
+			return null
+		}
 
-            val lineDataBid = LineData(labelsBid, datasetBid)
+		override fun onPostExecute(aVoid: Void?) {
+			super.onPostExecute(aVoid)
 
-            marketChartBid?.data = lineDataBid
+			if (!running) return
 
-            marketChartBid?.axisRight?.setDrawLabels(false)
+			// bid
+			// invert the data
+			for (i in entriesBid.indices)
+				entriesBid[i].xIndex = entriesBid.size - 1 - i
 
-            marketChartBid?.setDescription("")
+			Collections.reverse(labelsBid)
 
-            marketChartBid?.notifyDataSetChanged()
+			val datasetBid = LineDataSet(entriesBid, "Bids")
 
-            marketChartBid?.invalidate()
+			datasetBid.color = -0xff0100
 
-            // ask
-            val datasetAsk = LineDataSet(entriesAsk, "Asks")
+			datasetBid.setDrawValues(false)
 
-            datasetAsk.color = -0x10000
+			datasetBid.fillColor = -0xff0100
 
-            datasetAsk.setDrawValues(false)
+			datasetBid.setDrawCircles(false)
 
-            datasetAsk.fillColor = -0x10000
+			datasetBid.setDrawFilled(true)
 
-            datasetAsk.setDrawCircles(false)
+			val lineDataBid = LineData(labelsBid, datasetBid)
 
-            datasetAsk.setDrawFilled(true)
+			marketChartBid?.data = lineDataBid
 
-            val lineDataAsk = LineData(labelsAsk, datasetAsk)
+			marketChartBid?.axisRight?.setDrawLabels(false)
 
-            marketChartAsk?.data = lineDataAsk
+			marketChartBid?.setDescription("")
 
-            marketChartAsk?.axisRight?.setDrawLabels(false)
+			marketChartBid?.notifyDataSetChanged()
 
-            marketChartAsk?.setDescription("")
+			marketChartBid?.invalidate()
 
-            marketChartAsk?.notifyDataSetChanged()
+			// ask
+			val datasetAsk = LineDataSet(entriesAsk, "Asks")
 
-            marketChartAsk?.invalidate()
-        }
-    }
+			datasetAsk.color = -0x10000
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_chart, container, false)
-    }
+			datasetAsk.setDrawValues(false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+			datasetAsk.fillColor = -0x10000
 
-        instanceObjects()
+			datasetAsk.setDrawCircles(false)
 
-        prepareListeners()
-    }
+			datasetAsk.setDrawFilled(true)
+
+			val lineDataAsk = LineData(labelsAsk, datasetAsk)
+
+			marketChartAsk?.data = lineDataAsk
+
+			marketChartAsk?.axisRight?.setDrawLabels(false)
+
+			marketChartAsk?.setDescription("")
+
+			marketChartAsk?.notifyDataSetChanged()
+
+			marketChartAsk?.invalidate()
+		}
+	}
+
+	override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		return inflater?.inflate(R.layout.fragment_chart, container, false)
+	}
+
+	override fun onActivityCreated(savedInstanceState: Bundle?) {
+		super.onActivityCreated(savedInstanceState)
+
+		instanceObjects()
+
+		prepareListeners()
+	}
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/llChart"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,7 +18,7 @@
             android:layout_gravity="center"
             android:padding="8dp"
             android:text="Charts (Poloniex Data)"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:layout_weight="0.3" />
+                android:layout_weight="0.3"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -43,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:checked="false"
-                    android:text="Show values" />
+                    android:text="Show values"/>
 
             </LinearLayout>
 
@@ -52,15 +53,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:layout_weight="0.3" />
+                android:layout_weight="0.3"/>
 
         </LinearLayout>
 
-        <com.github.mikephil.charting.charts.CandleStickChart
+        <com.github.mikephil.charting.charts.CombinedChart
             android:id="@+id/coinChart"
             android:layout_width="match_parent"
-            android:layout_height="300dp" />
+            android:layout_height="300dp"/>
 
-        <include layout="@layout/market_chart" />
+        <include layout="@layout/market_chart"/>
     </LinearLayout>
 </ScrollView>

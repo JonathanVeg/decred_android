@@ -112,5 +112,4 @@ public class InternetRequests {
             e.printStackTrace();
         }
     }
-
 }
