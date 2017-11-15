@@ -60,42 +60,7 @@ public class PriceAlertService extends Service {
         // timer.scheduleAtFixedRate(new mainTask(), 0, 20 * 1000); // 20 segundos (para testes)
     }
 
-    private class mainTask extends TimerTask {
-        public void run() {
-            List<Alert> alerts = new ArrayList<>();
-
-            DBTools db = new DBTools(getApplicationContext());
-
-            try {
-                int count = db.search("select _id, awhen, value, active, bittrex, poloniex from alerts where active = 1");
-
-                Alert alert;
-
-                for (int i = 0; i < count; i++) {
-                    alert = new Alert(getApplicationContext());
-
-                    alert.setId(db.getData(i, 0));
-                    alert.setWhen(db.getData(i, 1));
-                    alert.setValue(db.getData(i, 2));
-                    alert.setActive(Utils.isTrue(db.getData(i, 3)));
-                    alert.setBittrex(Utils.isTrue(db.getData(i, 4)));
-                    alert.setPoloniex(Utils.isTrue(db.getData(i, 5)));
-
-                    if (alert.isActive())
-                        alerts.add(alert);
-                }
-
-                prepareNotification(alerts);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                db.close();
-            }
-        }
-    }
-
-    private void createNotification(int id, String title, String contentText, SpannableString line1, SpannableString line2, SpannableString line3) {
+    private void createNotification(int id, String contentText, SpannableString line1, SpannableString line2, SpannableString line3) {
         Context context = getApplicationContext();
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
@@ -108,7 +73,7 @@ public class PriceAlertService extends Service {
         PendingIntent pendingIntent = stack.getPendingIntent(id, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        builder.setContentTitle(title);
+        builder.setContentTitle("Decred - Alert");
 
         builder.setContentText(contentText);
 
@@ -177,12 +142,67 @@ public class PriceAlertService extends Service {
         internetRequests.executePost(url, listener);
     }
 
+    private void prepareNotification(final List<Alert> alerts) {
+        for (int i = 0; i < alerts.size(); i++) {
+
+            final Alert alert = alerts.get(i);
+
+            if (alert.isBittrex()) loadBittrexData(alert);
+
+            if (alert.isPoloniex()) loadPoloniexData(alert);
+        }
+    }
+
+    private int hash(String str) {
+        String s = str.replaceAll(" ", "");
+
+        int h = 0;
+
+        for (int i = 0; i < s.length(); i++)
+            h = 31 * h + s.charAt(i);
+
+        return h;
+    }
+
+    private class mainTask extends TimerTask {
+        public void run() {
+            List<Alert> alerts = new ArrayList<>();
+
+            DBTools db = new DBTools(getApplicationContext());
+
+            try {
+                int count = db.search("select _id, awhen, value, active, bittrex, poloniex from alerts where active = 1");
+
+                Alert alert;
+
+                for (int i = 0; i < count; i++) {
+                    alert = new Alert(getApplicationContext());
+
+                    alert.setId(db.getData(i, 0));
+                    alert.setWhen(db.getData(i, 1));
+                    alert.setValue(db.getData(i, 2));
+                    alert.setActive(Utils.isTrue(db.getData(i, 3)));
+                    alert.setBittrex(Utils.isTrue(db.getData(i, 4)));
+                    alert.setPoloniex(Utils.isTrue(db.getData(i, 5)));
+
+                    if (alert.isActive())
+                        alerts.add(alert);
+                }
+
+                prepareNotification(alerts);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                db.close();
+            }
+        }
+    }
+
     private class AtParseBittrexData extends AsyncTask<Void, Void, Void> {
         final String response;
-
-        double last;
-
         final Alert alert;
+        double last;
 
         AtParseBittrexData(String response, Alert alert) {
             this.response = response;
@@ -239,7 +259,7 @@ public class PriceAlertService extends Service {
 
                 text = getString(R.string.alert_reached_for).replace("COIN", nameCoin).replaceAll("EXCHANGE", "Bittrex");
 
-                createNotification(notificationId, "Decred - Alert", Html.fromHtml(text).toString(), line1, line2, line3);
+                createNotification(notificationId, Html.fromHtml(text).toString(), line1, line2, line3);
 
                 alert.setActive(false);
 
@@ -250,10 +270,8 @@ public class PriceAlertService extends Service {
 
     private class AtParsePoloniexData extends AsyncTask<Void, Void, Void> {
         final String response;
-
-        double last;
-
         final Alert alert;
+        double last;
 
         AtParsePoloniexData(String response, Alert alert) {
             this.response = response;
@@ -335,7 +353,7 @@ public class PriceAlertService extends Service {
 
                 text = getString(R.string.alert_reached_for).replace("COIN", nameCoin).replaceAll("EXCHANGE", "Poloniex");
 
-                createNotification(notificationId, "Decred - Alert", Html.fromHtml(text).toString(), line1, line2, line3);
+                createNotification(notificationId, Html.fromHtml(text).toString(), line1, line2, line3);
 
                 alert.setActive(false);
 
@@ -343,27 +361,5 @@ public class PriceAlertService extends Service {
             }
         }
 
-    }
-
-    private void prepareNotification(final List<Alert> alerts) {
-        for (int i = 0; i < alerts.size(); i++) {
-
-            final Alert alert = alerts.get(i);
-
-            if (alert.isBittrex()) loadBittrexData(alert);
-
-            if (alert.isPoloniex()) loadPoloniexData(alert);
-        }
-    }
-
-    private int hash(String str) {
-        String s = str.replaceAll(" ", "");
-
-        int h = 0;
-
-        for (int i = 0; i < s.length(); i++)
-            h = 31 * h + s.charAt(i);
-
-        return h;
     }
 }

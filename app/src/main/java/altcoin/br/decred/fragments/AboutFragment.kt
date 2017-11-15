@@ -4,6 +4,7 @@ import altcoin.br.decred.R
 import altcoin.br.decred.adapter.AdapterLinks
 import altcoin.br.decred.model.Link
 import altcoin.br.decred.utils.Utils
+import altcoin.br.decred.utils.visible
 import android.annotation.SuppressLint
 import android.app.Fragment
 import android.os.Bundle
@@ -20,159 +21,136 @@ import kotlinx.android.synthetic.main.fragment_stats.*
 
 @SuppressLint("SetTextI18n")
 class AboutFragment : Fragment() {
-    private var links: ArrayList<Link> = ArrayList()
-    private var adapterLinks: AdapterLinks? = null
+	private var links: ArrayList<Link> = ArrayList()
+	private var adapterLinks: AdapterLinks? = null
 
-    override fun onStart() {
-        super.onStart()
+	override fun onStart() {
+		super.onStart()
 
-        prepareFirebasePart()
+		prepareFirebasePart()
 
-        Utils.textViewLink(tvAboutDeveloper, "https://twitter.com/jonathanveg2")
-        Utils.textViewLink(tvAboutCode, "https://github.com/JonathanVeg/decred_android")
-        Utils.textViewLink(tvDcrStatsLink, "https://dcrstats.com/")
-    }
+		Utils.textViewLink(tvAboutDeveloper, "https://twitter.com/jonathanveg2")
+		Utils.textViewLink(tvAboutCode, "https://github.com/JonathanVeg/decred_android")
+		Utils.textViewLink(tvDcrStatsLink, "https://dcrstats.com/")
+	}
 
-    private fun prepareListeners() {
-        tvAboutDonateWallet?.setOnClickListener {
-            try {
-                val wallet = tvAboutDonateWallet?.text.toString()
+	private fun prepareListeners() {
+		tvAboutDonateWallet?.setOnClickListener {
+			try {
+				val wallet = "DsUJTC7MZDWfnWyYnmm9P6ijsA44oRQVsSn"
 
-                Utils.copyToClipboard(activity, wallet)
+				Utils.copyToClipboard(activity, wallet)
 
-                Toast.makeText(activity, "Wallet WALLET copied to clipboard".replace("WALLET".toRegex(), wallet), Toast.LENGTH_LONG).show()
+				Toast.makeText(activity, "DCR Wallet ($wallet) copied to clipboard", Toast.LENGTH_LONG).show()
 
-                Utils.logFabric("donationWalletCopied")
-            } catch (e: Exception) {
-                e.printStackTrace()
+				Utils.logFabric("donationWalletCopied")
+			} catch (e: Exception) {
+				e.printStackTrace()
 
-                Toast.makeText(activity, "Error while copying wallet", Toast.LENGTH_LONG).show()
-            }
-        }
-    }
+				Toast.makeText(activity, "Error while copying wallet", Toast.LENGTH_LONG).show()
+			}
+		}
 
-    private fun instanceObjects() {
-        adapterLinks = AdapterLinks(activity, links)
+		tvAboutDonateWalletBTC?.setOnClickListener {
+			try {
+				val wallet = "1GDa2bhgKaCwQrka2xY1P9cexKNb88HYFE"
 
-        lvLinks.adapter = adapterLinks
-    }
+				Utils.copyToClipboard(activity, wallet)
 
-    private fun prepareFirebasePart() {
-        try {
-            FirebaseDatabase.getInstance().setPersistenceEnabled(true)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+				Toast.makeText(activity, "BTC Wallet ($wallet) copied to clipboard", Toast.LENGTH_LONG).show()
 
-        try {
-            val database = FirebaseDatabase.getInstance()
-            val showWallet = database.getReference("donation").child("show_wallet")
+				Utils.logFabric("donationWalletCopied")
+			} catch (e: Exception) {
+				e.printStackTrace()
 
-            // Read from the database
-            showWallet.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    val value = dataSnapshot.getValue<Boolean>(Boolean::class.java)
+				Toast.makeText(activity, "Error while copying wallet", Toast.LENGTH_LONG).show()
+			}
+		}
+	}
 
-                    if (value!!)
-                        llDonate?.visibility = View.VISIBLE
-                    else
-                        llDonate?.visibility = View.GONE
+	private fun instanceObjects() {
+		adapterLinks = AdapterLinks(activity, links)
 
-                    showWallet.keepSynced(true)
-                }
+		lvLinks.adapter = adapterLinks
+	}
 
-                override fun onCancelled(error: DatabaseError) {}
-            })
+	private fun prepareFirebasePart() {
+		try {
+			FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+		} catch (e: Exception) {
+			e.printStackTrace()
+		}
 
-            val wallet = database.getReference("donation").child("wallet")
+		try {
+			val database = FirebaseDatabase.getInstance()
+			val showWallet = database.getReference("donation").child("show_wallet")
 
-            // Read from the database
-            wallet.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    val value = dataSnapshot.getValue<String>(String::class.java)
+			// Read from the database
+			showWallet.addValueEventListener(object : ValueEventListener {
+				override fun onDataChange(dataSnapshot: DataSnapshot) {
+					// This method is called once with the initial value and again
+					// whenever data at this location is updated.
+					val value = dataSnapshot.getValue<Boolean>(Boolean::class.java)
 
-                    tvAboutDonateWallet?.text = value
+					llDonate?.visible(value == true)
 
-                    wallet.keepSynced(true)
-                }
+					showWallet.keepSynced(true)
+				}
 
-                override fun onCancelled(error: DatabaseError) {
-                    tvAboutDonateWallet?.text = "DsUJTC7MZDWfnWyYnmm9P6ijsA44oRQVsSn"
-                }
-            })
+				override fun onCancelled(error: DatabaseError) {}
+			})
 
-            val title = database.getReference("donation").child("title")
+			// links
+			val drLinks = database.getReference("links")
 
-            // Read from the database
-            title.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    val value = dataSnapshot.getValue<String>(String::class.java)
+			// Read from the database
+			drLinks.addValueEventListener(object : ValueEventListener {
+				override fun onDataChange(dataSnapshot: DataSnapshot) {
+					// This method is called once with the initial value and again
+					// whenever data at this location is updated.
 
-                    tvAboutDonate?.text = value
+					try {
+						val value = dataSnapshot.getValue<String>(String::class.java)
 
-                    wallet.keepSynced(true)
-                }
+						val localLinks = ArrayList<Link>()
 
-                override fun onCancelled(error: DatabaseError) {}
-            })
+						val arrLinks = value.split(",".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
 
-            // links
-            val drLinks = database.getReference("links")
+						var i = 0
+						while (i < arrLinks.size) {
+							localLinks.add(Link(arrLinks[i], arrLinks[i + 1]))
+							i += 2
+						}
 
-            // Read from the database
-            drLinks.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
+						links.clear()
 
-                    try {
-                        val value = dataSnapshot.getValue<String>(String::class.java)
+						links.addAll(localLinks)
 
-                        val localLinks = ArrayList<Link>()
+						adapterLinks?.notifyDataSetChanged()
 
-                        val arrLinks = value.split(",".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
+						drLinks.keepSynced(true)
+					} catch (e: Exception) {
+						e.printStackTrace()
+					}
 
-                        var i = 0
-                        while (i < arrLinks.size) {
-                            localLinks.add(Link(arrLinks[i], arrLinks[i + 1]))
-                            i += 2
-                        }
+				}
 
-                        links.clear()
+				override fun onCancelled(error: DatabaseError) {}
+			})
+		} catch (e: Exception) {
+			e.printStackTrace()
+		}
+	}
 
-                        links.addAll(localLinks)
+	override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		return inflater?.inflate(R.layout.fragment_about, container, false)
+	}
 
-                        adapterLinks?.notifyDataSetChanged()
+	override fun onActivityCreated(savedInstanceState: Bundle?) {
+		super.onActivityCreated(savedInstanceState)
 
-                        drLinks.keepSynced(true)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
+		instanceObjects()
 
-                }
-
-                override fun onCancelled(error: DatabaseError) {}
-            })
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_about, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        instanceObjects()
-
-        prepareListeners()
-    }
+		prepareListeners()
+	}
 }

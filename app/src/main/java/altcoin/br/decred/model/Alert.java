@@ -59,12 +59,12 @@ public class Alert {
         return when;
     }
 
-    public void setWhen(int when) {
-        this.when = when;
-    }
-
     public void setWhen(String when) {
         this.when = Integer.parseInt(when);
+    }
+
+    public void setWhen(int when) {
+        this.when = when;
     }
 
     public String getValue() {

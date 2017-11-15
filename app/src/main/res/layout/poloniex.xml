@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/activity_margin"
@@ -10,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Poloniex"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -25,15 +26,15 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
                 android:layout_height="wrap_content"
-                android:text="Last price: " />
+                android:text="Last price: "
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tvPoloniexLast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0" />
+                android:text="0"/>
         </LinearLayout>
 
         <LinearLayout
@@ -43,15 +44,15 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
                 android:layout_height="wrap_content"
-                android:text="Volume (in BTC): " />
+                android:text="Volume (in BTC): "
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tvPoloniexBaseVolume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0" />
+                android:text="0"/>
         </LinearLayout>
 
         <LinearLayout
@@ -61,15 +62,15 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
                 android:layout_height="wrap_content"
-                android:text="Bid: " />
+                android:text="Bid: "
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tvPoloniexBid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0" />
+                android:text="0"/>
         </LinearLayout>
 
         <LinearLayout
@@ -79,15 +80,15 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
                 android:layout_height="wrap_content"
-                android:text="Ask: " />
+                android:text="Ask: "
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tvPoloniexAsk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0" />
+                android:text="0"/>
         </LinearLayout>
 
         <LinearLayout
@@ -97,15 +98,15 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:textStyle="bold"
                 android:layout_height="wrap_content"
-                android:text="Changes: " />
+                android:text="Changes: "
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tvPoloniexChanges"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0" />
+                android:text="0"/>
         </LinearLayout>
 
     </LinearLayout>

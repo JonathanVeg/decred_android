@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/llAbout"
     android:layout_width="match_parent"
@@ -14,7 +15,7 @@
         android:layout_gravity="center"
         android:contentDescription="DCR Logo"
         android:visibility="gone"
-        app:srcCompat="@drawable/dcr_icon" />
+        app:srcCompat="@drawable/dcr_icon"/>
 
     <TextView
         android:id="@+id/tvAboutDeveloper"
@@ -24,7 +25,7 @@
         android:layout_marginTop="5dp"
         android:text="Developed by Jonathan Silva"
         android:textSize="12sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/tvAboutCode"
@@ -33,7 +34,7 @@
         android:layout_gravity="center"
         android:text="(Source Code)"
         android:textSize="12sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:id="@+id/llDonate"
@@ -50,16 +51,25 @@
             android:layout_gravity="center"
             android:text="Donation"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tvAboutDonateWallet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="loading wallet"
+            android:text="(DCR) DsUJTC7MZDWfnWyYnmm9P6ijsA44oRQVsSn"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvAboutDonateWalletBTC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="(BTC) 1GDa2bhgKaCwQrka2xY1P9cexKNb88HYFE"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <LinearLayout
@@ -70,7 +80,7 @@
         android:layout_marginTop="10dp"
         android:background="#000000"
         android:gravity="center_horizontal"
-        android:orientation="vertical" />
+        android:orientation="vertical"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -78,11 +88,11 @@
         android:layout_gravity="center"
         android:padding="8dp"
         android:text="Important Links"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <ListView
         android:id="@+id/lvLinks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="15dp"/>
 </LinearLayout>

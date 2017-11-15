@@ -267,10 +267,7 @@ public class PriceWidgetProvider extends AppWidgetProvider {
         return h + ":" + m;
     }
 
-
     private void loadDataFromPoloniex(final Context context, final AppWidgetManager appWidgetManager, final int appWidgetId, final String fiat) {
-        final AppWidgetManager manager = appWidgetManager;
-
         final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.appwidget_coin);
 
         String url = "https://poloniex.com/public?command=returnTicker";
@@ -363,7 +360,6 @@ public class PriceWidgetProvider extends AppWidgetProvider {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
 
             return null;
         }

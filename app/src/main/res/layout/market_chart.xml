@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -10,12 +11,12 @@
         android:layout_gravity="center"
         android:padding="8dp"
         android:text="Market Depth - Buy"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/marketChartBid"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="300dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,11 +24,11 @@
         android:layout_gravity="center"
         android:padding="8dp"
         android:text="Market Depth - Sell"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/marketChartAsk"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="300dp"/>
 
 </LinearLayout>

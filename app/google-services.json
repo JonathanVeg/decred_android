@@ -1,42 +1,42 @@
 {
-  "project_info": {
-    "project_number": "956274091132",
-    "firebase_url": "https://decred-88dc9.firebaseio.com",
-    "project_id": "decred-88dc9",
-    "storage_bucket": "decred-88dc9.appspot.com"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:956274091132:android:a81b073d600c7447",
-        "android_client_info": {
-          "package_name": "altcoin.br.decred"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "956274091132-glgfv6a511jhjc1efkqernf61hds6juh.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": ""
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    }
-  ],
-  "configuration_version": "1"
+	"project_info": {
+		"project_number": "956274091132",
+		"firebase_url": "https://decred-88dc9.firebaseio.com",
+		"project_id": "decred-88dc9",
+		"storage_bucket": "decred-88dc9.appspot.com"
+	},
+	"client": [
+		{
+			"client_info": {
+				"mobilesdk_app_id": "1:956274091132:android:a81b073d600c7447",
+				"android_client_info": {
+					"package_name": "altcoin.br.decred"
+				}
+			},
+			"oauth_client": [
+				{
+					"client_id": "956274091132-glgfv6a511jhjc1efkqernf61hds6juh.apps.googleusercontent.com",
+					"client_type": 3
+				}
+			],
+			"api_key": [
+				{
+					"current_key": ""
+				}
+			],
+			"services": {
+				"analytics_service": {
+					"status": 1
+				},
+				"appinvite_service": {
+					"status": 1,
+					"other_platform_oauth_client": []
+				},
+				"ads_service": {
+					"status": 2
+				}
+			}
+		}
+	],
+	"configuration_version": "1"
 }

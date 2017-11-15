@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -17,17 +18,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="1dp"
-                android:color="@color/transparent_white" />
+                android:color="@color/transparent_white"/>
 
             <solid
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:color="@color/transparent_white" />
+                android:color="@color/transparent_white"/>
 
             <corners
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:radius="3dp" />
+                android:radius="3dp"/>
 
         </shape>
     </item>

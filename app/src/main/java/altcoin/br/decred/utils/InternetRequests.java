@@ -41,9 +41,9 @@ public class InternetRequests {
         }
     };
 
-    private Map<String, String> params;
-    private String tag;
-    private Map<String, String> headers;
+    private final Map<String, String> params;
+    private final String tag;
+    private final Map<String, String> headers;
 
     public InternetRequests() {
         params = new HashMap<>();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -10,12 +11,12 @@
         android:layout_gravity="center"
         android:padding="8dp"
         android:text="Exchanges"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
-    <include layout="@layout/poloniex" />
+    <include layout="@layout/poloniex"/>
 
-    <include layout="@layout/bittrex" />
+    <include layout="@layout/bittrex"/>
 
-    <include layout="@layout/bleutrade" />
+    <include layout="@layout/bleutrade"/>
 
 </LinearLayout>

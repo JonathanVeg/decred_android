@@ -19,217 +19,217 @@ import org.greenrobot.eventbus.EventBus
 import org.json.JSONObject
 
 class MainActivity : Activity() {
-    private var currentTab = 0
+	private var currentTab = 0
 
-    private var handler: Handler? = null
+	private var handler: Handler? = null
 
-    private val runnableCode = object : Runnable {
-        override fun run() {
-            tvLastUpdate?.text = Utils.now()
+	private val runnableCode = object : Runnable {
+		override fun run() {
+			tvLastUpdate?.text = Utils.now()
 
-            try {
-                EventBus.getDefault().post(JSONObject("{}").put("tag", "update"))
-            } catch (_: Exception) {
-            }
+			try {
+				EventBus.getDefault().post(JSONObject("{}").put("tag", "update"))
+			} catch (_: Exception) {
+			}
 
-            handler = Handler()
+			handler = Handler()
 
-            handler?.postDelayed(this, 10000)
-        }
-    }
+			handler?.postDelayed(this, 10000)
+		}
+	}
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContentView(R.layout.activity_main)
 
-        if (actionBar != null) {
-            actionBar?.setDisplayShowHomeEnabled(true)
-            actionBar?.title = "Decred"
-        }
+		if (actionBar != null) {
+			actionBar?.setDisplayShowHomeEnabled(true)
+			actionBar?.title = "Decred"
+		}
 
-        instanceObjects()
+		instanceObjects()
 
-        prepareListeners()
+		prepareListeners()
 
-        resetFooter()
+		resetFooter()
 
-        bSummary?.performClick()
+		bSummary?.performClick()
 
-        startService(Intent(this, PriceAlertService::class.java))
+		startService(Intent(this, PriceAlertService::class.java))
 
-        try {
-            EventBus.getDefault().register(this)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+		try {
+			EventBus.getDefault().register(this)
+		} catch (e: Exception) {
+			e.printStackTrace()
+		}
 
-    }
+	}
 
-    override fun onBackPressed() {
-        if (currentTab != Companion.TAB_SUMMARY) {
-            bSummary?.performClick()
+	override fun onBackPressed() {
+		if (currentTab != Companion.TAB_SUMMARY) {
+			bSummary?.performClick()
 
-            return
-        }
+			return
+		}
 
-        super.onBackPressed()
-    }
+		super.onBackPressed()
+	}
 
-    override fun onStart() {
-        super.onStart()
+	override fun onStart() {
+		super.onStart()
 
-        // creating the handler for updating the altcoin.br.decred.data constantily
-        try {
+		// creating the handler for updating the altcoin.br.decred.data constantily
+		try {
 
-            handler = Handler()
+			handler = Handler()
 
-            handler?.postDelayed(runnableCode, 10000)
+			handler?.postDelayed(runnableCode, 10000)
 
-        } catch (e: Exception) {
-            Log.e("Handler", "Error while creating handler")
+		} catch (e: Exception) {
+			Log.e("Handler", "Error while creating handler")
 
-            e.printStackTrace()
-        }
+			e.printStackTrace()
+		}
 
-    }
+	}
 
-    override fun onPause() {
-        super.onPause()
+	override fun onPause() {
+		super.onPause()
 
-        try {
-            handler?.removeCallbacks(runnableCode)
-        } catch (e: Exception) {
-            Log.e("Handler", "Error while pausing handler")
+		try {
+			handler?.removeCallbacks(runnableCode)
+		} catch (e: Exception) {
+			Log.e("Handler", "Error while pausing handler")
 
-            e.printStackTrace()
-        }
+			e.printStackTrace()
+		}
 
-    }
+	}
 
-    private fun instanceObjects() {
-        Utils.textViewLink(tvOficialSite, "https://decred.info/")
-        Utils.textViewLink(tvPoloniexTitle, "https://coinmarketcap.com/exchanges/poloniex/")
-        Utils.textViewLink(tvBittrexTitle, "https://coinmarketcap.com/exchanges/bittrex/")
-        Utils.textViewLink(tvBleutradeTitle, "https://coinmarketcap.com/exchanges/bleutrade/")
-        Utils.textViewLink(tvCoinMarketCapTitle, "https://coinmarketcap.com/currencies/decred/#markets")
-    }
+	private fun instanceObjects() {
+		Utils.textViewLink(tvOficialSite, "https://decred.info/")
+		Utils.textViewLink(tvPoloniexTitle, "https://coinmarketcap.com/exchanges/poloniex/")
+		Utils.textViewLink(tvBittrexTitle, "https://coinmarketcap.com/exchanges/bittrex/")
+		Utils.textViewLink(tvBleutradeTitle, "https://coinmarketcap.com/exchanges/bleutrade/")
+		Utils.textViewLink(tvCoinMarketCapTitle, "https://coinmarketcap.com/currencies/decred/#markets")
+	}
 
-    private fun prepareListeners() {
-        bSummary?.setOnClickListener { changeTab(Companion.TAB_SUMMARY) }
+	private fun prepareListeners() {
+		bSummary?.setOnClickListener { changeTab(Companion.TAB_SUMMARY) }
 
-        bChart?.setOnClickListener { changeTab(Companion.TAB_CHART) }
+		bChart?.setOnClickListener { changeTab(Companion.TAB_CHART) }
 
-        bCalculator?.setOnClickListener { changeTab(Companion.TAB_CALC) }
+		bCalculator?.setOnClickListener { changeTab(Companion.TAB_CALC) }
 
-        bAbout?.setOnClickListener { changeTab(Companion.TAB_ABOUT) }
+		bAbout?.setOnClickListener { changeTab(Companion.TAB_ABOUT) }
 
-        bAlerts?.setOnClickListener { changeTab(Companion.TAB_ALERT) }
+		bAlerts?.setOnClickListener { changeTab(Companion.TAB_ALERT) }
 
-        bStats?.setOnClickListener { changeTab(Companion.TAB_STATS) }
-    }
+		bStats?.setOnClickListener { changeTab(Companion.TAB_STATS) }
+	}
 
-    private fun resetFooter() {
-        bSummary?.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver))
-        bChart?.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver))
-        bCalculator?.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver))
-        bAbout?.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver))
-        bStats?.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver))
-        bAlerts?.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver))
-    }
+	private fun resetFooter() {
+		bSummary?.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver))
+		bChart?.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver))
+		bCalculator?.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver))
+		bAbout?.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver))
+		bStats?.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver))
+		bAlerts?.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent_silver))
+	}
 
-    private fun changeTab(tab: Int) {
-        val fm = fragmentManager
+	private fun changeTab(tab: Int) {
+		val fm = fragmentManager
 
-        val ft = fm.beginTransaction()
+		val ft = fm.beginTransaction()
 
-        when (tab) {
-            Companion.TAB_SUMMARY -> {
-                resetFooter()
+		when (tab) {
+			Companion.TAB_SUMMARY -> {
+				resetFooter()
 
-                currentTab = Companion.TAB_SUMMARY
+				currentTab = Companion.TAB_SUMMARY
 
-                bSummary?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
+				bSummary?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
 
-                val fragment = SummaryFragment()
+				val fragment = SummaryFragment()
 
-                ft.replace(R.id.llFragments, fragment, "task").commit()
+				ft.replace(R.id.llFragments, fragment, "task").commit()
 
-                Utils.logFabric("tabChanged", "tab", "summary")
-            }
-            Companion.TAB_CHART -> {
-                resetFooter()
+				Utils.logFabric("tabChanged", "tab", "summary")
+			}
+			Companion.TAB_CHART -> {
+				resetFooter()
 
-                currentTab = Companion.TAB_CHART
+				currentTab = Companion.TAB_CHART
 
-                bChart?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
+				bChart?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
 
-                val fragment = ChartFragment()
+				val fragment = ChartFragment()
 
-                ft.replace(R.id.llFragments, fragment, "task").commit()
+				ft.replace(R.id.llFragments, fragment, "task").commit()
 
-                Utils.logFabric("tabChanged", "tab", "chart")
-            }
-            Companion.TAB_CALC -> {
-                resetFooter()
+				Utils.logFabric("tabChanged", "tab", "chart")
+			}
+			Companion.TAB_CALC -> {
+				resetFooter()
 
-                currentTab = Companion.TAB_CALC
+				currentTab = Companion.TAB_CALC
 
-                bCalculator?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
+				bCalculator?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
 
-                val fragment = CalculatorFragment()
+				val fragment = CalculatorFragment()
 
-                ft.replace(R.id.llFragments, fragment, "task").commit()
+				ft.replace(R.id.llFragments, fragment, "task").commit()
 
-                Utils.logFabric("tabChanged", "tab", "calculator")
-            }
-            Companion.TAB_ABOUT -> {
-                resetFooter()
+				Utils.logFabric("tabChanged", "tab", "calculator")
+			}
+			Companion.TAB_ABOUT -> {
+				resetFooter()
 
-                currentTab = Companion.TAB_ABOUT
+				currentTab = Companion.TAB_ABOUT
 
-                bAbout?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
+				bAbout?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
 
-                val fragment = AboutFragment()
+				val fragment = AboutFragment()
 
-                ft.replace(R.id.llFragments, fragment, "task").commit()
+				ft.replace(R.id.llFragments, fragment, "task").commit()
 
-                Utils.logFabric("tabChanged", "tab", "about")
-            }
-            Companion.TAB_ALERT -> {
-                resetFooter()
+				Utils.logFabric("tabChanged", "tab", "about")
+			}
+			Companion.TAB_ALERT -> {
+				resetFooter()
 
-                currentTab = Companion.TAB_ALERT
+				currentTab = Companion.TAB_ALERT
 
-                bAlerts?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
+				bAlerts?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
 
-                val fragment = AlertsFragment()
+				val fragment = AlertsFragment()
 
-                ft.replace(R.id.llFragments, fragment, "task").commit()
+				ft.replace(R.id.llFragments, fragment, "task").commit()
 
-                Utils.logFabric("tabChanged", "tab", "alerts")
-            }
-            Companion.TAB_STATS -> {
-                resetFooter()
+				Utils.logFabric("tabChanged", "tab", "alerts")
+			}
+			Companion.TAB_STATS -> {
+				resetFooter()
 
-                currentTab = Companion.TAB_STATS
+				currentTab = Companion.TAB_STATS
 
-                bStats?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
+				bStats?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
 
-                val fragment = StatsFragment()
+				val fragment = StatsFragment()
 
-                ft.replace(R.id.llFragments, fragment, "task").commit()
+				ft.replace(R.id.llFragments, fragment, "task").commit()
 
-                Utils.logFabric("tabChanged", "tab", "stats")
-            }
-        }
-    }
+				Utils.logFabric("tabChanged", "tab", "stats")
+			}
+		}
+	}
 
-    companion object {
-        private val TAB_SUMMARY = 0
-        private val TAB_CHART = 1
-        private val TAB_CALC = 2
-        private val TAB_ALERT = 3
-        private val TAB_STATS = 4
-        private val TAB_ABOUT = 5
-    }
+	companion object {
+		private val TAB_SUMMARY = 0
+		private val TAB_CHART = 1
+		private val TAB_CALC = 2
+		private val TAB_ALERT = 3
+		private val TAB_STATS = 4
+		private val TAB_ABOUT = 5
+	}
 }
