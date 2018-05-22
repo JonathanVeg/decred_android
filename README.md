@@ -25,4 +25,4 @@ Contacts (my social networks):
  * Email: jonathan.jgs@gmail.com
 
 If you like this app you can help by donating some DCRs to:
-* DsZDUp1FdfYj2jPd27U1F9Xzm4BpsKp4LPQ
+* DsUJTC7MZDWfnWyYnmm9P6ijsA44oRQVsSn
