@@ -104,8 +104,8 @@ class StatsFragment : Fragment() {
 		}
 	}
 
-	override fun onPause() {
-		super.onPause()
+	override fun onStop() {
+		super.onStop()
 
 		running = false
 	}

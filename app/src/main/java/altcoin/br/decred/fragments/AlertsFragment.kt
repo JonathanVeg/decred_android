@@ -44,8 +44,8 @@ class AlertsFragment : Fragment() {
 		running = true
 	}
 
-	override fun onPause() {
-		super.onPause()
+	override fun onStop() {
+		super.onStop()
 
 		running = false
 	}

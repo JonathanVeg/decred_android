@@ -89,8 +89,8 @@ class MainActivity : Activity() {
         }
     }
     
-    override fun onPause() {
-        super.onPause()
+    override fun onStop() {
+        super.onStop()
         
         try {
             handler?.removeCallbacks(runnableCode)
