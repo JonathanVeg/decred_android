@@ -2,9 +2,6 @@ package altcoin.br.decred.utils
 
 import android.app.Activity
 import android.content.Context
-import android.os.Build
-import android.text.Html
-import android.text.Spanned
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -32,7 +29,7 @@ fun String.numberComplete(decimalPlaces: Int) =
             
             bd.toPlainString()
         } catch (e: Exception) {
-            ""
+            "0.0"
         }
 
 fun Double.numberComplete(decimalPlaces: Int) =
@@ -106,14 +103,7 @@ fun isPackageInstalled(context: Context, packageName: String) =
 fun alert(context: Context, text: String) {
     try {
         Toast.makeText(context, text, Toast.LENGTH_LONG).show()
-    } catch (ignored: Exception) {
+    } catch (_: Exception) {
     }
 }
 
-fun fromHtml(source: String): Spanned {
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY)
-    } else {
-        Html.fromHtml(source)
-    }
-}

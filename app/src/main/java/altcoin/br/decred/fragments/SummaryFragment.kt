@@ -4,6 +4,8 @@ import altcoin.br.decred.R
 import altcoin.br.decred.utils.Bitcoin
 import altcoin.br.decred.utils.InternetRequests
 import altcoin.br.decred.utils.Utils
+import altcoin.br.decred.utils.exchanges.AbstractExchange
+import altcoin.br.decred.utils.exchanges.EnumExchanges
 import android.app.Fragment
 import android.os.AsyncTask
 import android.os.Bundle
@@ -16,6 +18,7 @@ import kotlinx.android.synthetic.main.bittrex.*
 import kotlinx.android.synthetic.main.bleutrade.*
 import kotlinx.android.synthetic.main.coin_market_cap.*
 import kotlinx.android.synthetic.main.poloniex.*
+import kotlinx.android.synthetic.main.profitfy.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.json.JSONArray
@@ -33,6 +36,8 @@ class SummaryFragment : Fragment() {
         loadBittrexData()
         
         loadBleutradeData()
+        
+        loadProfitfyData()
         
         running = true
         
@@ -60,6 +65,8 @@ class SummaryFragment : Fragment() {
                 loadBittrexData()
                 
                 loadBleutradeData()
+                
+                loadProfitfyData()
                 
                 Utils.log("update ::: SummaryFragment")
             }
@@ -126,212 +133,98 @@ class SummaryFragment : Fragment() {
             }
             
             Bitcoin.convertBtcToBrl(listener)
-            
-            // tvLastUpdate.setText(Utils.now());
         }
     }
     
     private fun loadBittrexData() {
-        val url = "https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-DCR"
-        
-        val listener = Response.Listener<String> { response -> AtParseBittrexData(response).execute() }
-        
-        val internetRequests = InternetRequests()
-        internetRequests.executePost(url, listener)
-    }
-    
-    private inner class AtParseBittrexData internal constructor(internal val response: String) : AsyncTask<Void?, Void?, Void?>() {
-        internal var last: String = ""
-        internal var baseVolume: String = ""
-        internal var ask: String = ""
-        internal var bid: String = ""
-        internal var changes: String? = null
-        override fun doInBackground(vararg voids: Void?): Void? {
-            try {
-                var obj = JSONObject(response)
+        object : AbstractExchange(EnumExchanges.BITTREX) {
+            override fun onValueLoaded() {
+                if (!running) return
                 
-                if (obj.getBoolean("success")) {
-                    obj = obj.getJSONArray("result").getJSONObject(0)
+                try {
+                    tvBittrexLast.text = last
+                    tvBittrexBaseVolume.text = baseVolume
+                    tvBittrexBid.text = bid
+                    tvBittrexAsk.text = ask
+                    tvBittrexChanges.text = String.format("%s%%", changes)
                     
-                    last = Utils.numberComplete(obj.getString("Last"), 8)
-                    baseVolume = Utils.numberComplete(obj.getString("BaseVolume"), 8)
-                    ask = Utils.numberComplete(obj.getString("Ask"), 8)
-                    bid = Utils.numberComplete(obj.getString("Bid"), 8)
-                    
-                    // the api does not give the % changes, but we can calculate it using the prevDay and last values
-                    val prev = obj.getDouble("PrevDay")
-                    
-                    val c = (prev - java.lang.Double.parseDouble(last)) / prev * -100
-                    
-                    changes = Utils.numberComplete("" + c, 2)
+                    if (java.lang.Double.parseDouble(changes) >= 0)
+                        tvBittrexChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesUp))
+                    else
+                        tvBittrexChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesDown))
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
-            } catch (e: Exception) {
-                e.printStackTrace()
             }
-            
-            return null
-        }
-        
-        override fun onPostExecute(aVoid: Void?) {
-            super.onPostExecute(aVoid)
-            
-            if (!running) return
-            
-            tvBittrexLast.text = last
-            tvBittrexBaseVolume.text = baseVolume
-            tvBittrexBid.text = bid
-            tvBittrexAsk.text = ask
-            tvBittrexChanges.text = String.format("%s%%", changes)
-            
-            if (changes == null) changes = "0"
-            
-            if (java.lang.Double.parseDouble(changes) >= 0)
-                tvBittrexChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesUp))
-            else
-                tvBittrexChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesDown))
         }
     }
     
     private fun loadPoloniexData() {
-        val url = "https://poloniex.com/public?command=returnTicker"
-        
-        val listener = Response.Listener<String> { response -> AtParsePoloniexData(response).execute() }
-        
-        val internetRequests = InternetRequests()
-        internetRequests.executePost(url, listener)
+        object : AbstractExchange(EnumExchanges.POLONIEX) {
+            override fun onValueLoaded() {
+                try {
+                    if (!running) return
+                    
+                    tvPoloniexLast.text = last
+                    tvPoloniexBaseVolume.text = baseVolume
+                    tvPoloniexBid.text = bid
+                    tvPoloniexAsk.text = ask
+                    tvPoloniexChanges.text = String.format("%s%%", changes)
+                    
+                    if (java.lang.Double.parseDouble(changes) >= 0)
+                        tvPoloniexChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesUp))
+                    else
+                        tvPoloniexChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesDown))
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
     }
     
-    private inner class AtParsePoloniexData internal constructor(internal val response: String) : AsyncTask<Void?, Void?, Void?>() {
-        internal var last: String = ""
-        internal var baseVolume: String = ""
-        internal var ask: String = ""
-        internal var bid: String = ""
-        internal var changes: String = ""
-        internal fun getSpecificSummary(response: String): JSONObject? {
-            try {
-                val coin = "DCR"
-                
-                val jObject = JSONObject(response)
-                
-                val keys = jObject.keys()
-                
-                var jsonObj: JSONObject
-                
-                while (keys.hasNext()) {
-                    val key = keys.next() as String
-                    if (jObject.get(key) is JSONObject) {
-                        jsonObj = jObject.get(key) as JSONObject
-                        
-                        if (key.startsWith("BTC_") && key.toLowerCase().contains(coin.toLowerCase())) {
-                            return jsonObj
-                        }
-                    }
+    private fun loadProfitfyData() {
+        object : AbstractExchange(EnumExchanges.PROFITFY) {
+            override fun onValueLoaded() {
+                try {
+                    if (!running) return
+                    
+                    tvProfitfyLast.text = last
+                    tvProfitfyBaseVolume.text = baseVolume
+                    tvProfitfyBid.text = bid
+                    tvProfitfyAsk.text = ask
+                    tvProfitfyChanges.text = String.format("%s%%", changes)
+                    
+                    if (java.lang.Double.parseDouble(changes) >= 0)
+                        tvProfitfyChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesUp))
+                    else
+                        tvProfitfyChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesDown))
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
-                
-                return null
-            } catch (e: Exception) {
-                e.printStackTrace()
-                
-                return null
             }
-        }
-        
-        override fun doInBackground(vararg voids: Void?): Void? {
-            try {
-                val obj = getSpecificSummary(response)
-                
-                last = Utils.numberComplete(obj!!.getString("last"), 8)
-                baseVolume = Utils.numberComplete(obj.getString("baseVolume"), 8)
-                ask = Utils.numberComplete(obj.getString("lowestAsk"), 8)
-                bid = Utils.numberComplete(obj.getString("highestBid"), 8)
-                changes = Utils.numberComplete(obj.getDouble("percentChange") * 100, 2)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            
-            return null
-        }
-        
-        override fun onPostExecute(aVoid: Void?) {
-            super.onPostExecute(aVoid)
-            
-            if (!running) return
-            
-            tvPoloniexLast.text = last
-            tvPoloniexBaseVolume.text = baseVolume
-            tvPoloniexBid.text = bid
-            tvPoloniexAsk.text = ask
-            tvPoloniexChanges.text = String.format("%s%%", changes)
-            
-            if (java.lang.Double.parseDouble(changes) >= 0)
-                tvPoloniexChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesUp))
-            else
-                tvPoloniexChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesDown))
         }
     }
     
     private fun loadBleutradeData() {
-        val url = "https://bleutrade.com/api/v2/public/getmarketsummaries"
-        
-        val listener = Response.Listener<String> { response -> AtParseBleutradeData(response).execute() }
-        
-        val internetRequests = InternetRequests()
-        internetRequests.executePost(url, listener)
-    }
-    
-    private inner class AtParseBleutradeData internal constructor(internal val response: String) : AsyncTask<Void?, Void?, Void?>() {
-        internal var last: String = ""
-        internal var baseVolume: String = ""
-        internal var ask: String = ""
-        internal var bid: String = ""
-        internal var changes: String? = null
-        override fun doInBackground(vararg voids: Void?): Void? {
-            try {
-                val arr = JSONObject(response).getJSONArray("result")
-                
-                var obj: JSONObject? = null
-                
-                for (i in 0 until arr.length()) {
-                    val item = arr.getJSONObject(i)
+        object : AbstractExchange(EnumExchanges.BLEUTRADE) {
+            override fun onValueLoaded() {
+                try {
+                    if (!running) return
                     
-                    if (item.getString("MarketName").toLowerCase() == "dcr_btc")
-                        obj = item
+                    tvBleutradeLast.text = last
+                    tvBleutradeBaseVolume.text = baseVolume
+                    tvBleutradeBid.text = bid
+                    tvBleutradeAsk.text = ask
+                    tvBleutradeChanges.text = String.format("%s%%", changes)
+                    
+                    if (java.lang.Double.parseDouble(changes) >= 0)
+                        tvBleutradeChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesUp))
+                    else
+                        tvBleutradeChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesDown))
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
-                
-                if (obj != null) {
-                    last = Utils.numberComplete(obj.getString("Last"), 8)
-                    baseVolume = Utils.numberComplete(obj.getString("BaseVolume"), 8)
-                    ask = Utils.numberComplete(obj.getString("Ask"), 8)
-                    bid = Utils.numberComplete(obj.getString("Bid"), 8)
-                    
-                    val prev = obj.getDouble("PrevDay")
-                    
-                    val c = (prev - java.lang.Double.parseDouble(last)) / prev * -100
-                    
-                    changes = Utils.numberComplete(c, 2)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
             }
-            
-            return null
-        }
-        
-        override fun onPostExecute(aVoid: Void?) {
-            super.onPostExecute(aVoid)
-            
-            if (!running) return
-            
-            tvBleutradeLast.text = last
-            tvBleutradeBaseVolume.text = baseVolume
-            tvBleutradeBid.text = bid
-            tvBleutradeAsk.text = ask
-            tvBleutradeChanges.text = String.format("%s%%", changes)
-            
-            if (changes != null && java.lang.Double.parseDouble(changes) >= 0)
-                tvBleutradeChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesUp))
-            else
-                tvBleutradeChanges.setTextColor(ContextCompat.getColor(activity, R.color.colorChangesDown))
         }
     }
     

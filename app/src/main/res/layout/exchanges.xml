@@ -17,5 +17,7 @@
     <include layout="@layout/bittrex" />
     
     <include layout="@layout/bleutrade" />
+    
+    <include layout="@layout/profitfy" />
 
 </LinearLayout>

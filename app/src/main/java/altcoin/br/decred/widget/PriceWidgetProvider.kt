@@ -117,7 +117,6 @@ class PriceWidgetProvider : AppWidgetProvider() {
     }
     
     private fun loadDataFromBittrex(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int, fiat: String?) {
-        
         val views = RemoteViews(context.packageName, R.layout.appwidget_coin)
         
         views.setTextViewText(R.id.tvWidNameCoin, "DCR - Trex - $hour")
