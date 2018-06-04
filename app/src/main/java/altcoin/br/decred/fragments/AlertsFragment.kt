@@ -122,7 +122,7 @@ class AlertsFragment : Fragment() {
     }
     
     internal inner class AtLoadAlerts(val context: Context) : io.fabric.sdk.android.services.concurrency.AsyncTask<Void?, Void?, Void?>() {
-        val list: MutableList<Alert> = ArrayList()
+        private val list: MutableList<Alert> = ArrayList()
         override fun doInBackground(vararg voids: Void?): Void? {
             val db = DBTools(context)
             

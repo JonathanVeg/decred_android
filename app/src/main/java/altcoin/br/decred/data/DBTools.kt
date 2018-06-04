@@ -34,8 +34,8 @@ class DBTools private constructor(var context: Context?, dbName: String) {
         } catch (e: Exception) {
             error = e.toString()
             
-            Log.e("DBTools Error", "Exec " + error)
-            Log.e("DBTools Error", "Exec " + sql)
+            Log.e("DBTools Error", "Exec $error")
+            Log.e("DBTools Error", "Exec $sql")
             
             return false
         } finally {
@@ -49,7 +49,7 @@ class DBTools private constructor(var context: Context?, dbName: String) {
         } catch (e: Exception) {
             error = e.toString()
             
-            Log.e("DBTools Error", "Open " + error)
+            Log.e("DBTools Error", "Open $error")
         }
     }
     
@@ -61,7 +61,7 @@ class DBTools private constructor(var context: Context?, dbName: String) {
         } catch (e: Exception) {
             error = e.toString()
             
-            Log.e("DBTools Error", "Close " + error)
+            Log.e("DBTools Error", "Close $error")
         }
     }
     
@@ -77,7 +77,7 @@ class DBTools private constructor(var context: Context?, dbName: String) {
         } catch (e: Exception) {
             error = e.toString()
             
-            Log.e("DBTools Error", "Insert " + error)
+            Log.e("DBTools Error", "Insert $error")
             
             return false
         } finally {
@@ -93,7 +93,7 @@ class DBTools private constructor(var context: Context?, dbName: String) {
         } catch (e: Exception) {
             error = e.toString()
             
-            Log.e("DBTools Error", "Update " + error)
+            Log.e("DBTools Error", "Update $error")
             
             0
         } finally {
@@ -132,8 +132,8 @@ class DBTools private constructor(var context: Context?, dbName: String) {
         } catch (e: Exception) {
             error = e.toString()
             
-            Log.e("DBTools Error", "GetData " + error)
-            Log.e("DBTools Error", "GetData " + _lastSearch)
+            Log.e("DBTools Error", "GetData $error")
+            Log.e("DBTools Error", "GetData $_lastSearch")
             
             if (cursor != null)
                 cursor!!.close()
@@ -150,8 +150,8 @@ class DBTools private constructor(var context: Context?, dbName: String) {
         } catch (e: Exception) {
             error = e.toString()
             
-            Log.e("DBTools Error", "GetData " + error)
-            Log.e("DBTools Error", "GetData " + _lastSearch)
+            Log.e("DBTools Error", "GetData $error")
+            Log.e("DBTools Error", "GetData $_lastSearch")
             
             ""
         }

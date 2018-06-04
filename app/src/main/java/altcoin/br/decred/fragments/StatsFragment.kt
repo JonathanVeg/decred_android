@@ -29,8 +29,6 @@ class StatsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         
-        Utils.log("onAttach")
-        
         loadData()
         
         running = true
@@ -47,8 +45,6 @@ class StatsFragment : Fragment() {
         try {
             if (obj.has("tag") && obj.getString("tag").equals("update", ignoreCase = true) && running) {
                 loadData()
-                
-                Utils.log("update ::: StatsFragment")
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -108,7 +104,7 @@ class StatsFragment : Fragment() {
     private fun loadStatsData() {
         statsTimeStamp = Utils.timestampLong()
         
-        val url = "https://dcrstats.com/api/v1/get_stats?" + statsTimeStamp
+        val url = "https://dcrstats.com/api/v1/get_stats?$statsTimeStamp"
         
         val listener = Response.Listener<String> { response ->
             AtParseStatsData(response).execute()
@@ -185,17 +181,11 @@ class StatsFragment : Fragment() {
                 
                 val timestamp = statsTimeStamp - obj.getLong("last_block_datetime")
                 
-                var min = (timestamp / 60).toString() + ""
-                var sec = (timestamp % 60).toString() + ""
+                val min = (timestamp / 60).toString().padStart(2, '0')
+                val sec = (timestamp % 60).toString().padStart(2, '0')
                 
-                if (min.length == 1)
-                    min = "0" + min
-                
-                if (sec.length == 1)
-                    sec = "0" + sec
-                
-                statsLastBlockDatetime = min + ":" + sec
-                statsLastAvgBlockTime = obj.getString("average_minutes") + ":" + obj.getString("average_seconds")
+                statsLastBlockDatetime = "$min:$sec"
+                statsLastAvgBlockTime = """${obj.getString("average_minutes")}:${obj.getString("average_seconds")}"""
                 
                 statsTicketPollSize = obj.getString("poolsize")
                 

@@ -17,37 +17,36 @@ fun Activity.hideKeyboard() {
         val view = this.currentFocus
         if (view != null) {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     } catch (ignored: Exception) {
     }
 }
 
-fun String.numberComplete(decimalPlaces: Int): String {
-    try {
-        var bd = BigDecimal(this)
-        
-        bd = bd.setScale(decimalPlaces, BigDecimal.ROUND_DOWN)
-        
-        return bd.toPlainString()
-    } catch (e: Exception) {
-        return ""
-    }
-}
+fun String.numberComplete(decimalPlaces: Int) =
+        try {
+            var bd = BigDecimal(this)
+            
+            bd = bd.setScale(decimalPlaces, BigDecimal.ROUND_DOWN)
+            
+            bd.toPlainString()
+        } catch (e: Exception) {
+            ""
+        }
 
-fun Double.numberComplete(decimalPlaces: Int): String {
-    try {
-        var bd = BigDecimal(this)
-        
-        bd = bd.setScale(decimalPlaces, BigDecimal.ROUND_DOWN)
-        
-        return bd.toPlainString()
-    } catch (e: Exception) {
-        e.printStackTrace()
-        
-        return "0".numberComplete(decimalPlaces)
-    }
-}
+fun Double.numberComplete(decimalPlaces: Int) =
+        try {
+            var bd = BigDecimal(this)
+            
+            bd = bd.setScale(decimalPlaces, BigDecimal.ROUND_DOWN)
+            
+            bd.toPlainString()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            
+            "0".numberComplete(decimalPlaces)
+        }
 
 fun EditText.toDouble(): Double = try {
     java.lang.Double.parseDouble(this.text.toString())
@@ -93,17 +92,16 @@ fun View.toggleVisibility() {
     }
 }
 
-fun isPackageInstalled(context: Context, packageName: String): Boolean {
-    try {
-        val pm = context.packageManager
-        
-        pm.getPackageInfo(packageName, 0)
-        
-        return true
-    } catch (e: Exception) {
-        return false
-    }
-}
+fun isPackageInstalled(context: Context, packageName: String) =
+        try {
+            val pm = context.packageManager
+            
+            pm.getPackageInfo(packageName, 0)
+            
+            true
+        } catch (e: Exception) {
+            false
+        }
 
 fun alert(context: Context, text: String) {
     try {

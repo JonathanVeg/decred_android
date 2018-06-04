@@ -1,7 +1,6 @@
 package altcoin.br.decred.fragments
 
 import altcoin.br.decred.R
-import altcoin.br.decred.R.id.*
 import altcoin.br.decred.utils.InternetRequests
 import altcoin.br.decred.utils.Utils
 import altcoin.br.decred.utils.numberComplete
@@ -364,8 +363,8 @@ class ChartFragment : Fragment() {
             // invert the data
             for (i in entriesBid.indices)
                 entriesBid[i].xIndex = entriesBid.size - 1 - i
-            
-            Collections.reverse(labelsBid)
+    
+            labelsBid.reverse()
             
             val datasetBid = LineDataSet(entriesBid, "Bids")
             
