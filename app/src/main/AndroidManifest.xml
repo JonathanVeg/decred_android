@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="altcoin.br.decred">
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    package="altcoin.br.decred">
+    
+    <uses-permission android:name="android.permission.INTERNET" />
+    
     <application
         android:name=".application.MyApplication"
         android:allowBackup="true"
@@ -11,67 +11,67 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        
         <service
             android:name=".services.PriceAlertService"
-            android:enabled="true"/>
-
+            android:enabled="true" />
+        
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="1b9e889468bf967dddcafc0104451052e83223bd"/>
-
+            android:value="1b9e889468bf967dddcafc0104451052e83223bd" />
+        
         <receiver android:name=".widget.PriceWidgetProvider">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="android.appwidget.action.UPDATE_DRC_WIDGET"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.UPDATE_DRC_WIDGET" />
             </intent-filter>
-
+            
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_info"/>
+                android:resource="@xml/appwidget_provider_info" />
         </receiver>
-
+        
         <receiver android:name=".widget.TicketWidgetProvider">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="android.appwidget.action.UPDATE_DRC_TICKET_WIDGET"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.UPDATE_DRC_TICKET_WIDGET" />
             </intent-filter>
-
+            
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_ticket_provider_info"/>
+                android:resource="@xml/appwidget_ticket_provider_info" />
         </receiver>
-
+        
         <receiver
             android:name=".ReceiverOnBootComplete"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
+        
         <receiver
             android:name=".RestartPriceAlertService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="DecredKillPriceAlertService"/>
+                <action android:name="DecredKillPriceAlertService" />
             </intent-filter>
         </receiver>
-
-        <activity android:name=".widget.ConfigureWidgetActivity"/>
+        
+        <activity android:name=".widget.ConfigureWidgetActivity" />
     </application>
 
 </manifest>

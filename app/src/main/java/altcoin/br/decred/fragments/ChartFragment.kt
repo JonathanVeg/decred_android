@@ -1,6 +1,7 @@
 package altcoin.br.decred.fragments
 
 import altcoin.br.decred.R
+import altcoin.br.decred.R.id.*
 import altcoin.br.decred.utils.InternetRequests
 import altcoin.br.decred.utils.Utils
 import altcoin.br.decred.utils.numberComplete

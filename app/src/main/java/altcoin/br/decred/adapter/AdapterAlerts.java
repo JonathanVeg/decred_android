@@ -73,7 +73,6 @@ public class AdapterAlerts extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 myHolder.ivAlertInactive.setVisibility(View.VISIBLE);
                 myHolder.ivAlertActive.setVisibility(View.GONE);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -148,7 +147,6 @@ public class AdapterAlerts extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                                 }
                             })
                             .setNegativeButton(android.R.string.no, null).show();
-
                 }
             });
 

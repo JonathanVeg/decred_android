@@ -3,16 +3,18 @@
         <style>.cls-1{fill:#2ed7a2;}.cls-2{fill:#2972ff;}</style>
     </defs>
     <title>decred - symbol -blue on turquoise</title>
-    <rect class="cls-1" data-name="&lt;Rectangle&gt;" height="500" id="_Rectangle_" width="500"/>
+    <rect class="cls-1" data-name="&lt;Rectangle&gt;" height="500" id="_Rectangle_" width="500" />
     <g data-name="&lt;Group&gt;" id="_Group_">
         <g data-name="&lt;Group&gt;" id="_Group_2">
             <g data-name="&lt;Group&gt;" id="_Group_3">
-                <path class="cls-2" d="M231.88,278.06H306.1a50,50,0,0,0,0-100H282.45l-50.57-43.9H306.1a93.92,93.92,0,0,1,35.38,180.92L400,365.86H333Z" data-name="&lt;Path&gt;"
-                      id="_Path_"/>
+                <path class="cls-2"
+                    d="M231.88,278.06H306.1a50,50,0,0,0,0-100H282.45l-50.57-43.9H306.1a93.92,93.92,0,0,1,35.38,180.92L400,365.86H333Z"
+                    data-name="&lt;Path&gt;" id="_Path_" />
             </g>
             <g data-name="&lt;Group&gt;" id="_Group_4">
-                <path class="cls-2" d="M268.12,221.95H193.9a50,50,0,0,0,0,100h23.64l50.57,43.9H193.9a93.92,93.92,0,0,1-35.38-180.92L100,134.14h67Z" data-name="&lt;Path&gt;"
-                      id="_Path_2"/>
+                <path class="cls-2"
+                    d="M268.12,221.95H193.9a50,50,0,0,0,0,100h23.64l50.57,43.9H193.9a93.92,93.92,0,0,1-35.38-180.92L100,134.14h67Z"
+                    data-name="&lt;Path&gt;" id="_Path_2" />
             </g>
         </g>
     </g>

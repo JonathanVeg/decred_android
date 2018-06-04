@@ -21,136 +21,134 @@ import kotlinx.android.synthetic.main.fragment_stats.*
 
 @SuppressLint("SetTextI18n")
 class AboutFragment : Fragment() {
-	private var links: ArrayList<Link> = ArrayList()
-	private var adapterLinks: AdapterLinks? = null
+    private var links: ArrayList<Link> = ArrayList()
+    private var adapterLinks: AdapterLinks? = null
+    override fun onStart() {
+        super.onStart()
 
-	override fun onStart() {
-		super.onStart()
+        prepareFirebasePart()
 
-		prepareFirebasePart()
+        Utils.textViewLink(tvAboutDeveloper, "https://twitter.com/jonathanveg2")
+        Utils.textViewLink(tvAboutCode, "https://github.com/JonathanVeg/decred_android")
+        Utils.textViewLink(tvDcrStatsLink, "https://dcrstats.com/")
+    }
 
-		Utils.textViewLink(tvAboutDeveloper, "https://twitter.com/jonathanveg2")
-		Utils.textViewLink(tvAboutCode, "https://github.com/JonathanVeg/decred_android")
-		Utils.textViewLink(tvDcrStatsLink, "https://dcrstats.com/")
-	}
+    private fun prepareListeners() {
+        tvAboutDonateWallet?.setOnClickListener {
+            try {
+                val wallet = "DsUJTC7MZDWfnWyYnmm9P6ijsA44oRQVsSn"
 
-	private fun prepareListeners() {
-		tvAboutDonateWallet?.setOnClickListener {
-			try {
-				val wallet = "DsUJTC7MZDWfnWyYnmm9P6ijsA44oRQVsSn"
+                Utils.copyToClipboard(activity, wallet)
 
-				Utils.copyToClipboard(activity, wallet)
+                Toast.makeText(activity, "DCR Wallet ($wallet) copied to clipboard", Toast.LENGTH_LONG).show()
 
-				Toast.makeText(activity, "DCR Wallet ($wallet) copied to clipboard", Toast.LENGTH_LONG).show()
+                Utils.logFabric("donationWalletCopied")
+            } catch (e: Exception) {
+                e.printStackTrace()
 
-				Utils.logFabric("donationWalletCopied")
-			} catch (e: Exception) {
-				e.printStackTrace()
+                Toast.makeText(activity, "Error while copying wallet", Toast.LENGTH_LONG).show()
+            }
+        }
 
-				Toast.makeText(activity, "Error while copying wallet", Toast.LENGTH_LONG).show()
-			}
-		}
+        tvAboutDonateWalletBTC?.setOnClickListener {
+            try {
+                val wallet = "1GDa2bhgKaCwQrka2xY1P9cexKNb88HYFE"
 
-		tvAboutDonateWalletBTC?.setOnClickListener {
-			try {
-				val wallet = "1GDa2bhgKaCwQrka2xY1P9cexKNb88HYFE"
+                Utils.copyToClipboard(activity, wallet)
 
-				Utils.copyToClipboard(activity, wallet)
+                Toast.makeText(activity, "BTC Wallet ($wallet) copied to clipboard", Toast.LENGTH_LONG).show()
 
-				Toast.makeText(activity, "BTC Wallet ($wallet) copied to clipboard", Toast.LENGTH_LONG).show()
+                Utils.logFabric("donationWalletCopied")
+            } catch (e: Exception) {
+                e.printStackTrace()
 
-				Utils.logFabric("donationWalletCopied")
-			} catch (e: Exception) {
-				e.printStackTrace()
+                Toast.makeText(activity, "Error while copying wallet", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 
-				Toast.makeText(activity, "Error while copying wallet", Toast.LENGTH_LONG).show()
-			}
-		}
-	}
+    private fun instanceObjects() {
+        adapterLinks = AdapterLinks(activity, links)
 
-	private fun instanceObjects() {
-		adapterLinks = AdapterLinks(activity, links)
+        lvLinks.adapter = adapterLinks
+    }
 
-		lvLinks.adapter = adapterLinks
-	}
+    private fun prepareFirebasePart() {
+        try {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
-	private fun prepareFirebasePart() {
-		try {
-			FirebaseDatabase.getInstance().setPersistenceEnabled(true)
-		} catch (e: Exception) {
-			e.printStackTrace()
-		}
+        try {
+            val database = FirebaseDatabase.getInstance()
+            val showWallet = database.getReference("donation").child("show_wallet")
 
-		try {
-			val database = FirebaseDatabase.getInstance()
-			val showWallet = database.getReference("donation").child("show_wallet")
+            // Read from the database
+            showWallet.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    val value = dataSnapshot.getValue<Boolean>(Boolean::class.java)
 
-			// Read from the database
-			showWallet.addValueEventListener(object : ValueEventListener {
-				override fun onDataChange(dataSnapshot: DataSnapshot) {
-					// This method is called once with the initial value and again
-					// whenever data at this location is updated.
-					val value = dataSnapshot.getValue<Boolean>(Boolean::class.java)
+                    llDonate?.visible(value == true)
 
-					llDonate?.visible(value == true)
+                    showWallet.keepSynced(true)
+                }
 
-					showWallet.keepSynced(true)
-				}
+                override fun onCancelled(error: DatabaseError) {}
+            })
 
-				override fun onCancelled(error: DatabaseError) {}
-			})
+            // links
+            val drLinks = database.getReference("links")
 
-			// links
-			val drLinks = database.getReference("links")
+            // Read from the database
+            drLinks.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
 
-			// Read from the database
-			drLinks.addValueEventListener(object : ValueEventListener {
-				override fun onDataChange(dataSnapshot: DataSnapshot) {
-					// This method is called once with the initial value and again
-					// whenever data at this location is updated.
+                    try {
+                        val value = dataSnapshot.getValue<String>(String::class.java)
 
-					try {
-						val value = dataSnapshot.getValue<String>(String::class.java)
+                        val localLinks = ArrayList<Link>()
 
-						val localLinks = ArrayList<Link>()
+                        val arrLinks = value.split(",".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
 
-						val arrLinks = value.split(",".toRegex()).dropLastWhile({ it.isEmpty() }).toTypedArray()
+                        var i = 0
+                        while (i < arrLinks.size) {
+                            localLinks.add(Link(arrLinks[i], arrLinks[i + 1]))
+                            i += 2
+                        }
 
-						var i = 0
-						while (i < arrLinks.size) {
-							localLinks.add(Link(arrLinks[i], arrLinks[i + 1]))
-							i += 2
-						}
+                        links.clear()
 
-						links.clear()
+                        links.addAll(localLinks)
 
-						links.addAll(localLinks)
+                        adapterLinks?.notifyDataSetChanged()
 
-						adapterLinks?.notifyDataSetChanged()
+                        drLinks.keepSynced(true)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
 
-						drLinks.keepSynced(true)
-					} catch (e: Exception) {
-						e.printStackTrace()
-					}
+                override fun onCancelled(error: DatabaseError) {}
+            })
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
-				}
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater?.inflate(R.layout.fragment_about, container, false)
+    }
 
-				override fun onCancelled(error: DatabaseError) {}
-			})
-		} catch (e: Exception) {
-			e.printStackTrace()
-		}
-	}
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
-	override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-		return inflater?.inflate(R.layout.fragment_about, container, false)
-	}
+        instanceObjects()
 
-	override fun onActivityCreated(savedInstanceState: Bundle?) {
-		super.onActivityCreated(savedInstanceState)
-
-		instanceObjects()
-
-		prepareListeners()
-	}
+        prepareListeners()
+    }
 }
