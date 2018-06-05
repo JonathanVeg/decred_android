@@ -2,12 +2,34 @@ package altcoin.br.decred.utils
 
 import android.app.Activity
 import android.content.Context
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import java.math.BigDecimal
+
+fun hash(name: String): Int {
+    val s = name.replace(" ".toRegex(), "")
+    
+    var h = 0
+    
+    for (i in 0 until s.length)
+        h = 31 * h + s[i].toInt()
+    
+    return h
+}
+
+fun Context.writePreference(key: String, value: Boolean) {
+    try {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        
+        preferences.edit().putBoolean(key, value).apply()
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}
 
 fun Activity.hideKeyboard() {
     try {

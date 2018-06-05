@@ -72,7 +72,8 @@ public class PriceAlertService extends Service {
         
         builder.setContentText(contentText);
         
-        builder.setSmallIcon(R.drawable.ic_monetization_on_white_36dp);
+        // builder.setSmallIcon(R.drawable.ic_monetization_on_white_36dp);
+        builder.setSmallIcon(R.drawable.logo_notification);
         
         builder.setPriority(Notification.PRIORITY_MAX);
         builder.setContentIntent(pendingIntent);
@@ -86,8 +87,6 @@ public class PriceAlertService extends Service {
         builder.setStyle(inboxStyle);
         
         Notification notification = builder.build();
-        
-        notification.flags = Notification.FLAG_NO_CLEAR | Notification.FLAG_AUTO_CANCEL;
         
         notification.ledARGB = 0xFFffff00;
         notification.ledOnMS = 500;

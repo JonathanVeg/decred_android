@@ -21,7 +21,7 @@ class AdapterLinks(private val context: Context, private val links: List<Link>) 
     override fun getItemId(i: Int) =
             i.toLong()
     
-    override fun getView(position: Int, view: View, viewGroup: ViewGroup): View {
+    override fun getView(position: Int, view: View?, viewGroup: ViewGroup?): View? {
         val li = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         
         val v = li.inflate(R.layout.row_links, null)

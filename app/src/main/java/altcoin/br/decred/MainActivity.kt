@@ -76,7 +76,6 @@ class MainActivity : Activity() {
         
         // creating the handler for updating the altcoin.br.decred.data constantily
         try {
-            
             handler = Handler()
             
             handler?.postDelayed(runnableCode, 10000)

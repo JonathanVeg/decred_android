@@ -3,12 +3,14 @@ package altcoin.br.decred.adapter
 import altcoin.br.decred.R
 import altcoin.br.decred.model.ExchangeData
 import altcoin.br.decred.utils.exchanges.AbstractExchange
+import altcoin.br.decred.utils.hide
 import android.content.Context
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 
 class AdapterExchanges(private val context: Context, private val exchanges: ArrayList<ExchangeData>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -48,6 +50,14 @@ class AdapterExchanges(private val context: Context, private val exchanges: Arra
                     }
                 }
             }
+
+//            val db = DBTools(context)
+//
+//            try {
+//                h.cbPinPriceInNotifications.isChecked = db.search("select count(*) from pinned_notifications where exchange = '${exchange.label.toLowerCase()}'") > 0
+//            } finally {
+//                db.close()
+//            }
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -66,5 +76,24 @@ class AdapterExchanges(private val context: Context, private val exchanges: Arra
         internal val tvExchangeBid = v.findViewById(R.id.tvExchangeBid) as TextView
         internal val tvExchangeAsk = v.findViewById(R.id.tvExchangeAsk) as TextView
         internal val tvExchangeChanges = v.findViewById(R.id.tvExchangeChanges) as TextView
+        internal val cbPinPriceInNotifications = v.findViewById(R.id.cbPinPriceInNotifications) as CheckBox
+        
+        init {
+            
+            cbPinPriceInNotifications.hide()
+
+//            cbPinPriceInNotifications.setOnCheckedChangeListener { _, b ->
+//                val db = DBTools(context)
+//
+//                try {
+//                    if (b)
+//                        db.exec("insert into pinned_notifications (exchange) values('${exchanges[adapterPosition].toString().toLowerCase()}')")
+//                    else
+//                        db.exec("delete from pinned_notifications where exchange = '${exchanges[adapterPosition].toString().toLowerCase()}'")
+//                } finally {
+//                    db.close()
+//                }
+//            }
+        }
     }
 }

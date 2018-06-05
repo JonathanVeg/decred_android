@@ -107,6 +107,13 @@
                 android:layout_height="wrap_content"
                 android:text="0" />
         </LinearLayout>
+        
+        <CheckBox
+            android:id="@+id/cbPinPriceInNotifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pin price in notifications"
+            android:visibility="gone" />
     
     </LinearLayout>
 </LinearLayout>
