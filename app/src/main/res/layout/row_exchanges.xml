@@ -6,10 +6,10 @@
     android:orientation="vertical">
     
     <TextView
-        android:id="@+id/tvProfitfyTitle"
+        android:id="@+id/tvExchangeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profitfy"
+        android:text="Exchange"
         android:textStyle="bold" />
     
     <LinearLayout
@@ -30,7 +30,7 @@
                 android:textStyle="bold" />
             
             <TextView
-                android:id="@+id/tvProfitfyLast"
+                android:id="@+id/tvExchangeLast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0" />
@@ -48,7 +48,7 @@
                 android:textStyle="bold" />
             
             <TextView
-                android:id="@+id/tvProfitfyBaseVolume"
+                android:id="@+id/tvExchangeBaseVolume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0" />
@@ -66,7 +66,7 @@
                 android:textStyle="bold" />
             
             <TextView
-                android:id="@+id/tvProfitfyBid"
+                android:id="@+id/tvExchangeBid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0" />
@@ -84,7 +84,7 @@
                 android:textStyle="bold" />
             
             <TextView
-                android:id="@+id/tvProfitfyAsk"
+                android:id="@+id/tvExchangeAsk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0" />
@@ -102,7 +102,7 @@
                 android:textStyle="bold" />
             
             <TextView
-                android:id="@+id/tvProfitfyChanges"
+                android:id="@+id/tvExchangeChanges"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0" />

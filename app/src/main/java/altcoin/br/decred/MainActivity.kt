@@ -4,17 +4,15 @@ import altcoin.br.decred.fragments.*
 import altcoin.br.decred.services.PriceAlertService
 import altcoin.br.decred.utils.Utils
 import android.app.Activity
+import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.content.ContextCompat
 import android.util.Log
-import kotlinx.android.synthetic.main.bittrex.*
-import kotlinx.android.synthetic.main.bleutrade.*
 import kotlinx.android.synthetic.main.coin_market_cap.*
 import kotlinx.android.synthetic.main.header.*
 import kotlinx.android.synthetic.main.ll_footer.*
-import kotlinx.android.synthetic.main.poloniex.*
 import org.greenrobot.eventbus.EventBus
 import org.json.JSONObject
 
@@ -103,9 +101,6 @@ class MainActivity : Activity() {
     
     private fun instanceObjects() {
         Utils.textViewLink(tvOficialSite, "https://decred.info/")
-        Utils.textViewLink(tvPoloniexTitle, "https://coinmarketcap.com/exchanges/poloniex/")
-        Utils.textViewLink(tvBittrexTitle, "https://coinmarketcap.com/exchanges/bittrex/")
-        Utils.textViewLink(tvBleutradeTitle, "https://coinmarketcap.com/exchanges/bleutrade/")
         Utils.textViewLink(tvCoinMarketCapTitle, "https://coinmarketcap.com/currencies/decred/#markets")
     }
     
@@ -137,86 +132,59 @@ class MainActivity : Activity() {
         
         val ft = fm.beginTransaction()
         
+        resetFooter()
+        
+        currentTab = tab
+        
+        var fragment: Fragment? = null
+        
         when (tab) {
             TAB_SUMMARY -> {
-                resetFooter()
-                
-                currentTab = TAB_SUMMARY
-                
                 bSummary?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
                 
-                val fragment = SummaryFragment()
-                
-                ft.replace(R.id.llFragments, fragment, "task").commit()
+                fragment = SummaryFragment()
                 
                 Utils.logFabric("tabChanged", "tab", "summary")
             }
             TAB_CHART -> {
-                resetFooter()
-                
-                currentTab = TAB_CHART
-                
                 bChart?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
                 
-                val fragment = ChartFragment()
-                
-                ft.replace(R.id.llFragments, fragment, "task").commit()
+                fragment = ChartFragment()
                 
                 Utils.logFabric("tabChanged", "tab", "chart")
             }
             TAB_CALC -> {
-                resetFooter()
-                
-                currentTab = TAB_CALC
-                
                 bCalculator?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
                 
-                val fragment = CalculatorFragment()
-                
-                ft.replace(R.id.llFragments, fragment, "task").commit()
+                fragment = CalculatorFragment()
                 
                 Utils.logFabric("tabChanged", "tab", "calculator")
             }
             TAB_ABOUT -> {
-                resetFooter()
-                
-                currentTab = TAB_ABOUT
-                
                 bAbout?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
                 
-                val fragment = AboutFragment()
-                
-                ft.replace(R.id.llFragments, fragment, "task").commit()
+                fragment = AboutFragment()
                 
                 Utils.logFabric("tabChanged", "tab", "about")
             }
             TAB_ALERT -> {
-                resetFooter()
-                
-                currentTab = TAB_ALERT
-                
                 bAlerts?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
                 
-                val fragment = AlertsFragment()
-                
-                ft.replace(R.id.llFragments, fragment, "task").commit()
+                fragment = AlertsFragment()
                 
                 Utils.logFabric("tabChanged", "tab", "alerts")
             }
             TAB_STATS -> {
-                resetFooter()
-                
-                currentTab = TAB_STATS
-                
                 bStats?.setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.silver))
                 
-                val fragment = StatsFragment()
-                
-                ft.replace(R.id.llFragments, fragment, "task").commit()
+                fragment = StatsFragment()
                 
                 Utils.logFabric("tabChanged", "tab", "stats")
             }
         }
+        
+        if (fragment != null)
+            ft.replace(R.id.llFragments, fragment).commit()
     }
     
     companion object {
