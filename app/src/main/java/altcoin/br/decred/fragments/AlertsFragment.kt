@@ -96,6 +96,8 @@ class AlertsFragment : Fragment() {
                     if (alert.isBittrex) where += "B"
                     
                     Utils.logFabric("alertSaved", "where", where)
+                    
+                    activity.startService(Intent(activity, PriceAlertService::class.java))
                 } else
                     Utils.alert(activity, "Error while saving alert")
             } catch (e: Exception) {

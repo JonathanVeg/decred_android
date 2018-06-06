@@ -93,14 +93,14 @@ class TicketWidgetProvider : AppWidgetProvider() {
         internetRequests.executeGet(url, listener)
     }
     
-    private inner class AtParseTicketData internal constructor(internal val context: Context, internal val manager: AppWidgetManager, internal val appWidgetId: Int, internal val response: String) : AsyncTask<Void, Void, Void>() {
+    private inner class AtParseTicketData internal constructor(internal val context: Context, internal val manager: AppWidgetManager, internal val appWidgetId: Int, internal val response: String) : AsyncTask<Void?, Void?, Void?>() {
         internal val views = RemoteViews(context.packageName, R.layout.appwidget_ticket)
         
         init {
             views.setTextViewText(R.id.tvWidNameCoin, "DCR - Polo - $hour")
         }
         
-        override fun doInBackground(vararg data: Void): Void? {
+        override fun doInBackground(vararg data: Void?): Void? {
             try {
                 val obj = JSONObject(response)
                 

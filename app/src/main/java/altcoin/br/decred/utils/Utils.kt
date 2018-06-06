@@ -31,6 +31,18 @@ fun Context.writePreference(key: String, value: Boolean) {
     }
 }
 
+fun Context.readPreference(key: String, defaultValue: Boolean): Boolean {
+    try {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        
+        return preferences.getBoolean(key, defaultValue)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        
+        return defaultValue
+    }
+}
+
 fun Activity.hideKeyboard() {
     try {
         val view = this.currentFocus

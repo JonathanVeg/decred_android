@@ -6,6 +6,5 @@ enum class EnumExchanges(val label: String) {
     POLONIEX("Poloniex"),
     PROFITFY("Profitfy");
     
-    override fun toString() =
-            label
+    override fun toString() = label
 }

@@ -1,6 +1,7 @@
 package altcoin.br.decred
 
 import altcoin.br.decred.fragments.*
+import altcoin.br.decred.services.NotificationCoinService
 import altcoin.br.decred.services.PriceAlertService
 import altcoin.br.decred.utils.Utils
 import android.app.Activity
@@ -54,6 +55,7 @@ class MainActivity : Activity() {
         bSummary?.performClick()
         
         startService(Intent(this, PriceAlertService::class.java))
+        startService(Intent(this, NotificationCoinService::class.java))
         
         try {
             EventBus.getDefault().register(this)

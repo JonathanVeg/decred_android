@@ -62,16 +62,38 @@
             </intent-filter>
         </receiver>
         
+        <activity android:name=".widget.ConfigureWidgetActivity" />
+        
+        <service
+            android:name=".services.NotificationCoinService"
+            android:enabled="true" />
+        
         <receiver
-            android:name=".RestartPriceAlertService"
+            android:name=".services.RestartNotificationCoinService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="DecredKillPriceAlertService" />
+                <action android:name="DecredKillNotificationCoinService" />
             </intent-filter>
         </receiver>
         
-        <activity android:name=".widget.ConfigureWidgetActivity" />
+        <receiver
+            android:name=".services.RestartAlertPriceCoinService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="DecredKillAlertPriceService" />
+            </intent-filter>
+        </receiver>
+        
+        <receiver
+            android:name=".UpdateNotifications"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="DECRED_UPDATE_NOTIFICATIONS" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

@@ -251,14 +251,14 @@ class PriceWidgetProvider : AppWidgetProvider() {
         internetRequests.executePost(url, listener)
     }
     
-    private inner class AtParsePoloniexData internal constructor(internal val context: Context, internal val manager: AppWidgetManager, internal val appWidgetId: Int, internal val fiat: String?, internal val response: String) : AsyncTask<Void, Void, Void>() {
+    private inner class AtParsePoloniexData internal constructor(internal val context: Context, internal val manager: AppWidgetManager, internal val appWidgetId: Int, internal val fiat: String?, internal val response: String) : AsyncTask<Void?, Void?, Void?>() {
         internal val views = RemoteViews(context.packageName, R.layout.appwidget_coin)
         
         init {
             views.setTextViewText(R.id.tvWidNameCoin, "DCR - Polo - $hour")
         }
         
-        override fun doInBackground(vararg data: Void): Void? {
+        override fun doInBackground(vararg data: Void?): Void? {
             try {
                 val obj = getSpecificSummary(response)
                 
