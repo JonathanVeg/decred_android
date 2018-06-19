@@ -23,48 +23,40 @@ import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.fragment_chart.*
 import kotlinx.android.synthetic.main.market_chart.*
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
 
 class ChartFragment : Fragment() {
-    private var chartZoom: Int = 0
-    private var chartCandle: Int = 0
-    private var showValues: Boolean = false
+    private var chartZoom = 0
+    private var chartCandle = 0
+    private var showValues = false
     
     private var adapterZoom: ArrayAdapter<String>? = null
     private var adapterCandle: ArrayAdapter<String>? = null
     
-    private var running: Boolean = false
+    private var running = false
     
     var toast: Toast? = null
+    
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater?.inflate(R.layout.fragment_chart, container, false)
+    }
+    
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        
+        instanceObjects()
+        
+        prepareListeners()
+    }
+    
     override fun onStart() {
         super.onStart()
         
         loadMarketChart()
         
         running = true
-        
-        try {
-            EventBus.getDefault().register(this)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-    
-    @Subscribe
-    fun eventBusReceiver(obj: JSONObject) {
-        try {
-            if (obj.has("tag") && obj.getString("tag").equals("update", ignoreCase = true) && running) {
-                loadMarketChart()
-                
-                Utils.log("update ::: ChartFragment")
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
     }
     
     override fun onStop() {
@@ -74,6 +66,12 @@ class ChartFragment : Fragment() {
     }
     
     private fun prepareListeners() {
+        srChartRefresh?.setOnRefreshListener {
+            loadMarketChart()
+            
+            loadChart()
+        }
+        
         coinChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
             override fun onValueSelected(e: Entry, dataSetIndex: Int, h: Highlight) {
                 try {
@@ -271,6 +269,8 @@ class ChartFragment : Fragment() {
             
             if (!running) return
             
+            srChartRefresh?.isRefreshing = false
+            
             val cd = CombinedData(labels)
             cd.setData(data)
             cd.setData(volumeData)
@@ -363,7 +363,7 @@ class ChartFragment : Fragment() {
             // invert the data
             for (i in entriesBid.indices)
                 entriesBid[i].xIndex = entriesBid.size - 1 - i
-    
+            
             labelsBid.reverse()
             
             val datasetBid = LineDataSet(entriesBid, "Bids")
@@ -415,17 +415,5 @@ class ChartFragment : Fragment() {
             
             marketChartAsk?.invalidate()
         }
-    }
-    
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.fragment_chart, container, false)
-    }
-    
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        
-        instanceObjects()
-        
-        prepareListeners()
     }
 }

@@ -4,6 +4,7 @@ import altcoin.br.decred.R
 import altcoin.br.decred.utils.Bitcoin
 import altcoin.br.decred.utils.InternetRequests
 import altcoin.br.decred.utils.Utils
+import altcoin.br.decred.utils.alert
 import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
@@ -32,13 +33,13 @@ class CalculatorFragment : Fragment() {
                     try {
                         val obj = JSONArray(response).getJSONObject(0)
                         
-                        val quantity = java.lang.Double.parseDouble(etValueToConvertBtc?.text.toString())
+                        val quantity = Utils.eval(etValueToConvertBtc)
                         
                         tvCalcBtcInDcr?.text = Utils.numberComplete(String.format("%s", quantity / java.lang.Double.parseDouble(obj.getString("price_btc"))), 8)
                     } catch (e: Exception) {
                         e.printStackTrace()
                         
-                        Toast.makeText(activity, "Error while converting", Toast.LENGTH_LONG).show()
+                        alert(activity, "Error while converting")
                     }
                 }
                 
@@ -58,13 +59,13 @@ class CalculatorFragment : Fragment() {
                     try {
                         val obj = JSONArray(response).getJSONObject(0)
                         
-                        val quantity = java.lang.Double.parseDouble(etValueToConvertUsd?.text.toString())
+                        val quantity = Utils.eval(etValueToConvertUsd)
                         
                         tvCalcUsdInDcr?.text = Utils.numberComplete(String.format("%s", quantity / java.lang.Double.parseDouble(obj.getString("price_usd"))), 8)
                     } catch (e: Exception) {
                         e.printStackTrace()
-                        
-                        Toast.makeText(activity, "Error while converting", Toast.LENGTH_LONG).show()
+    
+                        alert(activity, "Error while converting")
                     }
                 }
                 
@@ -84,7 +85,7 @@ class CalculatorFragment : Fragment() {
                     try {
                         val obj = JSONObject(response) //.getJSONObject("ticker_24h").getJSONObject("total")
                         
-                        val quantity = java.lang.Double.parseDouble(etValueToConvertBrl?.text.toString()) / obj.getDouble("last")
+                        val quantity = Utils.eval(etValueToConvertBrl) / obj.getDouble("last")
                         
                         val listener = Response.Listener<String> { response2 ->
                             try {
@@ -101,6 +102,8 @@ class CalculatorFragment : Fragment() {
                         execApiCall(listener)
                     } catch (e: Exception) {
                         e.printStackTrace()
+    
+                        alert(activity, "Error while converting")
                     }
                 }
                 
@@ -120,7 +123,7 @@ class CalculatorFragment : Fragment() {
                     try {
                         val obj = JSONArray(response).getJSONObject(0)
                         
-                        val quantity = java.lang.Double.parseDouble(etValueToConvertDcr?.text.toString())
+                        val quantity = Utils.eval(etValueToConvertDcr)
                         
                         tvCalcDcrInBtc?.text = Utils.numberComplete(String.format("%s", quantity * java.lang.Double.parseDouble(obj.getString("price_btc"))), 8)
                         
@@ -139,8 +142,8 @@ class CalculatorFragment : Fragment() {
                         Bitcoin.convertBtcToBrl(listener)
                     } catch (e: Exception) {
                         e.printStackTrace()
-                        
-                        Toast.makeText(activity, "Error while converting", Toast.LENGTH_LONG).show()
+    
+                        alert(activity, "Error while converting")
                     }
                 }
                 

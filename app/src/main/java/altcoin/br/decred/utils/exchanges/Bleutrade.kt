@@ -6,12 +6,13 @@ import android.os.AsyncTask
 import com.android.volley.Response
 import org.json.JSONObject
 
-open class Bleutrade : Exchange() {
+open class Bleutrade(val coin: String, val market: String) : Exchange() {
     override fun onValueLoaded() {
     }
     
     override fun loadData() {
-        val url = "https://bleutrade.com/api/v2/public/getmarketsummaries"
+        // val url = "https://bleutrade.com/api/v2/public/getmarketsummaries"
+        val url = "https://bleutrade.com/api/v2/public/getmarketsummary?market=${coin.toUpperCase()}_${market.toUpperCase()}"
         
         val listener = Response.Listener<String> { response -> AtParseBleutradeData(response).execute() }
         
@@ -29,15 +30,18 @@ open class Bleutrade : Exchange() {
                 for (i in 0 until arr.length()) {
                     val item = arr.getJSONObject(i)
                     
-                    if (item.getString("MarketName").toLowerCase() == "dcr_btc")
+                    if (item.getString("MarketName").toLowerCase() == "${coin}_$market")
                         obj = item
                 }
                 
                 if (obj != null) {
                     last = Utils.numberComplete(obj.getString("Last"), 8)
                     baseVolume = Utils.numberComplete(obj.getString("BaseVolume"), 8)
+                    coinVolume = Utils.numberComplete(obj.getString("Volume"), 8)
                     ask = Utils.numberComplete(obj.getString("Ask"), 8)
                     bid = Utils.numberComplete(obj.getString("Bid"), 8)
+                    high = Utils.numberComplete(obj.getString("High"), 8)
+                    low = Utils.numberComplete(obj.getString("Low"), 8)
                     
                     val prev = obj.getDouble("PrevDay")
                     

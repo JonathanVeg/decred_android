@@ -6,7 +6,7 @@ import android.os.AsyncTask
 import com.android.volley.Response
 import org.json.JSONObject
 
-open class Poloniex : Exchange() {
+open class Poloniex(val coin: String, val market: String) : Exchange() {
     override fun onValueLoaded() {
     }
     
@@ -22,7 +22,7 @@ open class Poloniex : Exchange() {
     private inner class AtParsePoloniexData internal constructor(internal val response: String) : AsyncTask<Void?, Void?, Void?>() {
         internal fun getSpecificSummary(response: String): JSONObject? {
             try {
-                val coin = "DCR"
+                val coin = coin.toUpperCase()
                 
                 val jObject = JSONObject(response)
                 
@@ -35,7 +35,7 @@ open class Poloniex : Exchange() {
                     if (jObject.get(key) is JSONObject) {
                         jsonObj = jObject.get(key) as JSONObject
                         
-                        if (key.startsWith("BTC_") && key.toLowerCase().contains(coin.toLowerCase())) {
+                        if (key.startsWith("${market.toUpperCase()}_") && key.toLowerCase().contains(coin.toLowerCase())) {
                             return jsonObj
                         }
                     }
@@ -55,8 +55,11 @@ open class Poloniex : Exchange() {
                 
                 last = Utils.numberComplete(obj!!.getString("last"), 8)
                 baseVolume = Utils.numberComplete(obj.getString("baseVolume"), 8)
+                coinVolume = Utils.numberComplete(obj.getString("quoteVolume"), 8)
                 ask = Utils.numberComplete(obj.getString("lowestAsk"), 8)
                 bid = Utils.numberComplete(obj.getString("highestBid"), 8)
+                high = Utils.numberComplete(obj.getString("high24hr"), 8)
+                low = Utils.numberComplete(obj.getString("low24hr"), 8)
                 changes = Utils.numberComplete(obj.getDouble("percentChange") * 100, 2)
             } catch (e: Exception) {
                 e.printStackTrace()

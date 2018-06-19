@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingEnd="@dimen/activity_margin"
+        android:paddingLeft="@dimen/activity_margin"
         android:paddingStart="@dimen/activity_margin">
         
         <ImageView
@@ -22,30 +23,39 @@
             app:srcCompat="@drawable/dcr_icon" />
         
         <TextView
+            style="@style/header20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="8dp"
-            android:text="Calculator"
-            android:textStyle="bold" />
+            android:text="Calculator" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="(expressions allowed)"
+            android:textSize="12sp" />
         
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:background="@layout/box_margin"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/card"
             android:minHeight="80dp">
             
             <Button
                 android:id="@+id/bConvertDcrTo"
                 android:layout_width="100dp"
                 android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="false"
+                android:layout_marginEnd="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/button_style"
+                android:background="@drawable/button_style_corner_rect"
                 android:text="Convert"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
@@ -54,22 +64,21 @@
                 android:id="@+id/etValueToConvertDcr"
                 android:layout_width="fill_parent"
                 android:layout_height="45dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="25dp"
                 android:layout_toLeftOf="@+id/bConvertDcrTo"
                 android:ems="10"
-                android:hint="0.0"
-                android:inputType="numberDecimal" />
+                android:hint="0.0" />
             
             <TextView
+                style="@style/header16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="15dp"
+                android:layout_margin="5dp"
                 android:layout_marginTop="10dp"
-                android:text="Value in DCR"
-                android:textStyle="bold" />
+                android:text="Value in DCR" />
             
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,6 +86,8 @@
                 android:layout_alignLeft="@id/etValueToConvertDcr"
                 android:layout_alignStart="@id/etValueToConvertDcr"
                 android:layout_below="@id/etValueToConvertDcr"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@id/etValueToConvertDcr"
                 android:layout_toRightOf="@id/etValueToConvertDcr"
@@ -148,19 +159,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:background="@layout/box_margin"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/card"
             android:minHeight="80dp">
             
             <Button
                 android:id="@+id/bConvertBtcTo"
                 android:layout_width="100dp"
                 android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="false"
+                android:layout_marginEnd="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/button_style"
+                android:background="@drawable/button_style_corner_rect"
                 android:text="Convert"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
@@ -169,22 +182,22 @@
                 android:id="@+id/etValueToConvertBtc"
                 android:layout_width="fill_parent"
                 android:layout_height="45dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="25dp"
                 android:layout_toLeftOf="@+id/bConvertBtcTo"
+                android:layout_toStartOf="@+id/bConvertBtcTo"
                 android:ems="10"
-                android:hint="0.0"
-                android:inputType="numberDecimal" />
+                android:hint="0.0" />
             
             <TextView
+                style="@style/header16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="15dp"
+                android:layout_margin="5dp"
                 android:layout_marginTop="10dp"
-                android:text="Value in BTC"
-                android:textStyle="bold" />
+                android:text="Value in BTC" />
             
             <LinearLayout
                 android:layout_width="match_parent"
@@ -192,6 +205,8 @@
                 android:layout_alignLeft="@id/etValueToConvertBtc"
                 android:layout_alignStart="@id/etValueToConvertBtc"
                 android:layout_below="@id/etValueToConvertBtc"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@id/etValueToConvertBtc"
                 android:layout_toRightOf="@id/etValueToConvertBtc"
@@ -218,19 +233,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:background="@layout/box_margin"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/card"
             android:minHeight="80dp">
             
             <Button
                 android:id="@+id/bConvertUsdTo"
                 android:layout_width="100dp"
                 android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="false"
+                android:layout_marginEnd="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/button_style"
+                android:background="@drawable/button_style_corner_rect"
                 android:text="Convert"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
@@ -239,22 +256,21 @@
                 android:id="@+id/etValueToConvertUsd"
                 android:layout_width="fill_parent"
                 android:layout_height="45dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="25dp"
                 android:layout_toLeftOf="@+id/bConvertUsdTo"
                 android:ems="10"
-                android:hint="0.0"
-                android:inputType="numberDecimal" />
+                android:hint="0.0" />
             
             <TextView
+                style="@style/header16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="15dp"
+                android:layout_margin="5dp"
                 android:layout_marginTop="10dp"
-                android:text="Value in USD"
-                android:textStyle="bold" />
+                android:text="Value in USD" />
             
             <LinearLayout
                 android:layout_width="match_parent"
@@ -262,6 +278,8 @@
                 android:layout_alignLeft="@id/etValueToConvertUsd"
                 android:layout_alignStart="@id/etValueToConvertUsd"
                 android:layout_below="@id/etValueToConvertUsd"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@id/etValueToConvertUsd"
                 android:layout_toRightOf="@id/etValueToConvertUsd"
@@ -288,19 +306,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:background="@layout/box_margin"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/card"
             android:minHeight="80dp">
             
             <Button
                 android:id="@+id/bConvertBrlTo"
                 android:layout_width="100dp"
                 android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="false"
+                android:layout_marginEnd="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/button_style"
+                android:background="@drawable/button_style_corner_rect"
                 android:text="Convert"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
@@ -309,22 +329,24 @@
                 android:id="@+id/etValueToConvertBrl"
                 android:layout_width="fill_parent"
                 android:layout_height="45dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="25dp"
                 android:layout_toLeftOf="@+id/bConvertBrlTo"
+                android:layout_toStartOf="@+id/bConvertBrlTo"
                 android:ems="10"
-                android:hint="0.0"
-                android:inputType="numberDecimal" />
+                android:hint="0.0" />
             
             <TextView
+                style="@style/header16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="15dp"
+                android:layout_alignParentStart="true"
+                android:layout_margin="5dp"
                 android:layout_marginTop="10dp"
-                android:text="Value in BRL"
-                android:textStyle="bold" />
+                android:text="Value in BRL" />
             
             <LinearLayout
                 android:layout_width="match_parent"
@@ -332,6 +354,8 @@
                 android:layout_alignLeft="@id/etValueToConvertBrl"
                 android:layout_alignStart="@id/etValueToConvertBrl"
                 android:layout_below="@id/etValueToConvertBrl"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@id/etValueToConvertBrl"
                 android:layout_toRightOf="@id/etValueToConvertBrl"

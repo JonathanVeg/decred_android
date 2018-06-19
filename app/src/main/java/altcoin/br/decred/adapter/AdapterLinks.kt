@@ -3,6 +3,7 @@ package altcoin.br.decred.adapter
 import altcoin.br.decred.R
 import altcoin.br.decred.model.Link
 import altcoin.br.decred.utils.Utils
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-class AdapterLinks(private val context: Context, private val links: List<Link>) : BaseAdapter() {
+class AdapterLinks(private val context: Activity, private val links: List<Link>) : BaseAdapter() {
     
     override fun getCount() =
             links.size
@@ -26,8 +27,8 @@ class AdapterLinks(private val context: Context, private val links: List<Link>) 
         
         val v = li.inflate(R.layout.row_links, null)
         
-        val tvLinkLabel = v.findViewById(R.id.tvLinkLabel) as TextView
-        val tvLinkUrl = v.findViewById(R.id.tvLinkUrl) as TextView
+        val tvLinkLabel = v.findViewById<TextView>(R.id.tvLinkLabel)
+        val tvLinkUrl = v.findViewById<TextView>(R.id.tvLinkUrl)
         
         var label = links[position].label
         

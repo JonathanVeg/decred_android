@@ -1,144 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/activity_margin"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/card"
+    android:baselineAligned="false"
     android:orientation="vertical">
     
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="8dp"
-        android:text="Summary"
-        android:textStyle="bold" />
-    
-    <TextView
-        android:id="@+id/tvCoinMarketCapTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Data from CoinMarketCap"
-        android:textStyle="bold" />
+        android:baselineAligned="false"
+        android:orientation="vertical">
+        
+        <altcoin.br.decred.utils.CopyableTextView
+            android:id="@+id/tvCoinMarketCapTitle"
+            style="@style/header20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CoinMarketCap"
+            android:textAlignment="center" />
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="5dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BTC price: "
+                    android:textStyle="bold" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvSummaryBtcPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="5dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="USD price: "
+                    android:textStyle="bold" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvSummaryUsdPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="5dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BRL price: "
+                    android:textStyle="bold" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvSummaryBrlPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="5dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="24h changes: "
+                    android:textStyle="bold" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvSummary24hChanges"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="5dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="24h vol in USD: "
+                    android:textStyle="bold" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvSummaryUsd24hVolume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="5dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="USD market cap: "
+                    android:textStyle="bold" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvSummaryUsdMarketCap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
     
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_margin">
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
         
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BTC price: "
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/tvSummaryBtcPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="USD price: "
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/tvSummaryUsdPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BRL price: "
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/tvSummaryBrlPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="24h changes: "
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/tvSummary24hChanges"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="24h vol in USD: "
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/tvSummaryUsd24hVolume"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="USD market cap: "
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/tvSummaryUsdMarketCap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </LinearLayout>
-        
-        <CheckBox
-            android:id="@+id/cbSummaryPinMarketCapPriceInNotifications"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/ivExchangeUp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pin price in notifications" />
-    
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_up_arrow" />
+        
+        <ImageView
+            android:id="@+id/ivExchangeDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_down_arrow" />
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

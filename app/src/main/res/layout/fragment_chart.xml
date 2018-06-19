@@ -1,66 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/llChart"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/srChartRefresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
     
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/llChart"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:orientation="vertical">
-        
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="8dp"
-            android:text="Charts (Poloniex Data)"
-            android:textStyle="bold" />
         
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
             
-            <Spinner
-                android:id="@+id/sZoom"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_weight="0.3" />
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:text="Charts (Poloniex Data)"
+                android:textStyle="bold" />
             
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.4"
-                android:orientation="vertical">
+                android:orientation="horizontal">
                 
-                <CheckBox
-                    android:id="@+id/cbShowValues"
+                <Spinner
+                    android:id="@+id/sZoom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:checked="false"
-                    android:text="Show values" />
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3" />
+                
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:orientation="vertical">
+                    
+                    <CheckBox
+                        android:id="@+id/cbShowValues"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:checked="false"
+                        android:text="Show values" />
+                
+                </LinearLayout>
+                
+                <Spinner
+                    android:id="@+id/sCandle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3" />
             
             </LinearLayout>
             
-            <Spinner
-                android:id="@+id/sCandle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_weight="0.3" />
-        
+            <com.github.mikephil.charting.charts.CombinedChart
+                android:id="@+id/coinChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+            
+            <include layout="@layout/market_chart" />
         </LinearLayout>
-        
-        <com.github.mikephil.charting.charts.CombinedChart
-            android:id="@+id/coinChart"
-            android:layout_width="match_parent"
-            android:layout_height="300dp" />
-        
-        <include layout="@layout/market_chart" />
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

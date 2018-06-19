@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="exchanges">
+        <item>Bittrex</item>
+        <item>Poloniex</item>
+        <item>Bleutrade</item>
+        <item>Profitfy</item>
+        <item>Ooobtc</item>
+        <item>Huobi</item>
+    </string-array>
+
+</resources>

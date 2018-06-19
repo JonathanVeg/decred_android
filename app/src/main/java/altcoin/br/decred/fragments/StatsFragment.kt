@@ -14,20 +14,22 @@ import android.view.ViewGroup
 import com.android.volley.Response
 import kotlinx.android.synthetic.main.fragment_stats.*
 import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
 import org.json.JSONArray
 import org.json.JSONObject
 
 class StatsFragment : Fragment() {
-    private var statsTimeStamp: Long = 0
+    private var statsTimeStamp = 0L
     
-    private var running: Boolean = false
+    private var running = false
     
-    private var brlPrice: Double = 0.toDouble()
-    private var usdPrice: Double = 0.toDouble()
-    private var btcPrice: Double = 0.toDouble()
+    private var brlPrice = 0.toDouble()
+    private var usdPrice = 0.toDouble()
+    private var btcPrice = 0.toDouble()
+    
     override fun onStart() {
         super.onStart()
+        
+        prepareListeners()
         
         loadData()
         
@@ -40,14 +42,9 @@ class StatsFragment : Fragment() {
         }
     }
     
-    @Subscribe
-    fun eventBusReceiver(obj: JSONObject) {
-        try {
-            if (obj.has("tag") && obj.getString("tag").equals("update", ignoreCase = true) && running) {
-                loadData()
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
+    private fun prepareListeners() {
+        srStatsRefresh?.setOnRefreshListener {
+            loadData()
         }
     }
     
@@ -78,6 +75,8 @@ class StatsFragment : Fragment() {
             super.onPostExecute(aVoid)
             
             if (!running) return
+            
+            srStatsRefresh?.isRefreshing = false
             
             val listener = Response.Listener<String> { response ->
                 try {

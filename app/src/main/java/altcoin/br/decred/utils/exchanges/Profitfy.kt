@@ -6,12 +6,12 @@ import android.os.AsyncTask
 import com.android.volley.Response
 import org.json.JSONArray
 
-open class Profitfy : Exchange() {
+open class Profitfy(val coin: String, val market: String) : Exchange() {
     override fun onValueLoaded() {
     }
     
     override fun loadData() {
-        val url = "https://profitfy.trade/api/v1/ticker/btc/dcr"
+        val url = "https://profitfy.trade/api/v1/ticker/$market/$coin"
         
         val listener = Response.Listener<String> { response -> AtParseProfitfyData(response).execute() }
         
@@ -25,9 +25,11 @@ open class Profitfy : Exchange() {
                 val obj = JSONArray(response).getJSONObject(0)
                 
                 last = Utils.numberComplete(obj.getString("last"), 8)
-                baseVolume = Utils.numberComplete(obj.getString("volume"), 8)
+                coinVolume = Utils.numberComplete(obj.getString("volume"), 8)
                 ask = Utils.numberComplete(obj.getString("sell"), 8)
                 bid = Utils.numberComplete(obj.getString("buy"), 8)
+                high = Utils.numberComplete(obj.getString("min"), 8)
+                low = Utils.numberComplete(obj.getString("max"), 8)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

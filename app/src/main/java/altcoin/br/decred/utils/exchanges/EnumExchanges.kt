@@ -4,7 +4,10 @@ enum class EnumExchanges(val label: String) {
     BITTREX("Bittrex"),
     BLEUTRADE("Bleutrade"),
     POLONIEX("Poloniex"),
-    PROFITFY("Profitfy");
+    PROFITFY("Profitfy"),
+    OOOBTC("ooobtc"),
+    HUOBI("Huobi"),
+    COINMARKETCAP("CoinMarketCap");
     
     override fun toString() = label
 }

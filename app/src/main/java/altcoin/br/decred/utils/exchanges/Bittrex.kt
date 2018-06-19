@@ -6,12 +6,12 @@ import android.os.AsyncTask
 import com.android.volley.Response
 import org.json.JSONObject
 
-open class Bittrex : Exchange() {
+open class Bittrex(val coin: String, val market: String) : Exchange() {
     override fun onValueLoaded() {
     }
     
     override fun loadData() {
-        val url = "https://bittrex.com/api/v1.1/public/getmarketsummary?market=BTC-DCR"
+        val url = "https://bittrex.com/api/v1.1/public/getmarketsummary?market=$market-$coin"
         
         val listener = Response.Listener<String> { response -> AtParseBittrexData(response).execute() }
         
@@ -30,8 +30,11 @@ open class Bittrex : Exchange() {
                     
                     last = Utils.numberComplete(obj.getString("Last"), 8)
                     baseVolume = Utils.numberComplete(obj.getString("BaseVolume"), 8)
+                    coinVolume = Utils.numberComplete(obj.getString("Volume"), 8)
                     ask = Utils.numberComplete(obj.getString("Ask"), 8)
                     bid = Utils.numberComplete(obj.getString("Bid"), 8)
+                    high = Utils.numberComplete(obj.getString("High"), 8)
+                    low = Utils.numberComplete(obj.getString("Low"), 8)
                     
                     // the api does not give the % changes, but we can calculate it using the prevDay and last values
                     val prev = obj.getDouble("PrevDay")
@@ -55,7 +58,7 @@ open class Bittrex : Exchange() {
             // if (!running) return
             
             // tvBittrexLast.text = last
-            // tvBittrexBaseVolume.text = baseVolume
+            // tvBittrexBaseVolume.text = coinVolume
             // tvBittrexBid.text = bid
             // tvBittrexAsk.text = ask
             // tvBittrexChanges.text = String.format("%s%%", changes)

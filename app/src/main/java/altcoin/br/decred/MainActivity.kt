@@ -8,34 +8,14 @@ import android.app.Activity
 import android.app.Fragment
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.content.ContextCompat
-import android.util.Log
 import kotlinx.android.synthetic.main.coin_market_cap.*
 import kotlinx.android.synthetic.main.header.*
 import kotlinx.android.synthetic.main.ll_footer.*
 import org.greenrobot.eventbus.EventBus
-import org.json.JSONObject
 
 class MainActivity : Activity() {
     private var currentTab = 0
-    
-    private var handler: Handler? = null
-    
-    private val runnableCode = object : Runnable {
-        override fun run() {
-            tvLastUpdate?.text = Utils.now()
-            
-            handler = Handler()
-            
-            handler?.postDelayed(this, 10000)
-            
-            try {
-                EventBus.getDefault().post(JSONObject("{}").put("tag", "update"))
-            } catch (_: Exception) {
-            }
-        }
-    }
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +29,6 @@ class MainActivity : Activity() {
         instanceObjects()
         
         prepareListeners()
-        
-        resetFooter()
         
         bSummary?.performClick()
         
@@ -73,35 +51,8 @@ class MainActivity : Activity() {
         super.onBackPressed()
     }
     
-    override fun onStart() {
-        super.onStart()
-        
-        // creating the handler for updating the altcoin.br.decred.data constantily
-        try {
-            handler = Handler()
-            
-            handler?.postDelayed(runnableCode, 10000)
-        } catch (e: Exception) {
-            Log.e("Handler", "Error while creating handler")
-            
-            e.printStackTrace()
-        }
-    }
-    
-    override fun onStop() {
-        super.onStop()
-        
-        try {
-            handler?.removeCallbacks(runnableCode)
-        } catch (e: Exception) {
-            Log.e("Handler", "Error while pausing handler")
-            
-            e.printStackTrace()
-        }
-    }
-    
     private fun instanceObjects() {
-        Utils.textViewLink(tvOficialSite, "https://decred.info/")
+        Utils.textViewLink(tvOfficialSite, "https://decred.org/")
         Utils.textViewLink(tvCoinMarketCapTitle, "https://coinmarketcap.com/currencies/decred/#markets")
     }
     

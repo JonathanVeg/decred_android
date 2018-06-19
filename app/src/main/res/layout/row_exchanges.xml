@@ -1,119 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/activity_margin"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/card"
+    android:baselineAligned="false"
     android:orientation="vertical">
     
-    <TextView
-        android:id="@+id/tvExchangeTitle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Exchange"
-        android:textStyle="bold" />
+        android:baselineAligned="false"
+        android:orientation="vertical">
+        
+        <altcoin.br.decred.utils.CopyableTextView
+            android:id="@+id/tvExchangeTitle"
+            style="@style/header20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exchange"
+            android:textAlignment="center" />
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <LinearLayout
+                android:id="@+id/llExchangeLast"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="3dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last price: "
+                    android:textStyle="bold" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvExchangeLast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvExchangeChanges"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
+                    android:text="0" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/llExchangeBaseVolume"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="3dp">
+                
+                <TextView
+                    android:id="@+id/tvExchangeBaseVolumeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volume (in BTC): "
+                    android:textStyle="bold" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvExchangeBaseVolume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/llExchangeCoinVolume"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="3dp">
+                
+                <TextView
+                    android:id="@+id/tvExchangeCoinVolumeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volume (in COIN): "
+                    android:textStyle="bold" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvExchangeCoinVolume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/llExchangeBid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="3dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bid / Ask: "
+                    android:textStyle="bold" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvExchangeBid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginStart="3dp"
+                    android:text="/" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvExchangeAsk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/llExchangeAsk"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:visibility="gone">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ask: "
+                    android:textStyle="bold" />
+            
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/llExchangeLow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="3dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Low / High: "
+                    android:textStyle="bold" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvExchangeLow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginStart="3dp"
+                    android:text="/" />
+                
+                <altcoin.br.decred.utils.CopyableTextView
+                    android:id="@+id/tvExchangeHigh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/llExchangeHigh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:visibility="gone">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="High: "
+                    android:textStyle="bold" />
+            
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/llExchangeChanges"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:visibility="gone">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Changes: "
+                    android:textStyle="bold" />
+            
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
     
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_margin">
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
         
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Last price: "
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/tvExchangeLast"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Volume (in BTC): "
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/tvExchangeBaseVolume"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bid: "
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/tvExchangeBid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ask: "
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/tvExchangeAsk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Changes: "
-                android:textStyle="bold" />
-            
-            <TextView
-                android:id="@+id/tvExchangeChanges"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
-        </LinearLayout>
-        
-        <CheckBox
-            android:id="@+id/cbPinPriceInNotifications"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/ivExchangeUp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pin price in notifications"
-            android:visibility="gone" />
-    
+            android:layout_marginBottom="10dp"
+            android:contentDescription="Put exchange up"
+            android:src="@drawable/ic_up_arrow" />
+        
+        <ImageView
+            android:id="@+id/ivExchangeDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:contentDescription="Put exchange down"
+            android:src="@drawable/ic_down_arrow" />
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

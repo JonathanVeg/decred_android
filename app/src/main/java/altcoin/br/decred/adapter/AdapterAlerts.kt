@@ -70,12 +70,12 @@ class AdapterAlerts(private val activity: Activity, private val alerts: MutableL
     }
     
     private inner class MyViewHolder internal constructor(v: View) : RecyclerView.ViewHolder(v) {
-        internal val tvAlertId = v.findViewById(R.id.tvAlertId) as TextView
-        internal val tvAlertWhen = v.findViewById(R.id.tvAlertWhen) as TextView
-        internal val tvAlertValue = v.findViewById(R.id.tvAlertValue) as TextView
-        internal val ivAlertDelete = v.findViewById(R.id.ivAlertDelete) as ImageView
-        internal val ivAlertActive = v.findViewById(R.id.ivAlertActive) as ImageView
-        internal val ivAlertInactive = v.findViewById(R.id.ivAlertInactive) as ImageView
+        internal val tvAlertId = v.findViewById<TextView>(R.id.tvAlertId)
+        internal val tvAlertWhen = v.findViewById<TextView>(R.id.tvAlertWhen)
+        internal val tvAlertValue = v.findViewById<TextView>(R.id.tvAlertValue)
+        internal val ivAlertDelete = v.findViewById<ImageView>(R.id.ivAlertDelete)
+        internal val ivAlertActive = v.findViewById<ImageView>(R.id.ivAlertActive)
+        internal val ivAlertInactive = v.findViewById<ImageView>(R.id.ivAlertInactive)
         
         init {
             ivAlertDelete.setOnClickListener {

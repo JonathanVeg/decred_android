@@ -10,7 +10,7 @@
         android:layout_weight="1"
         android:background="@color/silver"
         android:scaleType="center"
-        android:src="@drawable/bdark_ic_action_list" />
+        android:src="@drawable/ic_list" />
     
     <ImageView
         android:id="@+id/bChart"
@@ -19,7 +19,7 @@
         android:layout_weight="1"
         android:background="@color/transparent_silver"
         android:scaleType="center"
-        android:src="@drawable/bdark_bdark_ic_action_line_chart" />
+        android:src="@drawable/ic_chart" />
     
     <ImageView
         android:id="@+id/bCalculator"
@@ -28,7 +28,7 @@
         android:layout_weight="1"
         android:background="@color/transparent_silver"
         android:scaleType="center"
-        android:src="@drawable/bdark_ic_action_calculator" />
+        android:src="@drawable/ic_calculator" />
     
     <ImageView
         android:id="@+id/bAlerts"
@@ -37,7 +37,7 @@
         android:layout_weight="1"
         android:background="@color/transparent_silver"
         android:scaleType="center"
-        android:src="@drawable/bdark_ic_action_bell"
+        android:src="@drawable/ic_alert"
         android:visibility="visible" />
     
     <ImageView
@@ -47,7 +47,7 @@
         android:layout_weight="1"
         android:background="@color/transparent_silver"
         android:scaleType="center"
-        android:src="@drawable/bdark_bdark_ic_action_achievement" />
+        android:src="@drawable/ic_achievment" />
     
     <ImageView
         android:id="@+id/bAbout"
@@ -56,5 +56,5 @@
         android:layout_weight="1"
         android:background="@color/transparent_silver"
         android:scaleType="center"
-        android:src="@drawable/bdark_ic_action_info" />
+        android:src="@drawable/ic_info" />
 </LinearLayout>

@@ -1,14 +1,44 @@
 package altcoin.br.decred.utils
 
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
+import android.graphics.Typeface
 import android.preference.PreferenceManager
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.StyleSpan
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import java.math.BigDecimal
+
+fun String.copyToClipboard(context: Context) {
+    try {
+        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        
+        val clip = ClipData.newPlainText(".", this)
+        
+        clipboard.primaryClip = clip
+    } catch (e: Exception) {
+        e.printStackTrace()
+        
+        alert(context, "Error while copying")
+    }
+}
+
+fun makeSpannableBold(title: String, value: String): SpannableString {
+    val ss = SpannableString("${title.trim()} ${value.trim()}")
+    
+    val boldSpan = StyleSpan(Typeface.BOLD)
+    
+    ss.setSpan(boldSpan, 0, title.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+    
+    return ss
+}
 
 fun hash(name: String): Int {
     val s = name.replace(" ".toRegex(), "")
@@ -31,11 +61,33 @@ fun Context.writePreference(key: String, value: Boolean) {
     }
 }
 
+fun Context.writePreference(key: String, value: String) {
+    try {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        
+        preferences.edit().putString(key, value).apply()
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}
+
 fun Context.readPreference(key: String, defaultValue: Boolean): Boolean {
     try {
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
         
         return preferences.getBoolean(key, defaultValue)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        
+        return defaultValue
+    }
+}
+
+fun Context.readPreference(key: String, defaultValue: String): String {
+    try {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        
+        return preferences.getString(key, defaultValue)
     } catch (e: Exception) {
         e.printStackTrace()
         
@@ -86,39 +138,53 @@ fun EditText.toDouble(): Double = try {
 }
 
 fun log(any: Any, tag: String = "KotlinLog") = Log.e(tag, any.toString())
-fun View.hide() {
+
+fun View.setVisibility(visible: Boolean, hideIsGone: Boolean = true) {
     try {
-        this.visibility = View.GONE
+        if (visible)
+            this.show()
+        else
+            this.hide(hideIsGone)
+    } catch (_: Exception) {
+    }
+}
+
+fun View?.hide(hideIsGone: Boolean = true) {
+    try {
+        if (hideIsGone)
+            this?.visibility = View.GONE
+        else
+            this?.visibility = View.INVISIBLE
     } catch (ignored: Exception) {
     }
 }
 
-fun View.show() {
+fun View?.show() {
     try {
-        this.visibility = View.VISIBLE
+        this?.visibility = View.VISIBLE
     } catch (ignored: Exception) {
     }
 }
 
-fun View.isVisible(): Boolean =
-        visibility == View.VISIBLE
+fun View?.isVisible(): Boolean =
+        this?.visibility == View.VISIBLE
 
-fun View.visible(b: Boolean) {
+fun View?.visible(b: Boolean) {
     try {
         if (b)
-            this.visibility = View.VISIBLE
+            this?.visibility = View.VISIBLE
         else
-            this.visibility = View.GONE
+            this?.visibility = View.GONE
     } catch (ignored: Exception) {
     }
 }
 
-fun View.toggleVisibility() {
+fun View?.toggleVisibility() {
     try {
-        if (this.isVisible())
+        if (this?.isVisible() == true)
             this.hide()
         else
-            this.show()
+            this?.show()
     } catch (ignored: Exception) {
     }
 }
@@ -134,10 +200,14 @@ fun isPackageInstalled(context: Context, packageName: String) =
             false
         }
 
-fun alert(context: Context, text: String) {
+var toast: Toast? = null
+fun alert(context: Context, text: Any) {
     try {
-        Toast.makeText(context, text, Toast.LENGTH_LONG).show()
+        if (toast != null) toast?.cancel()
+        
+        toast = Toast.makeText(context, text.toString(), Toast.LENGTH_LONG)
+        
+        toast?.show()
     } catch (_: Exception) {
     }
 }
-
