@@ -18,6 +18,4 @@
         android:orientation="vertical" />
     
     <include layout="@layout/ll_footer" />
-    
-    <!--0B153D-->
 </LinearLayout>
